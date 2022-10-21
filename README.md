@@ -4,7 +4,13 @@ This is [Shrey](http://www.iamshrey.me/), 💻 Fullstack Developer || 📝 Tech 
 
 ## Experience
 
-I’ve have 4 years of industry experience - with Frontend being my primary strength. Have an experience in developing Web apps, Mobile apps(React Native), backend(NodeJS), firebase, database, blockchain applications such as DeFi, and Dapps.
+I’ve have 4 years of industry experience - with Frontend being my primary strength. 
+Have an experience in developing -
+ - Web apps, 
+ - Mobile apps(React Native), 
+ - Backend(NodeJS), 
+ - Firebase, 
+ - Blockchain applications such as DeFi, and Dapps.
 
 ## Live Projects
 
