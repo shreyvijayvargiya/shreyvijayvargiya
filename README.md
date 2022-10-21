@@ -1,10 +1,10 @@
 ## Introduction
 
-Hello, I'm [Shrey Vijayvargiya](http://www.iamshrey.me/), a Fullstack developer with around 4 years of industry experience - with Frontend being my primary strength. 
+This is [Shrey](http://www.iamshrey.me/), 💻 Fullstack Developer || 📝 Tech Writer  || 🎙 Content Creator || 🥸 Freelancer
 
 ## Experience
 
-I’ve experience in developing Web apps, Mobile apps(React Native), backend(NodeJS), firebase, database, blockchain applications such as DeFi, and Dapps.
+I’ve have 4 years of industry experience - with Frontend being my primary strength. Have an experience in developing Web apps, Mobile apps(React Native), backend(NodeJS), firebase, database, blockchain applications such as DeFi, and Dapps.
 
 ## Live Projects
 
