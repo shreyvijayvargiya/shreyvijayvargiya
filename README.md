@@ -1,5 +1,7 @@
+** Introduction ** 
 Hello, I'm Shrey Vijayvargiya, a Fullstack developer with around 4 years of industry experience - with Frontend being my primary strength. 
 
+** Experience ** 
 I’ve experience in developing Web apps, Mobile apps(React Native), backend(NodeJS), firebase, database, blockchain applications such as DeFi, and Dapps.
 
 **Live Products**
@@ -17,3 +19,4 @@ I’ve experience in developing Web apps, Mobile apps(React Native), backend(Nod
 - 200+ Medium articles -  [https://shreyvijayvargiya26.medium.com/](https://shreyvijayvargiya26.medium.com/)
 - 70+ projects repository - [https://github.com/shreyvijayvargiya/iHateReadingLogs](https://github.com/shreyvijayvargiya/iHateReadingLogs)
 - Devto profile - [https://dev.to/shreyvijayvargiya](https://dev.to/shreyvijayvargiya)
+- Youtube - https://www.youtube.com/channel/UC6I-Tz6QwYbJpoIK7l0NtXA
