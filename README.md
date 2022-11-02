@@ -2,6 +2,8 @@
 
 This is [Shrey](http://www.iamshrey.me/), 💻 Fullstack Developer || 📝 Tech Writer  || 🎙 Content Creator || 🥸 Freelancer
 
+<a href="https://app.daily.dev/shreyvijayvargi"><img src="https://api.daily.dev/devcards/f1967b6895db452f9aeadfe5197ea347.png?r=j0p" width="400" alt="shrey vijayvargiya's Dev Card"/></a>
+
 ## Experience
 
 I’ve have 4 years of industry experience - with Frontend being my primary strength. 
