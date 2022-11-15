@@ -11,13 +11,43 @@ import { Tooltip } from "@mantine/core";
 
 const Header = () => {
 	return (
-		<div className="fixed top-0 left-0 right-0 bg-gray-100 z-10">
-			<div className="flex justify-between items-center m-2">
-				<a href="/" className="flex justify-between items-center m-2">
-					<img className="w-10 h-10 rounded" src="./shrey-min.jpeg" />
+		<div
+			className="fixed top-0 left-0 right-0 bg-gray-100 z-10"
+			style={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+				right: 0,
+				padding: "10px",
+				background: "#f8fafc",
+			}}
+		>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+					gap: "10px",
+				}}
+			>
+				<div
+					className="flex justify-between items-center m-2"
+					style={{
+						display: "flex",
+						justifyContent: "flex-start",
+						alignItems: "flex-start",
+						gap: "10px",
+					}}
+				>
+					<a href="/">
+						<img
+							src="./shrey-min.jpeg"
+							style={{ width: "2em", height: "2em", borderRadius: "4px" }}
+						/>
+					</a>
 					<p className="text-3xl font-bold text-black">Shrey</p>
-				</a>
-				<div className="flex justify-start items-center m-1 gap-2">
+				</div>
+				<div className="flex justify-start items-center m-1">
 					<Tooltip label="Twitter">
 						<a
 							href="https://twitter.com/treyvijay"
@@ -29,7 +59,7 @@ const Header = () => {
 							className="m-1"
 						>
 							<AiFillTwitterCircle
-								size={20}
+								size={24}
 								color={colors.blue[600]}
 								data-tip="Twitter"
 							/>
@@ -42,7 +72,7 @@ const Header = () => {
 							rel="noreferrer"
 							className="m-1"
 						>
-							<AiFillGithub size={20} color={colors.indigo[600]} />
+							<AiFillGithub size={24} color={colors.indigo[600]} />
 						</a>
 					</Tooltip>
 					<Tooltip label="Medium">
@@ -52,7 +82,7 @@ const Header = () => {
 							rel="noreferrer"
 							className="m-1"
 						>
-							<AiFillMediumCircle size={20} color={colors.orange[600]} />
+							<AiFillMediumCircle size={24} color={colors.orange[600]} />
 						</a>
 					</Tooltip>
 					<Tooltip label="Devto">
@@ -62,7 +92,7 @@ const Header = () => {
 							rel="noreferrer"
 							className="m-1"
 						>
-							<FaDev size={20} color={colors.pink[600]} />
+							<FaDev size={24} color={colors.pink[600]} />
 						</a>
 					</Tooltip>
 					<Tooltip label="Youtube">
@@ -72,7 +102,7 @@ const Header = () => {
 							rel="noreferrer"
 							className="m-1"
 						>
-							<AiFillYoutube size={20} color={colors.red[600]} />
+							<AiFillYoutube size={24} color={colors.red[600]} />
 						</a>
 					</Tooltip>
 				</div>
