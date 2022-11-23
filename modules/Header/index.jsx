@@ -47,7 +47,7 @@ const Header = () => {
 					</a>
 					<p className="text-3xl font-bold text-black">Shrey</p>
 				</div>
-				<div className="flex justify-start items-center m-1">
+				<div className="flex justify-start items-center m-1 gap-2">
 					<Tooltip label="Twitter">
 						<a
 							href="https://twitter.com/treyvijay"
