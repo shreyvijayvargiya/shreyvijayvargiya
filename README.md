@@ -24,14 +24,14 @@ Have an experience in developing -
 
 ## Developer Presence 
 
-- 200+ Medium articles -  [https://shreyvijayvargiya26.medium.com/](https://shreyvijayvargiya26.medium.com/)
-- 70+ projects repository - [https://github.com/shreyvijayvargiya/iHateReadingLogs](https://github.com/shreyvijayvargiya/iHateReadingLogs)
-- Devto profile - [https://dev.to/shreyvijayvargiya](https://dev.to/shreyvijayvargiya)
-- Youtube - https://www.youtube.com/channel/UC6I-Tz6QwYbJpoIK7l0NtXA
+- 300+ Medium articles -  [https://shreyvijayvargiya26.medium.com/](https://shreyvijayvargiya26.medium.com/)
+- 70+ open source projects repository - [https://github.com/shreyvijayvargiya/iHateReadingLogs](https://github.com/shreyvijayvargiya/iHateReadingLogs)
+- Devto blogs- [https://dev.to/shreyvijayvargiya](https://dev.to/shreyvijayvargiya)
+- Youtube videos - https://www.youtube.com/channel/UC6I-Tz6QwYbJpoIK7l0NtXA
 
 
 ## Contact 
-- Email - mailto@shreyvijayvargiya26@gmail.com
+- Email - https://mailto@shreyvijayvargiya26@gmail.com
 - Twitter - https://twitter.com/treyvijay
 
 <a href="https://app.daily.dev/shreyvijayvargi"><img src="https://api.daily.dev/devcards/f1967b6895db452f9aeadfe5197ea347.png?r=j0p" width="400" alt="shrey vijayvargiya's Dev Card"/></a>
