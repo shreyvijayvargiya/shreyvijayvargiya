@@ -1,60 +1,116 @@
-# Portfolio Website Repository
+Hello, I'm Shrey Vijayvargiya, a Fullstack developer with around 4 years of industry experience - with Frontend being my primary strength. 
 
-### Build your portfolio website instantly using a JSON file.
+I’ve experience in developing web apps, mobile apps, backends, firebase, database,  blockchain applications such as DeFi, and DApps.
 
-## How to Run Locally
+### 🏫 **Experience**
 
-```
-Clone the repository
-run yarn
-run yarn run dev
-open localhost:3000
-```
+### Freelancer
 
-## Packaged used
-<ol>
-  <li>Next JS</li>
-  <li>React JS</li>
-  <li>Material UI</li>
-  <li>Mantine Dev</li>
-  <li>Tailwind CSS</li>
-  <li>React Icons</li>
-</ol>
+Remote, **Full-Stack Developer
 
-### What is this template?
+21, Jan, 2021 - Present
 
-Basically, it’s a template to give your a full-fledged control over building your own portfolio website using code and designs.
+- https://kooapp.com/
+- https://retailpulse.ai/
+- https://ihatereading.in/
+- https://www.myhomejam.com/
 
-### Purpose of the template?
+### Coinswitch [https://coinswitch.co/]
 
-I made this template to provide a ready-to-use or started code repository to all developers around the world on How to build a personal portfolio website using single JSON file.
+Remote, Mobile App Developer
 
-We are not only providing the codebase but 
+March, 2020 - Jan, 2021
 
-- Best code architecture
-- Complete control over your website
-- Top tech stack in 2023
-- Highly customisable
-- Easy-to-use repository
-- Highly extensible (use for other products)
+- Developed cryptocurrency trading application for millions of users
 
-This template will provide you with a good started project as well as your own portfolio website that you can deploy right instantaneously.
+- Successfully improved app(APK) bundle size by 40%.
+- Increased Application runtime speed by 25%.
+- Integration of GraphQL to enhance performance by 50%.
+- Implementation of Graphs, Flatlists, Animations Firebase and Amplitude software tools.
 
-### Things you will get in the repository
+### **Cogoport [**https://www.cogoport.com/**]**
 
-- Top tech stack,
-- Top libraries installed
-- Modern architecture
-- Responsive website
+Mumbai, India Software Developer, 
 
-### How do edit, run & deploy?
+March, 2019 - March, 2020
 
-- Down the repository
-- Run yarn followed by yarn run dev or npm commands if prefer that
-- Change the `data.js` file inside the `utils/api` directory and add your data including every key-value pair
-- Create a new Github repository, push the new code into the new Github repository
-- Create a new Vercel account, integrate a Github account into Vercel
-- Connect the Github repository to Vercel
-- Deploy the repository on Vercel
+- Core Member of Front-end Infrastructure team.
+- Developed React UI library of 72 components
+- Developed the packages like React reusable hooks, React real-time editable Spreadsheet, CMS(Content management system) & UI Library.
+- Worked on Babel, Webpack, Next JS, Redux, Gatsby
 
-You can deploy it onto your hosting platform that is why I’ve provided the code that gives you complete control over your website.
+### MunshiG [https://munshig.in/]
+
+Full-Stack Developer Intern, July’19 - Dec’19
+
+- Developed database management Dashboard for 100+ retail owners.
+- Worked on the updated technologies such as Firebase Authentication, Firebase Realtime Database, Firebase Storage, Google Maps and Javascript Charts.
+
+---
+
+### 📽️ Projects
+
+### 70 projects repository  -
+
+https://github.com/shreyvijayvargiya/iHateReadingLogs
+
+### iHateReading
+
+https://ihatereading.in/
+
+Learn how the products are built professionally.
+
+### **Frontend UI Library**
+
+https://uireactlibrary.vercel.app/?path=/story/*
+
+Frontend UI React library
+
+### Etherscan clone
+
+https://eth-txns.vercel.app/
+
+### Solana NFT marketplace
+
+https://www.solana-nft-marketplace-pi.vercel.app/
+
+### CryptStream
+
+ https://crypt-stream.vercel.app/dashboard
+
+---
+
+## ⚒️  Skills
+
+Jotting down all the tech stack and software I have worked on and have good hands-on experience. 
+
+| Language | Experience |
+| --- | --- |
+| React | ⭐  ⭐  ⭐  ⭐   |
+| React Native | ⭐  ⭐  ⭐  ⭐   |
+| Node.js | ⭐  ⭐   |
+| Firebase | ⭐  ⭐  ⭐  ⭐   |
+| Mongo DB | ⭐  ⭐  ⭐   |
+| Github | ⭐  ⭐  ⭐  ⭐   |
+| Express  |  ⭐ ⭐ ⭐ |
+| Solidity | ⭐ ⭐  |
+
+---
+
+## 👨🏻‍🎨 Social Links
+
+### 200+ Medium articles
+
+https://shreyvijayvargiya26.medium.com/
+
+### Devto profile
+
+https://dev.to/shreyvijayvargiya
+
+### Twitter
+
+https://twitter.com/treyvijay
+
+### Email
+
+[shreyvijayvargiya26@gmail.com](https://mail.google.com/mail/u/0/#inbox)
