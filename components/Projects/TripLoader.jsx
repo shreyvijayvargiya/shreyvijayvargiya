@@ -82,7 +82,7 @@ const TripLoader = ({ setLoading }) => {
 			style={{
 				color: colors[colorKeys[active + 1]],
 				backgroundColor: "rgb(0, 0, 0)",
-				zIndex: 100,
+				zIndex: 2000,
 			}}
 		>
 			<div className={styles.phoneMockup} ref={phoneRef}>

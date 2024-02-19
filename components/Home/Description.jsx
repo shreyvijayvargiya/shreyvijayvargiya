@@ -295,7 +295,7 @@ const Description = () => {
 
 	return (
 		<div
-			className="w-full h-full relative mb-20"
+			className="w-full h-full relative mb-20 p-4"
 			onMouseMoveCapture={(e) => {
 				setMousePosition({ x: e.clientX, y: e.clientY });
 			}}

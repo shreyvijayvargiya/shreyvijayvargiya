@@ -65,30 +65,28 @@ const getActiveIndex = (progress) => {
 const WorkExperience = () => {
 	const waveRef = useRef();
 
-	const isMobile = useMediaQuery("max-width: 600px");
+	const isMobile = useMediaQuery("(max-width:600px)");
 	const [percent, setPercent] = useState(5);
 
 	useEffect(() => {
 		const sections = gsap.utils.toArray(".list-container .section");
-		const tl = gsap.timeline({});
-		if (!isMobile) {
-			tl.to(sections, {
-				xPercent: -100 * (sections.length - 2),
-				ease: "none",
-				yoyo: true,
-				scrollTrigger: {
-					trigger: ".work-experience-container",
-					start: "top top",
-					end: () => `${(sections.length - 1) * 100}vh`,
-					scrub: 1,
-					pin: true,
-					onUpdate: (self) => {
-						const progress = self.progress;
-						setPercent(progress);
-					},
+		const tl = gsap.timeline({ paused: true });
+		tl.to(sections, {
+			xPercent: -100 * (sections.length - 2),
+			ease: "none",
+			yoyo: true,
+			scrollTrigger: {
+				trigger: ".work-experience-container",
+				start: "top top",
+				end: () => `${(sections.length - 1) * 100}vh`,
+				scrub: 1,
+				pin: true,
+				onUpdate: (self) => {
+					const progress = self.progress;
+					setPercent(progress);
 				},
-			});
-		}
+			},
+		});
 
 		sections.forEach((section, index) => {
 			gsap.fromTo(
@@ -105,7 +103,11 @@ const WorkExperience = () => {
 				}
 			);
 		});
-	}, []);
+
+		return () => {
+			tl.kill();
+		};
+	}, [isMobile]);
 
 	const styles = useStyles();
 
@@ -119,7 +121,7 @@ const WorkExperience = () => {
 			/>
 			<div className="list-container">
 				<div
-					className={`${styles.listContainer} mx-auto flex justify-around items-center md:flex-row sm:flex-col lg:flex-row xs:flex-col xxs:flex-col`}
+					className={`${styles.listContainer} mx-auto flex justify-around items-center md:flex-row sm:flex-row lg:flex-row xs:flex-row xxs:flex-row`}
 				>
 					{workExperience.map((item, index) => {
 						return (
@@ -148,7 +150,7 @@ const WorkExperience = () => {
 					})}
 				</div>
 			</div>
-			<div className="live-time absolute right-10 top-8 md:none sm:none lg:block xxs:none xs:none">
+			<div className="live-time absolute right-10 top-8 md:opacity-0 lg:block sm:opacity-0 xxs:opacity-0 xs:opacity-0">
 				<LiveTime />
 			</div>
 			<div className={`fixed bottom-10 left-0 right-0 w-full`}>
@@ -183,6 +185,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 		[theme.breakpoints.down("sm")]: {
 			padding: theme.spacing(1),
+			width: "100%",
 		},
 	},
 	card: {
@@ -195,7 +198,6 @@ const useStyles = makeStyles((theme) => ({
 		transformStyle: "preserve-3d",
 		color: colors.gray[400],
 		background: `rgb(0, 0, 0, 0.4)`,
-		transform: "rotateZ(-4deg) translateY(3px)",
 		boxShadow: "0px 0px 40px rgb(255, 255, 255, 0.3)",
 		borderRadius: 20,
 		"&:hover": {
@@ -206,7 +208,11 @@ const useStyles = makeStyles((theme) => ({
 			transform: "rotateZ(0deg) translateY(0px)",
 		},
 		transition: "all 0.5s ease",
+		[theme.breakpoints.up("md")]: {
+			transform: "rotateZ(-4deg) translateY(3px)",
+		},
 		[theme.breakpoints.down("md")]: {
+			width: "120%",
 			padding: theme.spacing(1),
 			height: "50vh !important",
 			overflowY: "scroll",

@@ -16,13 +16,19 @@ const StickyNavbar = () => {
 	const toggleNavbar = () => {
 		if (show) {
 			tl.to(ref.current, { opacity: 0, duration: 0.5, yPercent: "100%" })
-				.to(bar.current, { opacity: 1, rotate: "360deg", y: "0%" })
+				.to(bar.current, {
+					opacity: 1,
+					rotate: "360deg",
+					y: "0%",
+					visibility: "visible",
+				})
 				.to(".button-link", { visibility: "hidden" });
 		} else {
 			tl.to(bar.current, {
 				rotateZ: "0deg",
 				opacity: 0,
 				y: "-100%",
+				visibility: "hidden",
 			})
 				.to(ref.current, {
 					opacity: 1,
@@ -37,7 +43,7 @@ const StickyNavbar = () => {
 		tl.to(ref.current, { opacity: show ? 1 : 0 }).to(bar.current, {
 			opacity: show ? 0 : 1,
 		});
-	}, [show]);
+	}, []);
 
 	const bounceTheBar = () => {
 		const tl = gsap.timeline();
@@ -49,38 +55,36 @@ const StickyNavbar = () => {
 	};
 
 	return (
-		<div className={`fixed top-4 left-0 right-0 rounded-md px-4`}>
-			<div
-				className={`flex justify-between items-center px-8 py-3 rounded-md ${styles.navbar}`}
-				ref={ref}
-				style={{ boxShadow: "0px 0px 30px rgb(255, 255, 255, 0.2)" }}
-			>
+		<div
+			className={`fixed top-4 left-0 right-0 rounded-md px-4 ${styles.root}`}
+		>
+			<div className={styles.navbar} ref={ref}>
 				<button
-					className="button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-sm px-2 rounded-md"
+					className="button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-[2px] px-2 rounded-md"
 					onClick={() => router.push("/")}
 				>
 					home
 				</button>
 				<button
-					className="button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-sm px-2 p-1 rounded-full"
+					className="button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-[2px] px-2 p-1 rounded-full"
 					onClick={() => router.push("/work-experience")}
 				>
 					work experience
 				</button>
 				<button
-					className="button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-sm px-2  p-1 rounded-full"
+					className="button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-[2px] px-2  p-1 rounded-full"
 					onClick={() => router.push("/projects")}
 				>
 					playground
 				</button>
 				<button
-					className="button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-sm px-2  z-100 p-1 rounded-full"
+					className="button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-[2px] px-2  z-100 p-1 rounded-full"
 					onClick={() => router.push("/tech-stack")}
 				>
 					stacks
 				</button>
 				<a
-					className="button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-sm px-2  z-100 p-1 rounded-full"
+					className="button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-[1px] px-2  z-100 p-1 rounded-full"
 					href="https//mailto@shreyvijayvagriya26@gmail.com"
 					target="_blank"
 				>
@@ -91,9 +95,9 @@ const StickyNavbar = () => {
 				</div>
 			</div>
 			<div
-				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-4`}
+				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-4 ${styles.barContainer}`}
 				ref={bar}
-				>
+			>
 				<div
 					className="border border-gray-700 rounded-full p-2 hover:border-gray-400"
 					onClick={toggleNavbar}
@@ -112,24 +116,39 @@ const StickyNavbar = () => {
 export default StickyNavbar;
 
 const useStyles = makeStyles((theme) => ({
+	root: {
+		zIndex: 1000,
+	},
 	navbar: {
 		zIndex: 1000,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		padding: theme.spacing(1),
+		borderRadius: 8,
+		boxShadow: "0px 0px 30px rgb(255, 255, 255, 0.2)",
 		[theme.breakpoints.up("lg")]: {
 			width: "35% !important",
 			margin: "auto",
-			background: (props) => !props.show && "none",
 		},
-		[theme.breakpoints.down("lg")]: {
-			width: (props) => (props.show ? "90%" : "auto"),
-			margin: "auto",
-			display: "flex",
-			flexDirection: "row",
-			textAlign: "left",
+		[theme.breakpoints.down("md")]: {
+			width: (props) => (props.show ? "100%" : "auto"),
+			position: "fixed",
+			top: 0,
+			left: 0,
+			right: 0,
+			borderRadius: 0,
+			backgroundColor: "rgb(0, 0, 0, 0.2)",
+			overflowX: "scroll",
 		},
 	},
 	barIcon: {
 		"&:hover": {
 			borderColor: colors.gray[400],
 		},
+	},
+	barContainer: {
+		zIndex: 1000,
 	},
 }));

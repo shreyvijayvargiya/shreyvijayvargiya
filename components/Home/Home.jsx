@@ -53,6 +53,10 @@ const HomeComponent = () => {
 			)
 			.fromTo(projectsCompRef.current, { scale: 0.9 }, { scale: 1 })
 			.fromTo(techStackCompRef.current, { yPercent: 40 }, { yPercent: 0 });
+
+		return () => {
+			tl.kill();
+		};
 	};
 
 	return (
@@ -70,7 +74,7 @@ const HomeComponent = () => {
 						className="h-screen fixed w-full transform rotate-5 opacity-5 z-100"
 					/>
 					<div
-						className="fixed md:bottom-40 sm:top-5 xs:top-5 xxs:top-5 left-4  z-100"
+						className="md:fixed md:bottom-10 md:opacity-100 sm:opacity-0 xs:opacity-0 xxs:opacity-0 md:right-10 z-100"
 						onClick={() => setLoading(true)}
 						style={{ zIndex: 1000 }}
 					>
