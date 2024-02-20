@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { makeStyles, useMediaQuery } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import gsap from "gsap";
 import colors from "tailwindcss/colors";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -65,17 +65,19 @@ const getActiveIndex = (progress) => {
 const WorkExperience = () => {
 	const waveRef = useRef();
 
-	const isMobile = useMediaQuery("(max-width:600px)");
 	const [percent, setPercent] = useState(5);
+	const tl = gsap.timeline();
 
 	useEffect(() => {
 		const sections = gsap.utils.toArray(".list-container .section");
-		const tl = gsap.timeline({ paused: true });
+
+		let scrollId = "scrollId";
 		tl.to(sections, {
 			xPercent: -100 * (sections.length - 2),
 			ease: "none",
 			yoyo: true,
 			scrollTrigger: {
+				id: scrollId,
 				trigger: ".work-experience-container",
 				start: "top top",
 				end: () => `${(sections.length - 1) * 100}vh`,
@@ -88,7 +90,7 @@ const WorkExperience = () => {
 			},
 		});
 
-		sections.forEach((section, index) => {
+		sections?.forEach((section, index) => {
 			gsap.fromTo(
 				section,
 				{
@@ -105,9 +107,9 @@ const WorkExperience = () => {
 		});
 
 		return () => {
-			tl.kill();
+			tl.getById("scrollId").kill();
 		};
-	}, [isMobile]);
+	}, []);
 
 	const styles = useStyles();
 
@@ -175,6 +177,9 @@ const useStyles = makeStyles((theme) => ({
 		width: "200%",
 		height: "100vh",
 		overflowY: "hidden",
+		[theme.breakpoints.down("md")]: {
+			width: "500%",
+		},
 	},
 	section: {
 		width: "80%",

@@ -197,7 +197,7 @@ const Description = () => {
 
 	useEffect(() => {
 		const sections = gsap.utils.toArray(".section-container .section-item");
-		sections.forEach((section) => {
+		sections?.forEach((section) => {
 			tl.fromTo(
 				section,
 				{ yPercent: 20, opacity: 0, width: 0, visibility: "hidden" },
@@ -211,55 +211,9 @@ const Description = () => {
 				}
 			);
 		});
-
-		tl.fromTo(
-			".cursor-image",
-			{ yPercent: -10, scale: 1, rotateX: "2deg" },
-			{ yPercent: 10, repeat: -1, yoyo: true, scale: 0.8, rotateX: "-2deg" }
-		);
-		tl.fromTo(
-			".img-1",
-			{ rotateX: "2deg" },
-			{
-				rotateX: "-2deg",
-				duration: 4,
-				repeat: -1,
-				yoyo: true,
-			}
-		)
-			.fromTo(
-				".img-2",
-				{ x: "2deg" },
-				{
-					x: "-2deg",
-					duration: 4,
-					repeat: -1,
-					yoyo: true,
-					ease: "bounce.inOut",
-				}
-			)
-			.fromTo(
-				".img-3",
-				{ y: "2deg" },
-				{
-					y: "-2deg",
-					duration: 4,
-					repeat: -1,
-					yoyo: true,
-					ease: "bounce.inOut",
-				}
-			)
-			.fromTo(
-				".img-4",
-				{ yPercent: "2%" },
-				{
-					yPercent: "-2%",
-					duration: 4,
-					repeat: -1,
-					yoyo: true,
-					ease: "bounce.inOut",
-				}
-			);
+		return () => {
+			tl.kill();
+		};
 	}, []);
 
 	const handleMouseOver = (item) => {
@@ -328,17 +282,6 @@ const Description = () => {
 					);
 				})}
 			</div>
-			{mousePosition.x && mousePosition.y && (
-				<div
-					style={{
-						position: "fixed",
-						top: mousePosition.y + "px",
-						left: mousePosition.x + "px",
-					}}
-				>
-					{/* <img src="./circular-cursor.svg" className="w-40 h-40 cursor-image" /> */}
-				</div>
-			)}
 		</div>
 	);
 };

@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import router from "next/router";
 
 const StickyNavbar = () => {
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState(true);
 	const ref = useRef(null);
 	const bar = useRef(null);
 	const styles = useStyles({ show });
@@ -98,7 +98,7 @@ const StickyNavbar = () => {
 				</div>
 			</div>
 			<div
-				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-4 ${styles.barContainer}`}
+				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-2 ${styles.barContainer}`}
 				ref={bar}
 			>
 				<div
@@ -107,7 +107,7 @@ const StickyNavbar = () => {
 					onMouseEnter={bounceTheBar}
 				>
 					<FaBars
-						size={24}
+						size={20}
 						color={colors.gray[600]}
 						className={styles.barIcon}
 					/>

@@ -4,11 +4,14 @@ const LiveTime = () => {
 	const [currentTime, setCurrentTime] = useState(new Date());
 
 	useEffect(() => {
-		const intervalId = setInterval(() => {
-			setCurrentTime(new Date());
-		}, 1000); // Update every second
+		const intervalId = () =>
+			setInterval(() => {
+				setCurrentTime(new Date());
+			}, 1000);
 
-		return () => clearInterval(intervalId); // Cleanup on unmount
+		return () => {
+			clearInterval(intervalId);
+		};
 	}, []);
 
 	const formatTime = (time) => {
@@ -18,7 +21,9 @@ const LiveTime = () => {
 
 	return (
 		<div>
-			<p className="text-indigo-400 text-xl underline font-mono">{formatTime(currentTime)}</p>
+			<p className="text-indigo-400 text-xl underline font-mono">
+				{formatTime(currentTime)}
+			</p>
 		</div>
 	);
 };

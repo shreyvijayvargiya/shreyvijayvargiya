@@ -37,8 +37,7 @@ const TripLoader = ({ setLoading }) => {
 					scale: 1.5,
 				})
 					.to(phoneRef.current, { opacity: 0, stagger: 0.5 })
-					.fromTo(welcomeScreenRef.current, { opacity: 0 }, { opacity: 1 })
-					.to("button-skip", { opacity: 0 });
+					.fromTo(welcomeScreenRef.current, { opacity: 0 }, { opacity: 1 });
 				setActive(0);
 				closeLoader();
 			} else {
@@ -53,15 +52,13 @@ const TripLoader = ({ setLoading }) => {
 		}, 600);
 	};
 
-	const id = interval();
-
 	useEffect(() => {
-		gsap.set(welcomeScreenRef.current, { opacity: 0 });
-		gsap.to(".skip-button", { opacity: 0 });
+		gsap.set(welcomeScreenRef?.current, { opacity: 0 });
 	}, []);
 
 	useEffect(() => {
 		const tl = gsap.timeline();
+		const id = interval();
 
 		tl.to(phoneRef.current, {
 			skewX: active + "px",
