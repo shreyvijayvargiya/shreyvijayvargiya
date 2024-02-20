@@ -59,38 +59,41 @@ const StickyNavbar = () => {
 			className={`fixed top-4 left-0 right-0 rounded-md px-4 ${styles.root}`}
 		>
 			<div className={styles.navbar} ref={ref}>
-				<button
-					className="button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-[2px] px-2 rounded-md"
+				<div
+					className={`button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-[9px] px-2 rounded-md ${styles.button}`}
 					onClick={() => router.push("/")}
 				>
 					home
-				</button>
+				</div>
 				<button
-					className="button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-[2px] px-2 p-1 rounded-full"
+					className={`button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-[10px] px-2 p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/work-experience")}
 				>
 					work experience
 				</button>
 				<button
-					className="button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-[2px] px-2  p-1 rounded-full"
+					className={`button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-[10px] px-2  p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/projects")}
 				>
 					playground
 				</button>
 				<button
-					className="button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-[2px] px-2  z-100 p-1 rounded-full"
+					className={`button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-[10px] px-2  z-100 p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/tech-stack")}
 				>
 					stacks
 				</button>
 				<a
-					className="button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-[1px] px-2  z-100 p-1 rounded-full"
-					href="https//mailto@shreyvijayvagriya26@gmail.com"
+					className={`button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-[1px] px-2  z-100 p-1 rounded-full ${styles.button}`}
+					href="
+					https //mailto@shreyvijayvagriya26@gmail.com"
 					target="_blank"
 				>
 					say hi
 				</a>{" "}
-				<div className="border border-gray-500 rounded-full hover:border-gray-300 cursor-pointer">
+				<div
+					className={`border border-gray-500 rounded-full hover:border-gray-300 cursor-pointer`}
+				>
 					<IoClose size={24} color={colors.gray[600]} onClick={toggleNavbar} />
 				</div>
 			</div>
@@ -129,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: 8,
 		boxShadow: "0px 0px 30px rgb(255, 255, 255, 0.2)",
 		[theme.breakpoints.up("lg")]: {
-			width: "35% !important",
+			width: "25% !important",
 			margin: "auto",
 		},
 		[theme.breakpoints.down("md")]: {
@@ -141,7 +144,13 @@ const useStyles = makeStyles((theme) => ({
 			borderRadius: 0,
 			backgroundColor: "rgb(0, 0, 0, 0.2)",
 			overflowX: "scroll",
+			"&.button": {
+				fontSize: "0.5rem",
+			},
 		},
+	},
+	button: {
+		fontSize: "0.8rem",
 	},
 	barIcon: {
 		"&:hover": {
