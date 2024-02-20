@@ -3,6 +3,7 @@ import gsap from "gsap";
 import React, { useEffect, useState, useRef } from "react";
 import colors from "tailwindcss/colors";
 import { Typewriter } from "react-simple-typewriter";
+import BackgroundDots from "./BackgroundDots";
 
 const loaders = [
 	"namaste",
@@ -27,7 +28,7 @@ const TripLoader = ({ setLoading }) => {
 	const closeLoader = () => {
 		setTimeout(() => {
 			setLoading(false);
-		}, 2000);
+		}, 3000);
 	};
 
 	const interval = () => {
@@ -38,7 +39,6 @@ const TripLoader = ({ setLoading }) => {
 				})
 					.to(phoneRef.current, { opacity: 0, stagger: 0.5 })
 					.fromTo(welcomeScreenRef.current, { opacity: 0 }, { opacity: 1 });
-				setActive(0);
 				closeLoader();
 			} else {
 				tl.to(".loader-bg", {
@@ -54,6 +54,12 @@ const TripLoader = ({ setLoading }) => {
 
 	useEffect(() => {
 		gsap.set(welcomeScreenRef?.current, { opacity: 0 });
+		gsap.to(".bg-dots-container", {
+			rotate: "360deg",
+			scale: 0.4,
+			duration: 10,
+			ease: "power2.in",
+		});
 	}, []);
 
 	useEffect(() => {
@@ -62,8 +68,8 @@ const TripLoader = ({ setLoading }) => {
 
 		tl.to(phoneRef.current, {
 			skewX: active + "px",
-			scale: 1 + active / 20,
-			rotateX: active * 4 + "deg",
+			scale: 1 + active / 40,
+			rotateX: active * 2 + "deg",
 			transformOrigin: "50% 50%",
 		});
 
@@ -82,6 +88,9 @@ const TripLoader = ({ setLoading }) => {
 				zIndex: 2000,
 			}}
 		>
+			<div className="opacity-10 bg-dots-container w-full z-0 fixed top-0 left-0 botto-0 right-0">
+				<BackgroundDots />
+			</div>
 			<div className={styles.phoneMockup} ref={phoneRef}>
 				<div
 					className="loader-bg"
@@ -125,8 +134,8 @@ const useStyles = makeStyles((theme) => ({
 	phoneMockup: {
 		outline: `2px dashed ${colors.gray[500]}`,
 		outlineOffset: 4,
-		width: "20%",
-		height: "70vh",
+		width: "15%",
+		height: "60vh",
 		borderRadius: 40,
 		position: "absolute",
 		top: 0,
@@ -136,8 +145,8 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		boxShadow: "0px 0px 40px rgb(250, 250, 250, 0.5)",
 		[theme.breakpoints.down("sm")]: {
-			width: "80%",
-			height: "80%",
+			width: "70%",
+			height: "70%",
 		},
 	},
 }));

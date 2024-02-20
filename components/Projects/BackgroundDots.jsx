@@ -48,8 +48,8 @@ const BackgroundDots = ({ pauseAnimation }) => {
 	];
 
 	return (
-		<div className="bg-black bg-opacity-95 h-screen w-full flex flex-col justify-center items-center">
-			<div className="bgLoader flex justify-evenly items-center w-full h-full fixed top-0 left-0 right-0 bottom-0">
+		<div className="bg-black bg-opacity-5 h-screen w-full flex flex-col justify-center items-center">
+			<div className="bgLoader flex justify-evenly items-center fixed top-0 left-0 right-0 bottom-0">
 				{dotsParent.map((item) => (
 					<div
 						className="w-full h-full overflow-hidden flex flex-col justify-evenly items-center"
@@ -59,14 +59,14 @@ const BackgroundDots = ({ pauseAnimation }) => {
 							return (
 								<div
 									key={dot}
-									className={`dot-${dot} w-2 h-2 bg-gray-700 rounded-full`}
+									className={`dot-${dot} w-2 h-2 bg-gray-700 rounded-xl`}
 								/>
 							);
 						})}
 					</div>
 				))}
 			</div>
-			<div className="bgLoader absolute w-1 h-screen left-0 top-0 right-0 bottom-0 bg-gray-900 bg-opacity-20 border-r border-l border-gray-800" />
+			<div className="bgLoader absolute w-1 h-full left-0 top-0 right-0 bottom-0 bg-gray-900 bg-opacity-10 border-r border-l border-gray-800" />
 		</div>
 	);
 };

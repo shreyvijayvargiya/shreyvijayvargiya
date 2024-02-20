@@ -6,6 +6,7 @@ import GridLines from "react-gridlines";
 import { FaBars, FaList } from "react-icons/fa";
 import { IoCloseCircle, IoLogoStackoverflow } from "react-icons/io5";
 import useSound from "use-sound";
+import { Modal } from "@mantine/core";
 
 const projects = [
 	{
@@ -86,13 +87,13 @@ const projects = [
 ];
 
 const ProjectsGallery = () => {
-	const classes = useStyles();
 	const frameRef = useRef(null);
 	const bar = useRef(null);
 	const [active, setActive] = useState(projects[0]);
 	const [play] = useSound("./sound-clips/sound-keyboard.mp3", { volume: 0.6 });
 
 	const [show, setShow] = useState(false);
+	const classes = useStyles({ show });
 
 	useEffect(() => {
 		gsap.fromTo(
@@ -119,6 +120,7 @@ const ProjectsGallery = () => {
 					className="project-bg-image fixed top-0 left-0 bottom-0 right-0 z-0 opacity-5 rotate-45 skew-x-6 rounded-full border-4 border-dotted border-gray-100 sm:none block"
 					style={{
 						perspective: "3d 1000px",
+						zIndex: -10,
 					}}
 				/>
 			</div>
@@ -165,33 +167,36 @@ const ProjectsGallery = () => {
 						</div>
 					))}
 				</div>
-				<div
-					ref={frameRef}
-					className={`${classes.frameContainer} bg-black bg-opacity-10`}
-				>
+				<div ref={frameRef} className={`${classes.frameContainer}`}>
 					{active && (
-						<div className="relative w-full h-full">
-							<iframe
-								src={active?.url}
-								title={active?.title}
-								className={classes.iframe}
-								loading="lazy"
-								ref={frameRef}
-								style={{
-									width: "100%",
-									height: "100%",
-									zIndex: 100,
-									opacity: 0.8,
-									borderRadius: 20,
-								}}
-							/>
-						</div>
+						<iframe
+							src={active?.url}
+							title={active?.title}
+							className={classes.iframe}
+							loading="lazy"
+							ref={frameRef}
+							style={{
+								width: "100%",
+								height: "100%",
+								opacity: 0.8,
+								borderRadius: 20,
+							}}
+						/>
 					)}
 				</div>
 			</div>
 			<div className={classes.mobileProjectsListContainer}>
-				{show && (
-					<div className="mobile-projects-list bg-blackBg bg-opacity-90 h-60 overflow-y-scroll m-10 rounded-xl border border-dashed border-gray-700">
+				<Modal
+					opened={show}
+					centered
+					onClose={() => setShow(false)}
+					classNames={{
+						root: "p-0",
+						modal:
+							"p-2 bg-blackBg border border-dashed border-gray-700 rounded-xl",
+					}}
+				>
+					<div className={classes.dropdownList}>
 						{projects.map((project, index) => (
 							<div
 								key={index}
@@ -231,7 +236,7 @@ const ProjectsGallery = () => {
 							</div>
 						))}
 					</div>
-				)}
+				</Modal>
 				<div
 					className={`cursor-pointer rounded-full flex justify-center items-center bg-none`}
 				>
@@ -240,17 +245,12 @@ const ProjectsGallery = () => {
 						ref={bar}
 						onClick={() => {
 							setShow(!show);
-							gsap.fromTo(
-								".mobile-projects-list",
-								{ height: "0%", opacity: 0 },
-								{ height: "100%", opacity: 1 }
-							);
 						}}
 					>
 						{show ? (
-							<IoCloseCircle size={24} color={colors.gray[600]} />
+							<IoCloseCircle size={20} color={colors.gray[600]} />
 						) : (
-							<FaList size={24} color={colors.gray[600]} />
+							<FaList size={20} color={colors.gray[600]} />
 						)}
 					</div>
 				</div>
@@ -274,13 +274,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 	mobileProjectsListContainer: {
 		position: "fixed",
-		bottom: 10,
+		bottom: 5,
 		left: 0,
 		right: 0,
-		overflowY: "scroll",
 		[theme.breakpoints.up("md")]: {
 			display: "none",
 		},
+	},
+	dropdownList: {
+		visibility: (props) => (props.show ? "visible" : "hidden"),
+		height: (props) => (props.show ? "50vh" : "0px"),
+		zIndex: 100,
+		overflowY: "scroll",
+		transition: "height 1s",
 	},
 	frameContainer: {
 		width: "80%",
@@ -293,8 +299,10 @@ const useStyles = makeStyles((theme) => ({
 		border: `2px dotted ${colors.gray[700]}`,
 		boxShadow: "0px 0px 40px rgb(150, 150, 200, 0.2)",
 		borderRadius: 20,
+		zIndex: 0,
 		[theme.breakpoints.down("sm")]: {
-			width: "95%",
+			width: "98%",
+			height: "90vh",
 			margin: "auto",
 		},
 	},
@@ -302,6 +310,7 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		height: "100%",
 		overflow: "scroll",
+		zIndex: -1,
 	},
 	desktopIframe: {
 		width: "100%",

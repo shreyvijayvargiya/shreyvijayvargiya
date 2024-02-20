@@ -82,9 +82,9 @@ const AnimatedText = () => {
 					<p
 						ref={characterRef}
 						style={{
-							fontFamily: "phosphate",
+							fontFamily: isMobile ? "comic sans":"phosphate",
 							fontStyle: "inline",
-							fontSize: isMobile ? "2em" : "5em",
+							fontSize: isMobile ? "3em" : "5em",
 							color: colors[colorKeys[index]][400],
 						}}
 					>

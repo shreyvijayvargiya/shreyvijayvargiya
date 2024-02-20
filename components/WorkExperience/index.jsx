@@ -108,6 +108,7 @@ const WorkExperience = () => {
 
 		return () => {
 			tl.getById("scrollId").kill();
+			tl.kill()
 		};
 	}, []);
 

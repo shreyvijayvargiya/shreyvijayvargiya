@@ -159,5 +159,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	barContainer: {
 		zIndex: 1000,
+		[theme.breakpoints.down("sm")]:{
+			display: "none"
+		}
 	},
 }));

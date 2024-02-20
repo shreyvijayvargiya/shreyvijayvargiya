@@ -37,7 +37,13 @@ const HomeComponent = () => {
 				descCompRef.current,
 				{ y: "20%", opacity: 0 },
 				{ y: "0%", opacity: 1, ease: "power4.out" }
-			);
+			)
+			.to(".bg-gridline-home", {
+				rotate: 360,
+				duration: 10,
+				ease: "back.inOut",
+				yoyo: true,
+			});
 		return () => {
 			tl.kill();
 		};
@@ -55,7 +61,7 @@ const HomeComponent = () => {
 				<div className="relative w-full h-screen">
 					<GridLines
 						lineColor={colors.gray[700]}
-						className="h-screen fixed w-full transform rotate-5 opacity-5 z-100"
+						className="h-screen fixed w-full transform rotate-5 opacity-5 z-100 bg-grid-line-home"
 					/>
 					<div
 						className="md:fixed md:bottom-10 md:opacity-100 sm:opacity-0 xs:opacity-0 xxs:opacity-0 md:right-10 z-100"
