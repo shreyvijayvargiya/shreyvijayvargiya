@@ -59,12 +59,12 @@ const StickyNavbar = () => {
 			className={`fixed top-4 left-0 right-0 rounded-md px-4 ${styles.root}`}
 		>
 			<div className={styles.navbar} ref={ref}>
-				<div
+				<button
 					className={`button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-[9px] px-2 rounded-md ${styles.button}`}
 					onClick={() => router.push("/")}
 				>
 					home
-				</div>
+				</button>
 				<button
 					className={`button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-[10px] px-2 p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/work-experience")}
@@ -92,9 +92,9 @@ const StickyNavbar = () => {
 					say hi
 				</a>{" "}
 				<div
-					className={`border border-gray-500 rounded-full hover:border-gray-300 cursor-pointer`}
+					className={`border border-gray-500 hover:text-gray-400 text-gray-600 rounded-full hover:border-gray-400 cursor-pointer lg:block md:block sm:hidden xs:hidden xxs:hidden xsm:hidden`}
 				>
-					<IoClose size={24} color={colors.gray[600]} onClick={toggleNavbar} />
+					<IoClose size={24} onClick={toggleNavbar} />
 				</div>
 			</div>
 			<div
@@ -102,7 +102,7 @@ const StickyNavbar = () => {
 				ref={bar}
 			>
 				<div
-					className="border border-gray-700 rounded-full p-2 hover:border-gray-400"
+					className="border border-gray-700 rounded-full p-2 hover:border-gray-600"
 					onClick={toggleNavbar}
 					onMouseEnter={bounceTheBar}
 				>
