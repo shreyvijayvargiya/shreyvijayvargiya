@@ -162,7 +162,7 @@ const WorkExperience = () => {
 				</div>
 			</div>
 			<div className="live-time absolute right-10 top-8 md:opacity-0 lg:block sm:opacity-0 xxs:opacity-0 xs:opacity-0">
-				<LiveTime />
+				<LiveTime size={4} />
 			</div>
 			<div className={`fixed bottom-10 left-0 right-0 w-full`}>
 				<p className="text-orange-300 font-serif m-2">
