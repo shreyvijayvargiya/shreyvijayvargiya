@@ -15,17 +15,17 @@ const StickyNavbar = () => {
 
 	const toggleNavbar = () => {
 		if (show) {
-			tl.to(ref.current, { opacity: 0, duration: 0.5, yPercent: "100%" })
+			tl.to(ref.current, { opacity: 0, yPercent: "100%" })
 				.to(bar.current, {
 					opacity: 1,
-					rotate: "360deg",
+					rotation: 360,
 					y: "0%",
 					visibility: "visible",
 				})
 				.to(".button-link", { visibility: "hidden" });
 		} else {
 			tl.to(bar.current, {
-				rotateZ: "0deg",
+				rotation: 0,
 				opacity: 0,
 				y: "-100%",
 				visibility: "hidden",
@@ -40,8 +40,12 @@ const StickyNavbar = () => {
 	};
 
 	useEffect(() => {
-		tl.to(ref.current, { opacity: show ? 1 : 0 }).to(bar.current, {
+		tl.to(ref.current, {
+			opacity: show ? 1 : 0,
+			visibility: show ? "visible" : "hidden",
+		}).to(bar.current, {
 			opacity: show ? 0 : 1,
+			visibility: show ? "hidden" : "visible",
 		});
 	}, []);
 
@@ -49,8 +53,8 @@ const StickyNavbar = () => {
 		const tl = gsap.timeline();
 		tl.fromTo(
 			bar.current,
-			{ rotate: "180deg", y: "-20%" },
-			{ rotate: "0deg", duration: 1, y: "0%" }
+			{ rotation: "180deg", y: "-20%" },
+			{ rotation: "0deg", duration: 1, y: "0%", visibility: "visible" }
 		);
 	};
 
@@ -60,33 +64,33 @@ const StickyNavbar = () => {
 		>
 			<div className={styles.navbar} ref={ref}>
 				<button
-					className={`button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-[9px] px-2 rounded-md ${styles.button}`}
+					className={`button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-9px px-2 p-1 rounded-md ${styles.button}`}
 					onClick={() => router.push("/")}
 				>
 					home
 				</button>
 				<button
-					className={`button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-[10px] px-2 p-1 rounded-full ${styles.button}`}
+					className={`button-link hover:text-gray-200 text-indigo-600 hover:bg-blackShade text-10px px-2 p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/work-experience")}
 				>
 					work experience
 				</button>
 				<button
-					className={`button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-[10px] px-2  p-1 rounded-full ${styles.button}`}
+					className={`button-link hover:text-gray-200 text-orange-600 hover:bg-blackShade text-10px px-2  p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/projects")}
 				>
 					playground
 				</button>
 				<button
-					className={`button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-[10px] px-2  z-100 p-1 rounded-full ${styles.button}`}
+					className={`button-link hover:text-gray-200 text-pink-600 hover:bg-blackShade text-10px px-2  z-100 p-1 rounded-full ${styles.button}`}
 					onClick={() => router.push("/tech-stack")}
 				>
 					stacks
 				</button>
 				<a
-					className={`button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-[1px] px-2  z-100 p-1 rounded-full ${styles.button}`}
+					className={`button-link hover:text-gray-200 text-green-600 hover:bg-blackShade text-10px px-2  z-100 p-1 rounded-full ${styles.button}`}
 					href="
-					https //mailto@shreyvijayvagriya26@gmail.com"
+					https://mailto@shreyvijayvagriya26@gmail.com"
 					target="_blank"
 				>
 					say hi
@@ -94,11 +98,11 @@ const StickyNavbar = () => {
 				<div
 					className={`border border-gray-500 hover:text-gray-400 text-gray-600 rounded-full hover:border-gray-400 cursor-pointer lg:block md:block sm:hidden xs:hidden xxs:hidden xsm:hidden`}
 				>
-					<IoClose size={24} onClick={toggleNavbar} />
+					<IoClose size={20} onClick={toggleNavbar} />
 				</div>
 			</div>
 			<div
-				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-2 ${styles.barContainer}`}
+				className={`rounded-full flex justify-center items-center bg-none fixed left-0 right-0 top-2 ${styles.barContainer} cursor-pointer`}
 				ref={bar}
 			>
 				<div

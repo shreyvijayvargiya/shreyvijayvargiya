@@ -5,6 +5,7 @@ import colors from "tailwindcss/colors";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import GridLines from "react-gridlines";
 import LiveTime from "components/Projects/LiveTime";
+import Clock from "components/Projects/Clock";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,8 +64,8 @@ const getActiveIndex = (progress) => {
 		if (progress >= interval.start && progress <= interval.end) {
 			return interval.index;
 		}
-		return -1;
 	}
+	return -1;
 };
 
 const WorkExperience = () => {
@@ -72,21 +73,19 @@ const WorkExperience = () => {
 
 	const [percent, setPercent] = useState(5);
 
+	const tl = gsap.timeline();
 	useEffect(() => {
-		const tl = gsap.timeline();
 		const sections = gsap.utils.toArray(".list-container .section");
 
-		let scrollId = "scrollId";
 		tl.to(sections, {
 			xPercent: -100 * (sections.length - 2),
 			ease: "none",
 			yoyo: true,
 			scrollTrigger: {
-				id: scrollId,
 				trigger: ".work-experience-container",
 				start: "top top",
 				end: () => `${(sections.length - 1) * 100}vh`,
-				scrub: -1,
+				scrub: 1,
 				pin: true,
 				onUpdate: (self) => {
 					const progress = self.progress;
@@ -121,7 +120,7 @@ const WorkExperience = () => {
 	const activeNum = getActiveIndex(percent * 100);
 
 	return (
-		<div className="work-experience-container mx-auto overflow-x-hidden relative w-full h-full bg-black">
+		<div className="work-experience-container mx-auto overflow-x-hidden relative w-full h-auto bg-black">
 			<GridLines
 				lineColor={colors.gray[400]}
 				className="h-full absolute w-full transform rotate-5 opacity-5 z-100"
@@ -160,9 +159,6 @@ const WorkExperience = () => {
 						);
 					})}
 				</div>
-			</div>
-			<div className="live-time absolute right-10 top-8 md:opacity-0 lg:block sm:opacity-0 xxs:opacity-0 xs:opacity-0">
-				<LiveTime size={4} />
 			</div>
 			<div className={`fixed bottom-10 left-0 right-0 w-full`}>
 				<p className="text-orange-300 font-serif m-2">

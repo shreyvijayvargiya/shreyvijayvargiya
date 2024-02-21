@@ -27,10 +27,12 @@ const TripLoader = ({ setLoading }) => {
 
 	const tl = gsap.timeline();
 
-	const endCall = () => {
+	const endCall = (timeout) => {
+		tl.pause();
+		gsap.to(".animated-container", { opacity: 0, rotation: 360 });
 		setTimeout(() => {
 			setLoading(false);
-		}, 4000);
+		}, timeout);
 	};
 
 	const interval = () => {
@@ -52,7 +54,7 @@ const TripLoader = ({ setLoading }) => {
 						}
 					)
 					.to(".animated-container", { opacity: 0, delay: 0.5 });
-				endCall();
+				endCall(4000);
 			} else {
 				tl.to(".loader-bg", {
 					height: (active + 2) * 10 + "%",
@@ -100,7 +102,7 @@ const TripLoader = ({ setLoading }) => {
 				zIndex: 2000,
 			}}
 		>
-			<div className="opacity-20 bg-dots-container w-full h-full z-0 fixed top-0 left-0 botto-0 right-0 border-t border-b border-dashed border-gray-700">
+			<div className="opacity-20 bg-dots-container w-full h-full z-0 absolute top-0 left-0 botto-0 right-0 border-t border-b border-dashed border-gray-700">
 				<BackgroundDots />
 			</div>
 			<div className={styles.phoneMockup} ref={phoneRef}>
@@ -127,7 +129,8 @@ const TripLoader = ({ setLoading }) => {
 			</div>
 			<button
 				className="button-skip mx-auto text-gray-400 absolute bottom-10 right-10 font-bold font-sans p-4 text-center bg-indigo-800 rounded-xl shadow-2xl hover:text-white"
-				onClick={endCall}
+				onClick={() => endCall(2000)}
+				style={{ zIndex: 200 }}
 			>
 				Skip
 			</button>

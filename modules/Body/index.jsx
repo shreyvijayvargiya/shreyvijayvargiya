@@ -4,11 +4,11 @@ import router from "next/router";
 import { useEffect, useState } from "react";
 
 const Body = ({ children }) => {
-	useEffect(() => {
-		if (router.pathname.split("/").includes("projects")) {
-			gsap.to(".navbar", { opacity: 0 });
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (router.pathname.split("/").includes("projects")) {
+	// 		gsap.to(".navbar", { opacity: 0 });
+	// 	}
+	// }, []);
 
 	return (
 		<div className="w-full h-full">

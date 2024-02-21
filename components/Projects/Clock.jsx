@@ -47,7 +47,7 @@ const Clock = () => {
 	}, []);
 
 	return (
-		<div className="w-full h-screen bg-black text-white flex items-center justify-center">
+		<div className="w-full h-full bg-black text-white flex items-center justify-center">
 			<div
 				ref={clockRef}
 				className="relative w-64 h-64 border-2 border-white rounded-full"

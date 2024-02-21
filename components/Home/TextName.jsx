@@ -43,7 +43,7 @@ const TextName = () => {
 
 	return (
 		<div
-			className="name-container flex justify-between items-center overflow-x-hidden gap-10 whitespace-nowrap bg-black bg-opacity-5"
+			className="name-container flex justify-between items-center overflow-x-hidden gap-10 whitespace-nowrap"
 			style={{ width: "300%" }}
 		>
 			{nameArr.map((item) => {
@@ -55,7 +55,7 @@ const TextName = () => {
 							color: colors[colorKeys[index]][400]
 								? colors[colorKeys[index]][400]
 								: colors.gray[400],
-							textShadow: "0px 0px 60px rgb(250, 250, 250, 0.3)",
+							textShadow: "30px 20px 20px rgb(250, 250, 250, 0.1)",
 						}}
 					>
 						{" "}
