@@ -1,4 +1,4 @@
-import TripLoader from "components/Projects/TripLoader";
+import TripLoader from "components/Home/TripLoader";
 import { useState } from "react";
 
 const Page = () => {

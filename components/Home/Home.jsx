@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import TripLoader from "components/Projects/TripLoader";
+import TripLoader from "components/Home/TripLoader";
 import Description from "./Description";
 import colors from "tailwindcss/colors";
 import PlayIcon from "modules/Icons/PlayIcon";

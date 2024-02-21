@@ -20,10 +20,14 @@ const LiveTime = () => {
 	};
 
 	return (
-		<div>
-			<p className="text-indigo-400 text-xl underline font-mono">
-				{formatTime(currentTime)}
-			</p>
+		<div
+			className={`bg-black flex justify-center items-center w-full h-screen gap-1 text-8xl font-cool text-gray-400`}
+		>
+			<p className="text-1">{formatTime(currentTime).split(":")[0]}</p>
+			<p className="text-2">:</p>
+			<p className="text-3">{formatTime(currentTime).split(":")[1]}</p>
+			<p className="text-4">:</p>
+			<p className="text-5">{formatTime(currentTime).split(":")[2]}</p>
 		</div>
 	);
 };
