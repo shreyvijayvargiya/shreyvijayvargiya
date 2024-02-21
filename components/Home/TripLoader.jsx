@@ -52,7 +52,7 @@ const TripLoader = ({ setLoading }) => {
 						}
 					)
 					.to(".animated-container", { opacity: 0, delay: 0.5 });
-				// endCall();
+				endCall();
 			} else {
 				tl.to(".loader-bg", {
 					height: (active + 2) * 10 + "%",
