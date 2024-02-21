@@ -28,8 +28,6 @@ const TripLoader = ({ setLoading }) => {
 	const tl = gsap.timeline();
 
 	const endCall = (timeout) => {
-		tl.pause();
-		gsap.to(".animated-container", { opacity: 0, rotation: 360 });
 		setTimeout(() => {
 			setLoading(false);
 		}, timeout);
@@ -52,8 +50,7 @@ const TripLoader = ({ setLoading }) => {
 							width: "100%",
 							duration: 1,
 						}
-					)
-					.to(".animated-container", { opacity: 0, delay: 0.5 });
+					);
 				endCall(4000);
 			} else {
 				tl.to(".loader-bg", {
@@ -129,7 +126,11 @@ const TripLoader = ({ setLoading }) => {
 			</div>
 			<button
 				className="button-skip mx-auto text-gray-400 absolute bottom-10 right-10 font-bold font-sans p-4 text-center bg-indigo-800 rounded-xl shadow-2xl hover:text-white"
-				onClick={() => endCall(2000)}
+				onClick={() => {
+					tl.pause();
+					gsap.to(".animated-container", { opacity: 0, rotation: 360 });
+					endCall(2000);
+				}}
 				style={{ zIndex: 200 }}
 			>
 				Skip
