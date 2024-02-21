@@ -4,8 +4,10 @@ import gsap from "gsap";
 import colors from "tailwindcss/colors";
 import { useMediaQuery } from "@material-ui/core";
 
-const AnimatedText = () => {
-	const [char, setChar] = useState("Shrey Vijayvargiya");
+const AnimatedText = ({ stopAnimation, initalText }) => {
+	const [char, setChar] = useState(
+		initalText ? initalText : "Shrey Vijayvargiya"
+	);
 	const colorKeys = Object.keys(colors);
 	const [index, setIndex] = useState(0);
 	const characterRef = useRef();
@@ -29,8 +31,11 @@ const AnimatedText = () => {
 	}, []);
 
 	React.useEffect(() => {
-		const shuffleIntervalId = startShuffle();
-		const intervalId = startColorInterval();
+		let shuffleIntervalId, intervalId;
+		if (!stopAnimation) {
+			shuffleIntervalId = startShuffle();
+			intervalId = startColorInterval();
+		}
 		return () => {
 			clearInterval(intervalId);
 			clearInterval(shuffleIntervalId);
@@ -39,7 +44,7 @@ const AnimatedText = () => {
 
 	const startShuffle = () => {
 		let str = char.trim(" ").split("");
-		let chars = "YRKQN ADBCFGH";
+		let chars = "ADBCFGH YRKQNRWG ";
 		let originalChars = "Shrey Vijayvargiya";
 		let index = 0;
 
@@ -69,8 +74,6 @@ const AnimatedText = () => {
 		});
 	};
 
-	const styles = useStyles({ colorKeys, index });
-
 	const isMobile = useMediaQuery("min-width: 600px");
 
 	return (
@@ -82,7 +85,7 @@ const AnimatedText = () => {
 					<p
 						ref={characterRef}
 						style={{
-							fontFamily: isMobile ? "comic sans":"phosphate",
+							fontFamily: isMobile ? "comic sans" : "phosphate",
 							fontStyle: "inline",
 							fontSize: isMobile ? "3em" : "5em",
 							color: colors[colorKeys[index]][400],

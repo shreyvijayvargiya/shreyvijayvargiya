@@ -51,7 +51,7 @@ const HomeComponent = () => {
 
 	return (
 		<div
-			className={`w-full relative overflow-x-hidden bg-black bg-opacity-95 h-screen ${styles.container}`}
+			className={`w-full relative overflow-x-hidden bg-black h-screen ${styles.container}`}
 			style={{ scrollBehavior: "smooth" }}
 			ref={containerRef}
 		>

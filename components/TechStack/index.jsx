@@ -143,7 +143,7 @@ const TechStack = ({ showAnimationButtons = false }) => {
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 	return (
 		<div
-			className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden bg-black bg-opacity-95"
+			className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden bg-black"
 			onMouseMove={(e) => setMousePosition({ x: e.clientX, y: e.clientY })}
 		>
 			<GridLines

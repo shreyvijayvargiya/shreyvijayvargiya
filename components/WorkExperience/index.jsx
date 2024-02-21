@@ -117,7 +117,7 @@ const WorkExperience = () => {
 	const activeNum = getActiveIndex(percent * 100);
 
 	return (
-		<div className="work-experience-container mx-auto overflow-x-hidden relative w-full h-full bg-black bg-opacity-95">
+		<div className="work-experience-container mx-auto overflow-x-hidden relative w-full h-full bg-black">
 			<GridLines
 				lineColor={colors.gray[400]}
 				className="h-full absolute w-full transform rotate-5 opacity-5 z-100"

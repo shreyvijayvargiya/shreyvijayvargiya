@@ -111,7 +111,7 @@ const ProjectsGallery = () => {
 	}, []);
 
 	return (
-		<div className="min-h-screen w-full py-10 flex flex-col justify-center items-center bg-black bg-opacity-95">
+		<div className="min-h-screen w-full py-10 flex flex-col justify-center items-center bg-black">
 			<div>
 				<img
 					src="./gridlines.svg"

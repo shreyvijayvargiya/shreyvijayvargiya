@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import colors from "tailwindcss/colors";
 import { Typewriter } from "react-simple-typewriter";
 import BackgroundDots from "./BackgroundDots";
+import AnimatedText from "./AnimatedText";
 
 const loaders = [
 	"namaste",
@@ -22,24 +23,36 @@ const TripLoader = ({ setLoading }) => {
 	const colorKeys = Object.keys(colors);
 	const phoneRef = useRef();
 	const welcomeScreenRef = useRef();
+	const animatedTextCompRef = useRef();
 
 	const tl = gsap.timeline();
 
-	const closeLoader = () => {
+	const endCall = () => {
 		setTimeout(() => {
 			setLoading(false);
-		}, 3000);
+		}, 4000);
 	};
 
 	const interval = () => {
 		return setInterval(() => {
-			if (active === loaders.length - 1) {
+			if (active === loaders?.length - 1) {
 				tl.to(phoneRef.current, {
-					scale: 1.5,
+					scale: 0.5,
 				})
 					.to(phoneRef.current, { opacity: 0, stagger: 0.5 })
-					.fromTo(welcomeScreenRef.current, { opacity: 0 }, { opacity: 1 });
-				closeLoader();
+					.to(welcomeScreenRef.current, { opacity: 1 })
+					.to(welcomeScreenRef.current, { opacity: 0, delay: 0.5 })
+					.fromTo(
+						animatedTextCompRef.current,
+						{ opacity: 0, width: "0%" },
+						{
+							opacity: 1,
+							width: "100%",
+							duration: 1,
+						}
+					)
+					.to(".animated-container", { opacity: 0, delay: 0.5 });
+				endCall();
 			} else {
 				tl.to(".loader-bg", {
 					height: (active + 2) * 10 + "%",
@@ -53,11 +66,10 @@ const TripLoader = ({ setLoading }) => {
 	};
 
 	useEffect(() => {
-		gsap.set(welcomeScreenRef?.current, { opacity: 0 });
 		gsap.to(".bg-dots-container", {
-			rotate: "360deg",
+			rotate: 360,
 			scale: 0.4,
-			duration: 10,
+			duration: 6,
 			ease: "power2.in",
 		});
 	}, []);
@@ -88,7 +100,7 @@ const TripLoader = ({ setLoading }) => {
 				zIndex: 2000,
 			}}
 		>
-			<div className="opacity-10 bg-dots-container w-full z-0 fixed top-0 left-0 botto-0 right-0">
+			<div className="opacity-20 bg-dots-container w-full z-0 fixed top-0 left-0 botto-0 right-0 border-t border-b border-dashed border-gray-700">
 				<BackgroundDots />
 			</div>
 			<div className={styles.phoneMockup} ref={phoneRef}>
@@ -103,24 +115,32 @@ const TripLoader = ({ setLoading }) => {
 						display: "flex",
 						justifyContent: "center",
 						alignItems: "center",
-						backgroundColor: colors[colorKeys[active]][600],
+						background: `linear-gradient(90deg, ${
+							colors[colorKeys[active]][600]
+						}, ${colors[colorKeys[active + 1]][600]})`,
 					}}
 				>
-					<p className="text-4xl font-sans animated-text z-30">
+					<p className="absolute top-1/2 left-0 right-0 w-full h-full text-center text-4xl font-sans animated-text z-30">
 						{loaders[active]}
 					</p>
 				</div>
 			</div>
 			<button
 				className="button-skip mx-auto text-gray-400 absolute bottom-10 right-10 font-bold font-sans p-4 text-center bg-indigo-800 rounded-xl shadow-2xl hover:text-white"
-				onClick={closeLoader}
+				onClick={endCall}
 			>
 				Skip
 			</button>
-			<div className="welcome-screen w-full none" ref={welcomeScreenRef}>
+			<div className="w-full opacity-0" ref={welcomeScreenRef}>
 				<div className="text-gray-400 font-cool text-8xl text-center">
-					<Typewriter loop={2} typeSpeed={100} cursor="|" words={["Welcome"]} />
+					<Typewriter loop={2} typeSpeed={10} cursor="|" words={["Welcome"]} />
 				</div>
+			</div>
+			<div
+				className="w-full h-full absolute top-1/3 bottom-0 left-0 right-0 opacity-0"
+				ref={animatedTextCompRef}
+			>
+				<AnimatedText stopAnimation={true} initalText={"this is shrey"} />
 			</div>
 		</div>
 	);

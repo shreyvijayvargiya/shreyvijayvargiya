@@ -103,10 +103,10 @@ const StickyNavbar = () => {
 			>
 				<div
 					className="border border-gray-700 rounded-full p-2 hover:border-gray-600"
-					onClick={toggleNavbar}
 					onMouseEnter={bounceTheBar}
 				>
 					<FaBars
+						onClick={toggleNavbar}
 						size={20}
 						color={colors.gray[600]}
 						className={styles.barIcon}
@@ -159,8 +159,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	barContainer: {
 		zIndex: 1000,
-		[theme.breakpoints.down("sm")]:{
-			display: "none"
-		}
+		[theme.breakpoints.down("sm")]: {
+			display: "none",
+		},
 	},
 }));
