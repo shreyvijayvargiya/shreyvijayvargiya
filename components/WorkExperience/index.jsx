@@ -15,6 +15,7 @@ const workExperience = [
 		date: "May, 23 - Present",
 		content:
 			"Developed web3 non-custodial wallet app for CGPT(chainGPT) crypto users",
+		link: "https://www.chaingpt.org/",
 	},
 	{
 		name: "Freelancer",
@@ -22,6 +23,7 @@ const workExperience = [
 		date: "September 2022, April, 23",
 		content:
 			"Developing and Running Full Stack website iHateReading along with Writing Blogs and Making online content",
+		link: "https://www.ihatereading.in/",
 	},
 	{
 		name: "Senior Frontend Developer",
@@ -29,6 +31,7 @@ const workExperience = [
 		date: "August 2021 - September 2022",
 		content:
 			"Lead frontend team of 6 members. My job is to develop and manage Koo website along with dashboard or admin panel for non-technical team to manage koos users.",
+		link: "https://www.kooapp.com/",
 	},
 	{
 		name: "Mobile App Developer",
@@ -36,12 +39,14 @@ const workExperience = [
 		date: "March 20 - jan 21",
 		content:
 			"Developed cryptocurrency trading application for millions of users. Successfully improved app(APK) bundle size by 40%. Increased Application runtime speed by 25%. Integration of GraphQL to enhance performance by 50%. Implementation of Graphs, Flatlists, Animations Firebase and Amplitude software tools.",
+		link: "https://www.coinswitch.in/",
 	},
 	{
 		name: "Frontend Developer",
 		companyName: "Cogoport",
 		date: "April 19- Feb 20",
 		content: `Developed React UI library of 72 components (https:// nautical.cogoport.com). Developed the packages like React reusable hooks,React realtime editable Spreadsheet, CMS(Content management system) & UI Library. Worked on Babel, Webpack, Next JS, Redux, Gatsby`,
+		link: "https://www.cogoport.com/",
 	},
 ];
 
@@ -66,9 +71,9 @@ const WorkExperience = () => {
 	const waveRef = useRef();
 
 	const [percent, setPercent] = useState(5);
-	const tl = gsap.timeline();
 
 	useEffect(() => {
+		const tl = gsap.timeline();
 		const sections = gsap.utils.toArray(".list-container .section");
 
 		let scrollId = "scrollId";
@@ -81,7 +86,7 @@ const WorkExperience = () => {
 				trigger: ".work-experience-container",
 				start: "top top",
 				end: () => `${(sections.length - 1) * 100}vh`,
-				scrub: 1,
+				scrub: -1,
 				pin: true,
 				onUpdate: (self) => {
 					const progress = self.progress;
@@ -107,8 +112,7 @@ const WorkExperience = () => {
 		});
 
 		return () => {
-			tl.getById("scrollId").kill();
-			tl.kill()
+			tl.kill();
 		};
 	}, []);
 
@@ -131,21 +135,25 @@ const WorkExperience = () => {
 							<section key={item.date} className={`${styles.section} section `}>
 								<div className={`${styles.card} card-${index}`}>
 									<p
-										className={`text-2xl sm:text-md font-serif font-semibold `}
+										className={`text-2xl sm:text-md font-serif font-semibold text-indigo-500 uppercase`}
 									>
 										{item.name}
 									</p>
-									<p className="text font-thin">{item.date}</p>
+									<p className="text text-gray-300">{item.date}</p>
 									<ol className="list-disc ml-10 my-4 text-sm sm:text-xs">
 										{item.content.split(".").map((content, index) => {
 											return content ? <li key={index}>{content}</li> : null;
 										})}
 									</ol>
 									<br />
-									<div className="">
-										<p className="text-xl sm:text-md uppercase font-mono font-bold">
+									<div>
+										<a
+											className="text-xl text-blue-200 hover:text-blue-300 sm:text-md uppercase font-mono font-bold underline"
+											href={item.link}
+											target="_blank"
+										>
 											{item.companyName}
-										</p>
+										</a>
 									</div>
 								</div>
 							</section>
@@ -202,7 +210,7 @@ const useStyles = makeStyles((theme) => ({
 		position: "relative",
 		cursor: "pointer",
 		transformStyle: "preserve-3d",
-		color: colors.gray[400],
+		color: colors.gray[200],
 		background: `rgb(0, 0, 0, 0.4)`,
 		boxShadow: "0px 0px 40px rgb(255, 255, 255, 0.3)",
 		borderRadius: 20,
@@ -219,8 +227,16 @@ const useStyles = makeStyles((theme) => ({
 		},
 		[theme.breakpoints.down("md")]: {
 			width: "120%",
-			padding: theme.spacing(1),
-			height: "50vh !important",
+			padding: theme.spacing(2),
+			background: `rgb(0, 0, 0, 0.9)`,
+			boxShadow: "none",
+			height: "80vh",
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "flex-start",
+			flexDirection: "column",
+			border: `1px dashed ${colors.gray[800]}`,
+			borderRadius: 20,
 			overflowY: "scroll",
 			width: "100%",
 		},

@@ -302,7 +302,7 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: 0,
 		[theme.breakpoints.down("sm")]: {
 			width: "98%",
-			height: "90vh",
+			height: "80vh",
 			margin: "auto",
 		},
 	},
