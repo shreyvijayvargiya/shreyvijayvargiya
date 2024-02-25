@@ -22,7 +22,7 @@ const LiveTime = ({ size }) => {
 		gsap.to(".bg-dots-loader", {
 			rotation: 360,
 			repeat: -1,
-			duration: 10,
+			duration: 20,
 			yoyo: true,
 		});
 	}, []);

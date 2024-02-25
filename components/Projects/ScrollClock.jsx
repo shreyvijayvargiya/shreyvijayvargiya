@@ -15,6 +15,7 @@ const ScrollClock = () => {
 
 		rotationTimeline.to(secondsClockRef.current, {
 			rotation: 360,
+			height: "40vh",
 			ease: "none",
 			transformOrigin: "center center",
 			onUpdate: () => {
@@ -24,7 +25,7 @@ const ScrollClock = () => {
 				const val = Math.floor(rotationValue / 40)
 					? Math.floor(rotationValue / 40)
 					: 0;
-				gsap.to(".seconds-clock-line", {
+				gsap.to(".scroll-clock-container", {
 					background: colors[colorKeys[val]][100]
 						? colors[colorKeys[val + 1]][300]
 						: "black",
@@ -60,7 +61,7 @@ const ScrollClock = () => {
 				ref={secondsClockRef}
 			/>
 			<div className="fixed bottom-10 left-0 right-0 text-indigo-300 text-center">
-				<p>Scroll to reveal</p>
+				<p>Scroll to rotate</p>
 				<p>{prevRotation}deg</p>
 			</div>
 		</div>

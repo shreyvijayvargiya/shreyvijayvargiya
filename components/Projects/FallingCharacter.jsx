@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import gsap from "gsap";
-import { getRandomPagePoint } from "ghost-cursor";
 
 const FallingCharacter = () => {
 	const [char, setChar] = useState("");

@@ -80,9 +80,9 @@ const projects = [
 		title: "UI library storybook",
 	},
 	{
-		url: "https://indian-dishes.vercel.app/link-preview/projects/live-time",
+		url: "https://iamshrey.me/link-preview/projects/live-time",
 		device: "desktop",
-		title: "Live time component",
+		title: "Live time",
 	},
 ];
 
