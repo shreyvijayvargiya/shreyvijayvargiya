@@ -4,29 +4,73 @@ import colors from "tailwindcss/colors";
 
 const FillingCoffeeCup = () => {
 	useEffect(() => {
-		gsap.fromTo(
-			"#coffeePath",
-			{ fill: colors.gray[900] },
+		const tl = gsap.timeline();
+		tl.fromTo(
+			".body-head",
+			{ x: 0 },
 			{
 				duration: 2,
-				fill: colors.gray[500],
+				rotate: 200,
+				scale: 2,
+				borderColor: colors.gray[700],
 				ease: "power2.inOut",
 			}
-		);
+		)
+			.to(".body-head", {
+				duration: 3,
+				opacity: 1,
+				scale: 5,
+				borderWidth: "1px",
+				borderRadius: 10,
+				borderColor: colors.gray[100],
+				ease: "power2.inOut",
+				rotate: 180,
+			})
+			.to(".body-head", {
+				borderRadius: 0,
+				scale: 4,
+				rotate: 100,
+				borderWidth: 1,
+				duration: 3,
+				transformOrigin: "center center",
+				ease: "power2.inOut",
+				borderColor: colors.gray[500],
+			})
+			.to(".body-head", {
+				rotate: 180,
+				borderRadius: 50,
+				duration: 1,
+				scale: 3,
+				height: 100,
+				borderColor: colors.gray[300],
+				width: 100,
+				borderWidth: "1px",
+			})
+			.to(".body-head", {
+				rotate: 20,
+				borderRadius: 10,
+				duration: 3,
+				borderColor: colors.gray[600],
+			});
+
+		tl.repeat(-1);
+		tl.yoyo(true);
 	}, []);
 
 	return (
-		<div className="bg-black w-full h-screen flex flex-col justify-center items-center">
-			<svg
-				fill="#EEEEEE"
-				viewBox="0 0 10 10"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					id="coffeePath"
-					d="M20,9H2a1,1,0,0,0-1,1v4a9,9,0,0,0,17.941,1H20a3,3,0,0,0,0-6ZM10,21a7.008,7.008,0,0,1-7-7V11H17v3A7.008,7.008,0,0,1,10,21Zm9-8V11c.306.069,2-.366,2,1C21,13.322,19.254,12.943,19,13ZM3.293,6.293l1.25-1.25a2.42,2.42,0,0,1-.6-1.543,2.049,2.049,0,0,1,.6-1.457l.75-.75A1,1,0,0,1,6.707,2.707l-.75.75A2.42,2.42,0,0,1,6.561,5a2.049,2.049,0,0,1-.6,1.457l-1.25,1.25A1,1,0,0,1,3.293,6.293Zm5,0,1.25-1.25a2.42,2.42,0,0,1-.6-1.543,2.049,2.049,0,0,1,.6-1.457l.75-.75a1,1,0,0,1,1.414,1.414l-.75.75A2.42,2.42,0,0,1,11.561,5a2.049,2.049,0,0,1-.6,1.457l-1.25,1.25A1,1,0,0,1,8.293,6.293Zm5,0,1.25-1.25a2.42,2.42,0,0,1-.6-1.543,2.049,2.049,0,0,1,.6-1.457l.75-.75a1,1,0,0,1,1.414,1.414l-.75.75A2.42,2.42,0,0,1,16.561,5a2.049,2.049,0,0,1-.6,1.457l-1.25,1.25a1,1,0,0,1-1.414-1.414Z"
-				></path>
-			</svg>
+		<div className="w-screen relative h-screen flex justify-center items-center bg-black">
+			{[1, 2, 3].map((item) => (
+				<div
+					key={item}
+					className="body-head relative circle w-10 h-10 mx-10 border border-dashed border-gray-500 rounded-full"
+				>
+					{/* <img
+						className="w-full h-full object-contain z-0 opacity-5"
+						src="/avatar.png"
+						alt={`Avatar ${item}`}
+					/> */}
+				</div>
+			))}
 		</div>
 	);
 };
