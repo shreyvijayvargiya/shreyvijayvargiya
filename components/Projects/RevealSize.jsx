@@ -1,83 +1,66 @@
 import gsap, { Power1 } from "gsap";
 import { useEffect, useState } from "react";
 
-const loaders = [
-	"namaste",
-	"my name is shrey",
-	"I am a software developer",
-	"I made website &",
-	"mobile apps",
-];
-
 const RevealBoxSize = () => {
+	const loaders = [
+		<img src="/projects/user-avatar.svg" className="w-40 h-40 mx-auto" />,
+		"my name is shrey",
+		"I am a software developer",
+		"I made website &",
+		"mobile apps",
+	];
 	const [active, setActive] = useState(0);
 
-	const runAnimation = () => {
-		const tl = gsap.timeline({
-			onComplete: () =>
-				setActive((prev) => (prev === loaders.length - 1 ? 0 : prev + 1)),
-		});
+	const tl = gsap.timeline({});
 
+	const onComplete = () => {
+		setActive((prev) => (prev === loaders.length - 1 ? 0 : prev + 1));
+		tl.fromTo(
+			".animated-text",
+			{ yPercent: -20, opacity: 0 },
+			{ opacity: 1, yPercent: 0, duration: 1 }
+		);
+	};
+
+	const runAnimation = () => {
 		tl.to(".animated-box", {
 			duration: 0.5,
 			scale: 1,
 			ease: Power1.easeInOut,
+			onComplete: onComplete,
 		})
-			.fromTo(
-				".animated-text",
-				{ yPercent: -20, opacity: 0 },
-				{ opacity: 1, yPercent: 0, duration: 2 }
-			)
 			.to(".animated-box", {
-				duration: 2,
+				duration: 1,
 				rotation: 90,
 				borderWidth: 1,
 				borderRadius: 10,
 				scale: 2,
 				ease: Power1.easeInOut,
+				onComplete: onComplete,
 			})
-			.fromTo(
-				".animated-text",
-				{ yPercent: -20, opacity: 0 },
-				{ opacity: 1, yPercent: 0 }
-			)
 			.to(".animated-box", {
-				duration: 2,
+				duration: 1,
 				borderRadius: 20,
 				scale: 3,
 				ease: Power1.easeInOut,
+				onComplete: onComplete,
 			})
-			.fromTo(
-				".animated-text",
-				{ yPercent: -20, opacity: 0 },
-				{ opacity: 1, yPercent: 0, duration: 2 }
-			)
 			.to(".animated-box", {
-				duration: 2,
+				duration: 1,
 				borderRadius: "50%",
 				ease: Power1.easeInOut,
+				onComplete: onComplete,
 			})
-			.fromTo(
-				".animated-text",
-				{ yPercent: -20, opacity: 0 },
-				{ opacity: 1, yPercent: 0, duration: 2 }
-			)
-
 			.to(".animated-box", {
 				borderRadius: "100%",
-				duration: 2,
+				duration: 1,
 				ease: "power1.out",
-			})
-			.fromTo(
-				".animated-text",
-				{ yPercent: -20, opacity: 0 },
-				{ opacity: 1, yPercent: 0, duration: 2 }
-			);
+				onComplete: onComplete,
+			});
 		tl.repeat(-1);
-		tl.yoyo(true);
 	};
 	useEffect(() => {
-		runAnimation();
+		// runAnimation();
 	}, []);
 
 	return (

@@ -8,11 +8,14 @@ module.exports = () => {
 			esmExternals: false,
 		},
 		images: {
+			format: ["image/avif", "image/gif", "image/jpeg", "image/png", "image/webp"],
 			domains: [
 				"firebasestorage.googleapis.com",
 				"static.toiimg.com",
 				"oaidalleapiprodscus.blob.core.windows.net",
 				"picsum.photos",
+				"images.unsplash.com",
+				"images.pexels.com"
 			],
 		},
 		transpilePackages: ["gsap"],

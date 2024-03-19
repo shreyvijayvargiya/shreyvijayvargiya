@@ -7,7 +7,7 @@ const FillingCoffeeCup = () => {
 		const tl = gsap.timeline();
 		tl.fromTo(
 			".body-head",
-			{ x: 0 },
+			{ x: 0, scale: 0.5 },
 			{
 				duration: 2,
 				rotate: 200,
@@ -50,6 +50,7 @@ const FillingCoffeeCup = () => {
 				rotate: 20,
 				borderRadius: 10,
 				duration: 3,
+				scale: 1,
 				borderColor: colors.gray[600],
 			});
 

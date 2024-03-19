@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core";
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useSpring, animated } from "@react-spring/web";

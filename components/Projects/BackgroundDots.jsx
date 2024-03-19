@@ -2,10 +2,23 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import colors from "tailwindcss/colors";
 
-const BackgroundDots = ({ pauseAnimation }) => {
+const BackgroundDots = () => {
 	const colorKeys = Object.keys(colors);
+	let dots = [];
+	const getRandomArray = (length) => {
+		for (let i = 0; i < length; i++) {
+			dots.push(i);
+		}
+		return dots;
+	};
+	getRandomArray(10);
 
-	useEffect(() => {
+	const dotsParent = [
+		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+	];
+	// how many vertical dots we want
+
+	const runAnimation = () => {
 		dots.map((item) => {
 			gsap.fromTo(
 				`.dot-${item}`,
@@ -32,23 +45,14 @@ const BackgroundDots = ({ pauseAnimation }) => {
 			{ width: "1vw", left: 0 },
 			{ width: "100vw", duration: 3, left: 0 }
 		);
+	};
+
+	useEffect(() => {
+		runAnimation();
 	}, []);
 
-	let dots = [];
-	const getRandomArray = (length) => {
-		for (let i = 0; i < length; i++) {
-			dots.push(i);
-		}
-		return dots;
-	};
-	getRandomArray(10);
-
-	const dotsParent = [
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-	];
-
 	return (
-		<div className="bg-black bg-opacity-5 h-screen w-full flex flex-col justify-center items-center">
+		<div className="bg-black h-screen w-full flex flex-col justify-center items-center">
 			<div className="bgLoader flex justify-evenly items-center fixed top-0 left-0 right-0 bottom-0">
 				{dotsParent.map((item) => (
 					<div

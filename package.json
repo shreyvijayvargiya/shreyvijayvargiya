@@ -39,6 +39,7 @@
 		"@react-three/fiber": "^8.15.12",
 		"@supabase/supabase-js": "^1.28.0",
 		"@tailwindcss/postcss7-compat": "^2.1.0",
+		"@tanstack/react-table": "^8.13.2",
 		"autoprefixer": "^9",
 		"axios": "^0.21.1",
 		"babel-plugin-styled-components": "^1.10.7",
@@ -86,7 +87,8 @@
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat",
 		"three": "^0.159.0",
 		"use-sound": "^4.0.1",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"webpack": "4.46.0"
 	},
 	"devDependencies": {
 		"eslint": "^8.26.0",

@@ -1,0 +1,1 @@
+export { default as useMouseMove} from './hooks/mouse-events';

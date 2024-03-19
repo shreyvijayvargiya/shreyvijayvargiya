@@ -6,7 +6,7 @@ import colors from "tailwindcss/colors";
 const ScrollClock = () => {
 	gsap.registerPlugin(ScrollTrigger);
 	const secondsClockRef = useRef();
-	const colorKeys = Object.keys(colors);
+	const colorKeys = Object.keys(colors).reverse();
 	const [active, setActive] = useState(0);
 	const [prevRotation, setPrevRotation] = useState(0);
 
@@ -15,7 +15,6 @@ const ScrollClock = () => {
 
 		rotationTimeline.to(secondsClockRef.current, {
 			rotation: 360,
-			height: "40vh",
 			ease: "none",
 			transformOrigin: "center center",
 			onUpdate: () => {
@@ -25,13 +24,19 @@ const ScrollClock = () => {
 				const val = Math.floor(rotationValue / 40)
 					? Math.floor(rotationValue / 40)
 					: 0;
+				if (val / 90 === 0) {
+					// window.alert("90 deg rotation completed");
+				}
 				gsap.to(".scroll-clock-container", {
 					background: colors[colorKeys[val]][100]
 						? colors[colorKeys[val + 1]][300]
-						: "black",
+						: "white",
 				});
 				setActive(val);
-				setPrevRotation(Math.abs(Math.floor(rotationValue)));
+				setPrevRotation(Math.abs(rotationValue));
+			},
+			onComplete: () => {
+				gsap.to("footer", { opacity: 1 });
 			},
 			scrollTrigger: {
 				trigger: ".scroll-clock-container",
@@ -45,24 +50,22 @@ const ScrollClock = () => {
 
 	return (
 		<div
-			className="scroll-clock-container w-full bg-black"
+			className="scroll-clock-container w-full bg-white relative"
 			style={{
 				height: "500vh",
 			}}
 		>
 			<div
-				className="seconds-clock-line w-96 h-1px border bg-blackBg rounded-full border-dashed border-gray-700 text-gray-400"
+				className="seconds-clock-line w-20 h-2px border bg-gray-900 rounded-full border-dashed border-gray-700 text-gray-400"
 				style={{
-					position: "sticky",
+					position: "fixed",
 					top: "50%",
-					left: "50%",
-					transform: "translate(-50%, -50%)",
+					left: 0,
 				}}
 				ref={secondsClockRef}
-			/>
+			></div>
 			<div className="fixed bottom-10 left-0 right-0 text-indigo-300 text-center">
 				<p>Scroll to rotate</p>
-				<p>{prevRotation}deg</p>
 			</div>
 		</div>
 	);
