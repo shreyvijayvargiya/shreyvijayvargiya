@@ -10,11 +10,6 @@ import { Modal } from "@mantine/core";
 
 const projects = [
 	{
-		url: "https://tailwind-css-theme-toggle-demo.vercel.app/",
-		device: "desktop",
-		title: "3D Globe",
-	},
-	{
 		url: "https://ihatereading.in",
 		device: "desktop",
 		title: "Breaking topcis into steps",
@@ -80,9 +75,9 @@ const projects = [
 		title: "UI library storybook",
 	},
 	{
-		url: "https://iamshrey.me/link-preview/projects/live-time",
+		url: "https://iamshrey.me/projects/tanstack-table-demo",
 		device: "desktop",
-		title: "Live time",
+		title: "Tanstack Table Demo",
 	},
 ];
 
@@ -293,6 +288,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: "auto",
 		height: "80vh",
 		display: "flex",
+		background: "white",
 		justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "column",
