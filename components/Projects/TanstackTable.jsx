@@ -52,15 +52,19 @@ const TanStackUsersTable = () => {
 					);
 				})}
 			</thead>
-			<tbody>
-				{table?.getCoreRowModel()?.flatRows.map((row) => (
-					<tr key={row.id} className="hover:bg-gray-50 h-16 cursor-pointer">
-						{row.getVisibleCells().map((cell) => {
-							return <td key={cell.id}>{cell?.getValue()}</td>;
-						})}
-					</tr>
-				))}
-			</tbody>
+			{isLoading ? (
+				<p>Loading users...</p>
+			) : (
+				<tbody>
+					{table?.getCoreRowModel()?.flatRows.map((row) => (
+						<tr key={row.id} className="hover:bg-gray-50 h-16 cursor-pointer">
+							{row.getVisibleCells().map((cell) => {
+								return <td key={cell.id}>{cell?.getValue()}</td>;
+							})}
+						</tr>
+					))}
+				</tbody>
+			)}
 		</table>
 	);
 };
