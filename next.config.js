@@ -2,23 +2,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = () => {
+module.exports = (phase, defaultConfig) => {
 	return {
 		experimental: {
 			esmExternals: false,
 		},
-		images: {
-			format: ["image/avif", "image/gif", "image/jpeg", "image/png", "image/webp"],
-			domains: [
-				"firebasestorage.googleapis.com",
-				"static.toiimg.com",
-				"oaidalleapiprodscus.blob.core.windows.net",
-				"picsum.photos",
-				"images.unsplash.com",
-				"images.pexels.com"
-			],
-		},
-		transpilePackages: ["gsap"],
 		webpack: (config) => {
 			config.node = {
 				fs: "empty",
