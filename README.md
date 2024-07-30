@@ -1,60 +1,125 @@
-# Portfolio Website Repository
+# Portfolio
 
-### Build your portfolio website instantly using a JSON file.
+### 🤵🏻 Who am I
 
-## How to Run Locally
+Hello, I am Shrey, I am a software developer with 5 years of experience currently working in chainGPT as Lead Frontend Developer. I've developed websites, mobile apps, backend services, and web3 apps. 
 
-```
-Clone the repository
-run yarn
-run yarn run dev
-open localhost:3000
-```
+I’ve experience in developing web apps, mobile apps, backends, firebase, database,  blockchain applications such as DeFi, and DApps.
 
-## Packaged used
-<ol>
-  <li>Next JS</li>
-  <li>React JS</li>
-  <li>Material UI</li>
-  <li>Mantine Dev</li>
-  <li>Tailwind CSS</li>
-  <li>React Icons</li>
-</ol>
+### 🏫 **Experience**
 
-### What is this template?
 
-Basically, it’s a template to give your a full-fledged control over building your own portfolio website using code and designs.
+## Mobile App Developer [https://chaingpt.com/]
+Mobile App Developer
+May, 2023 - Present
 
-### Purpose of the template?
+- Developed web3 non-custodial wallet app for CGPT(chainGPT) crypto users
+- Technology I've worked are react-native, Web3, eth, wallet, wagmi, ethers, cyrptoscan and payment APIs
 
-I made this template to provide a ready-to-use or started code repository to all developers around the world on How to build a personal portfolio website using single JSON file.
 
-We are not only providing the codebase but 
+Remote, **Full-Stack Developer**
 
-- Best code architecture
-- Complete control over your website
-- Top tech stack in 2023
-- Highly customisable
-- Easy-to-use repository
-- Highly extensible (use for other products)
+Jan, 2021 - May, 2023
+- [https://kooapp.com/](https://kooapp.com/)
+- [https://retailpulse.ai/](https://retailpulse.ai/)
+- [https://ihatereading.in/](https://ihatereading.in/)
+- [https://www.myhomejam.com/](https://www.myhomejam.com/)
 
-This template will provide you with a good started project as well as your own portfolio website that you can deploy right instantaneously.
+### Coinswitch [[https://coinswitch.co/](https://coinswitch.co/)]
 
-### Things you will get in the repository
+Remote, **Mobile App Developer**
 
-- Top tech stack,
-- Top libraries installed
-- Modern architecture
-- Responsive website
+March, 2020 - Jan, 2021
 
-### How do edit, run & deploy?
+- Developed cryptocurrency trading application for millions of users
+- Successfully improved app(APK) bundle size by 40%.
+- Increased Application runtime speed by 25%.
+- Integration of GraphQL to enhance performance by 50%.
+- Implementation of Graphs, Flatlists, Animations Firebase and Amplitude software tools.
 
-- Down the repository
-- Run yarn followed by yarn run dev or npm commands if prefer that
-- Change the `data.js` file inside the `utils/api` directory and add your data including every key-value pair
-- Create a new Github repository, push the new code into the new Github repository
-- Create a new Vercel account, integrate a Github account into Vercel
-- Connect the Github repository to Vercel
-- Deploy the repository on Vercel
+### **Cogoport [**[https://www.cogoport.com/](https://www.cogoport.com/)**]**
 
-You can deploy it onto your hosting platform that is why I’ve provided the code that gives you complete control over your website.
+Mumbai, India, Software Developer, 
+
+March, 2019 - March, 2020
+
+- Core Member of Front-end Infrastructure team.
+- Developed React UI library of 72 components
+- Developed the packages like React reusable hooks, React real-time editable Spreadsheet, CMS(Content management system) & UI Library.
+- Worked on Babel, Webpack, Next JS, Redux, Gatsby
+
+### MunshiG [[https://munshig.in/](https://munshig.in/)]
+
+Full-Stack Developer Intern, July’19 - Dec’19
+
+- Developed database management Dashboard for 100+ retail owners.
+- Worked on the updated technologies such as Firebase Authentication, Firebase Realtime Database, Firebase Storage, Google Maps and Javascript Charts.
+
+---
+
+### 📽️ Projects
+
+### 70 projects repository  -
+
+[https://github.com/shreyvijayvargiya/iHateReadingLogs](https://github.com/shreyvijayvargiya/iHateReadingLogs)
+
+### iHateReading
+
+[https://ihatereading.in/](https://ihatereading.in/)
+
+Learn how the products are built professionally.
+
+### **Frontend UI Library**
+
+[https://uireactlibrary.vercel.app/?path=/story/*](https://uireactlibrary.vercel.app/?path=/story/*)
+
+Frontend UI React library
+
+### Etherscan clone
+
+[https://eth-txns.vercel.app/](https://eth-txns.vercel.app/)
+
+### Solana NFT marketplace
+
+[https://www.solana-nft-marketplace-pi.vercel.app/](https://www.solana-nft-marketplace-pi.vercel.app/)
+
+### CryptStream
+
+ [https://crypt-stream.vercel.app/dashboard](https://crypt-stream.vercel.app/dashboard)
+
+---
+
+## ⚒️  Skills
+
+Jotting down all the tech stack and software I have worked on and have good hands-on experience. 
+
+| Language | Experience |
+| --- | --- |
+| React | ⭐  ⭐  ⭐  ⭐   |
+| React Native | ⭐  ⭐  ⭐  ⭐   |
+| Node.js | ⭐  ⭐   |
+| Firebase | ⭐  ⭐  ⭐  ⭐   |
+| Mongo DB | ⭐  ⭐  ⭐   |
+| Github | ⭐  ⭐  ⭐  ⭐   |
+| Express  |  ⭐ ⭐ ⭐ |
+| Solidity | ⭐ ⭐  |
+
+---
+
+## 👨🏻‍🎨 Social Links
+
+### 200+ Medium articles
+
+[https://shreyvijayvargiya26.medium.com/](https://shreyvijayvargiya26.medium.com/)
+
+### Devto profile
+
+[https://dev.to/shreyvijayvargiya](https://dev.to/shreyvijayvargiya)
+
+### Twitter
+
+[https://twitter.com/treyvijay](https://twitter.com/treyvijay)
+
+### Email
+
+[shreyvijayvargiya26@gmail.com](https://mail.google.com/mail/u/0/#inbox)
