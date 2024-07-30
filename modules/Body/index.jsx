@@ -3,7 +3,6 @@ import { Navbar } from "modules";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "redux/slice/userSlice";
 import router from "next/router";
-import { Analytics } from "@vercel/analytics/react";
 
 const Body = ({ children }) => {
 	const { user: data } = useSelector((state) => state);
@@ -15,20 +14,11 @@ const Body = ({ children }) => {
 	};
 
 	return (
-		<div
-			className={`outline-none`}
-			tabIndex="0"
-			// onKeyDown={(e) => {
-			// 	if (e.key === "t") {
-			// 		toggle();
-			// 	}
-			// }}
-		>
+		<div className={`outline-none`} tabIndex="0">
 			{router.pathname.includes("/projects") ? (
 				<div className="mobile-home sm:block xxs:block xs:block md:block xl:block">
 					<Navbar />
 					<div className="w-full text-center py-10 ">{children}</div>
-					<Analytics />
 				</div>
 			) : (
 				<div
@@ -36,7 +26,6 @@ const Body = ({ children }) => {
 				>
 					<div className="desktop-home sm:hidden xxs:hidden xs:hidden md:block xl:block">
 						<div className="w-full text-center py-10 ">{children}</div>
-						<Analytics />
 					</div>
 				</div>
 			)}
