@@ -20,7 +20,7 @@ const objs = [
 	},
 	{
 		id: 2,
-		name: "with 4 Years of experience",
+		name: "with 5 Years of experience",
 		image: "./intro-images/Rectangle 7.svg",
 	},
 	{

@@ -64,6 +64,7 @@
 		"nprogress": "^0.2.0",
 		"particle.js": "^1.0.7",
 		"path": "^0.12.7",
+		"pdf-lib": "^1.17.1",
 		"postcss": "^7",
 		"postcss-cli": "^8.3.1",
 		"pretty-js": "^0.2.2",

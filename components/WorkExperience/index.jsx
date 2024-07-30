@@ -4,8 +4,6 @@ import gsap from "gsap";
 import colors from "tailwindcss/colors";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import GridLines from "react-gridlines";
-import LiveTime from "components/Projects/LiveTime";
-import Clock from "components/Projects/Clock";
 
 gsap.registerPlugin(ScrollTrigger);
 
