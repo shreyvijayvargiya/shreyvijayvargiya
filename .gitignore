@@ -1,5 +1,7 @@
+.next
 node_modules
 yarn.lock
-yarn-error.lock
-.next
+package-lock.json
 .vscode
+
+.DS_Store

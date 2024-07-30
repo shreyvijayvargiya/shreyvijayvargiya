@@ -1,1 +1,2 @@
-export { default as supabaseApp } from "./supbase.js";
+export { default as colors } from "./colors";
+export { default as portfolioData } from "./data";
