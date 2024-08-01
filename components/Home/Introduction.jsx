@@ -20,7 +20,7 @@ const objs = [
 	},
 	{
 		id: 2,
-		name: "with 5 Years of experience",
+		name: "with 4 Years of experience",
 		image: "./intro-images/Rectangle 7.svg",
 	},
 	{
@@ -40,7 +40,13 @@ const objs = [
 	},
 ];
 
-
+const intervals = [
+	{ start: 0, end: 2, index: 0 },
+	{ start: 2, end: 4, index: 1 },
+	{ start: 4, end: 6, index: 2 },
+	{ start: 6, end: 8, index: 3 },
+	{ start: 8, end: 10, index: 4 },
+];
 
 const Introduction = () => {
 	const containerRef = useRef();

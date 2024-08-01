@@ -1,24 +1,21 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-	future: {
-		removeDeprecatedGapUtilities: true,
-		purgeLayersByDefault: true,
-	},
-	purge: {
-		enabled: process.env.NODE_ENV === "production",
-		content: [
-			"./pages/**/*.{js,ts,jsx,tsx}",
-			"./components/**/*.{js,ts,jsx,tsx}",
-			"./modules/**/*.{js,ts,jsx,tsx}",
-			"./utils/**/*.{js,ts,jsx,tsx}",
-			"./projects/**/*.{js,ts,jsx,tsx}",
-		],
-	},
-	darkMode: "class", // or 'media' or 'class'
-	mode: "jit",
+	purge: [
+		"./pages/**/*.{js,ts,jsx,tsx}",
+		"./components/**/*.{js,ts,jsx,tsx}",
+		"./modules/**/*.{js,ts,jsx,tsx}",
+		"./utils/**/*.{js,ts,jsx,tsx}",
+	],
+	darkMode: false, // or 'media' or 'class'
 	theme: {
 		colors: {
+			blackBg: "rgb(2, 2, 2)",
+			grayBlack: "rgb(20, 20, 20)",
+			black: "rgb(0, 0, 0)",
+			blackShade: "#0b0b0b",
+			transparent: colors.transparent,
+			whiteText: "rgb(230, 230, 230)",
 			yellow: colors.yellow,
 			red: colors.red,
 			green: colors.green,
@@ -61,11 +58,22 @@ module.exports = {
 			"3/4": "75%",
 			full: "100%",
 		},
+		extend: {
+			fontFamily: {
+				sans: ["Inter", "Helvetica", "Arial", "sans-serif"],
+				serif: ["Georgia", "Cambria", "Times New Roman", "serif"],
+				mono: ["Fira Code", "Courier New", "monospace"],
+				cool: ["Comic Sans", "sans-serif"],
+				fancy: ["Phosphate", "cursive"],
+			},
+		},
 	},
 	variants: {
 		extend: {
-			backgroundColor: ["dark"],
-			textColor: ["dark"],
+			colors: {
+				zinc: colors.gray,
+				slate: colors.slate,
+			},
 		},
 	},
 	plugins: [],

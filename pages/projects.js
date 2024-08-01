@@ -1,11 +1,5 @@
 import React from "react";
-import { ProjectComponent } from "components";
+import ProjectsGallery from "components/Projects/ProjectsGallery";
 
-const ProjectPage = () => {
-	return (
-		<div>
-			<ProjectComponent />
-		</div>
-	);
-};
-export default ProjectPage;
+const HomePage = () => <ProjectsGallery />;
+export default HomePage;
