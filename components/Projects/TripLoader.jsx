@@ -16,13 +16,12 @@ const loaders = [
 	"website and",
 	"mobile apps",
 ];
+
 const TripLoader = ({ setLoading }) => {
 	const [active, setActive] = useState(0);
 	const colorKeys = Object.keys(colors);
 	const phoneRef = useRef();
 	const welcomeScreenRef = useRef();
-
-	const tl = gsap.timeline();
 
 	const closeLoader = () => {
 		setTimeout(() => {
@@ -30,8 +29,10 @@ const TripLoader = ({ setLoading }) => {
 		}, 2000);
 	};
 
-	const interval = () => {
-		return setInterval(() => {
+	useEffect(() => {
+		const tl = gsap.timeline();
+
+		const intervalId = setInterval(() => {
 			if (active === loaders.length - 1) {
 				tl.to(phoneRef.current, {
 					scale: 1.5,
@@ -51,9 +52,11 @@ const TripLoader = ({ setLoading }) => {
 				setActive((prev) => prev + 1);
 			}
 		}, 600);
-	};
 
-	const id = interval();
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, [active]);
 
 	useEffect(() => {
 		gsap.set(welcomeScreenRef.current, { opacity: 0 });
@@ -69,10 +72,6 @@ const TripLoader = ({ setLoading }) => {
 			rotateX: active * 4 + "deg",
 			transformOrigin: "50% 50%",
 		});
-
-		return () => {
-			clearInterval(id);
-		};
 	}, [active]);
 
 	const styles = useStyles();
