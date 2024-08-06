@@ -4,7 +4,6 @@ import {
 	Popover,
 	Text,
 	TextInput,
-	Select,
 	Textarea,
 } from "@mantine/core";
 import React, { useState } from "react";
@@ -75,12 +74,12 @@ const LinkTreeComponent = () => {
 	const [links, setLinks] = useState(socialLinks);
 	const [linkValue, setLinkValue] = useState({ id: "", value: "" });
 
-	const [newLink, setNewLink] = useState(initialNewLink);
-
 	const handleSocialMediaLinkUpdate = async (id, value) => {
 		setShowPopover({ showLinkPopver: false, showAddButtonPopver: false });
-		setLinks(
-			links.map((link) => (link.id === id ? { ...link, link: value } : link))
+		setLinks((prevLinks) =>
+			prevLinks.map((link) =>
+				link.id === id ? { ...link, link: value } : link
+			)
 		);
 	};
 
@@ -99,6 +98,7 @@ const LinkTreeComponent = () => {
 		description: "",
 		bannerImage: "",
 	});
+	console.log(links);
 	return (
 		<div className="">
 			<div className="mx-auto">
@@ -115,7 +115,7 @@ const LinkTreeComponent = () => {
 									className="flex flex-col items-start justify-start py-20 px-10 "
 									style={{ backgroundColor: "" }}
 								>
-									<div className="my-4">
+									<div className="my-2">
 										{userProfile.bannerImage && (
 											<img
 												src={userProfile.bannerImage}
@@ -123,8 +123,12 @@ const LinkTreeComponent = () => {
 												className="w-32 h-32 rounded-md"
 											/>
 										)}
+									</div>
+									<div className="my-2">
 										{userProfile.name && (
-											<Text size="xl">{userProfile.name}</Text>
+											<Text size="xl" mt="xs">
+												{userProfile.name}
+											</Text>
 										)}
 										{userProfile.description && (
 											<Text size="sm">{userProfile.description}</Text>
@@ -138,8 +142,9 @@ const LinkTreeComponent = () => {
 											>
 												{item.icon}
 												<a
-													href={item.link}
+													href={`https://${item.link}`}
 													target="_blank"
+													prefix="https://"
 													rel="noopener noreferrer"
 													className="ml-2"
 												>
@@ -147,16 +152,6 @@ const LinkTreeComponent = () => {
 												</a>
 											</div>
 										))}
-									</div>
-									<div className="absolute bottom-5 left-0 right-0 flex justify-center items-center">
-										<Button
-											onClick={() => {}}
-											variant="outline"
-											color="dark"
-											size="xs"
-										>
-											Made with Karyam
-										</Button>
 									</div>
 								</div>
 							</div>
@@ -295,10 +290,7 @@ const LinkTreeComponent = () => {
 														variant="default"
 														onChange={(e) => {
 															const val = e.target.value;
-															handleSocialMediaLinkUpdate({
-																id: item?.id,
-																value: e.target.value,
-															});
+															setLinkValue({ id: item.id, value: val });
 														}}
 														classNames={{
 															input:
@@ -306,7 +298,11 @@ const LinkTreeComponent = () => {
 														}}
 														size="xs"
 														placeholder={item?.label}
-														value={item?.link}
+														value={
+															item.id === linkValue.id
+																? linkValue.value
+																: item.link
+														}
 													/>
 													<Button
 														onClick={() =>
