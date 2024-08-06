@@ -5,11 +5,11 @@ import {
 	Text,
 	TextInput,
 	Select,
+	Textarea,
 } from "@mantine/core";
 import React, { useState } from "react";
 import colors from "tailwindcss/colors";
 import {
-	Laptop2,
 	Linkedin,
 	PlusCircleIcon,
 	Twitter,
@@ -17,98 +17,227 @@ import {
 	Laptop2Icon,
 } from "lucide-react";
 import { FaMedium } from "react-icons/fa";
-import IconSelect from "./IconSelect";
+
+const socialLinks = [
+	{
+		id: 1,
+		name: "Twitter",
+		label: "Add Twitter link",
+		icon: <Twitter size={20} color={colors.indigo[500]} />,
+		link: "",
+		buttonColor: "indigo",
+	},
+	{
+		id: 2,
+		name: "LinkedIn",
+		label: "Add LinkedIn link",
+		icon: <Linkedin size={20} color={colors.blue[500]} />,
+		link: "",
+		buttonColor: "blue",
+	},
+	{
+		id: 3,
+		name: "Youtube",
+		label: "Add Youtube link",
+		icon: <Youtube size={20} color={colors.red[500]} />,
+		link: "",
+		buttonColor: "red",
+	},
+	{
+		id: 4,
+		name: "Medium",
+		label: "Add Medium link",
+		icon: <FaMedium size={20} color={colors.black} />,
+		link: "",
+		buttonColor: "dark",
+	},
+	{
+		id: 5,
+		name: "Website",
+		label: "Add Website or External link",
+		icon: <Laptop2Icon size={20} color={colors.pink[500]} />,
+		link: "",
+		buttonColor: "pink",
+	},
+];
+const initialNewLink = {
+	id: 1,
+	name: "",
+	label: "",
+	icon: <PlusCircleIcon size={20} color={colors.black} />,
+	buttonColor: "dark",
+	link: "",
+};
 
 const LinkTreeComponent = () => {
 	const { classes } = useStyles();
 
-	const socialLinks = [
-		{
-			id: 1,
-			name: "Twitter",
-			label: "Add Twitter link",
-			icon: <Twitter size={20} color={colors.indigo[500]} />,
-			link: "",
-			buttonColor: "indigo",
-		},
-		{
-			id: 2,
-			name: "LinkedIn",
-			label: "Add LinkedIn link",
-			icon: <Linkedin size={20} color={colors.blue[500]} />,
-			link: "",
-			buttonColor: "blue",
-		},
-		{
-			id: 3,
-			name: "Youtube",
-			label: "Add Youtube link",
-			icon: <Youtube size={20} color={colors.red[500]} />,
-			link: "",
-			buttonColor: "red",
-		},
-		{
-			id: 4,
-			name: "Medium",
-			label: "Add Medium link",
-			icon: <FaMedium size={20} color={colors.black} />,
-			link: "",
-			buttonColor: "dark",
-		},
-		{
-			id: 5,
-			name: "Website",
-			label: "Add Website or External link",
-			icon: <Laptop2Icon size={20} color={colors.pink[500]} />,
-			link: "",
-			buttonColor: "pink",
-		},
-	];
-
 	const [links, setLinks] = useState(socialLinks);
 	const [linkValue, setLinkValue] = useState({ id: "", value: "" });
-	const initialNewLink = {
-		id: links?.length + 1,
-		name: "",
-		label: "",
-		icon: <PlusCircleIcon size={20} color={colors.black} />,
-		buttonColor: "dark",
-		link: "",
-	};
+
 	const [newLink, setNewLink] = useState(initialNewLink);
 
 	const handleSocialMediaLinkUpdate = async (id, value) => {
-		setLinks((prevLinks) =>
-			prevLinks.map((link) =>
-				link.id === id ? { ...link, link: value } : link
-			)
+		setShowPopover({ showLinkPopver: false, showAddButtonPopver: false });
+		setLinks(
+			links.map((link) => (link.id === id ? { ...link, link: value } : link))
 		);
 	};
 
-	const [showLinkPopver, setLinkPopover] = useState(null);
-	const [showButtonPopover, setShowButtonPopover] = useState(null);
+	const [showPopover, setShowPopover] = useState({
+		showLinkPopver: false,
+		showAddButtonPopver: false,
+	});
 
 	const [popover, setPopover] = useState({
 		id: null,
 		button: false,
 	});
+
+	const [userProfile, setUserProfile] = useState({
+		name: "",
+		description: "",
+		bannerImage: "",
+	});
 	return (
-		<div className="px-4 bg-white">
-			<div className="rounded-md md:w-full lg:w-1/3 mx-auto sm:w-full xxs:w-full xs:w-full">
+		<div className="">
+			<div className="mx-auto">
 				<div className={classes.container}>
 					<div
-						className={`${classes.body} py-20 px-10 flex justify-center items-center min-h-screen `}
+						className={`${classes.body} flex justify-center gap-10 items-start min-h-screen w-full`}
 					>
-						<div>
-							<div className="flex flex-wrap justify-start items-center gap-4">
+						<div className="h-full border-r border-gray-200 xxl:w-1/4 md:w-1/4 bg-gray-100 p-20 min-h-screen">
+							<div
+								className="border-4 border-white min-h-screen max-w-xs"
+								style={{ minHeight: "80dvh", borderRadius: 36 }}
+							>
+								<div
+									className="flex flex-col items-start justify-start py-20"
+									style={{ backgroundColor: "" }}
+								>
+									<div className="my-4">
+										{userProfile.bannerImage && (
+											<img
+												src={URL.createObjectURL(userProfile.bannerImage)}
+												alt="Uploaded"
+												className="w-32 h-32 rounded-full mb-4"
+											/>
+										)}
+										{userProfile.name && (
+											<Text size="xl">{userProfile.name}</Text>
+										)}
+										{userProfile.description && (
+											<Text size="sm">{userProfile.description}</Text>
+										)}
+									</div>
+									<div className="flex flex-col w-full">
+										{links.map((item) => (
+											<div
+												key={item.id}
+												className={`flex items-center p-2 bg-${item.buttonColor}-100 rounded my-1 w-full`}
+											>
+												{item.icon}
+												<a
+													href={item.link}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="ml-2"
+												>
+													{item.name}
+												</a>
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="mx-auto xxl:w-1/3 md:w-1/2 md:px-10 md:py-20">
+							<Text size="lg" my="sm">
+								Create Social Profile
+							</Text>
+							<div className="">
+								{userProfile.bannerImage ? (
+									<div>
+										<img
+											src={userProfile.bannerImage}
+											className="w-40 h-40 rounded-md"
+										/>
+										<Button
+											size="xs"
+											variant="outline"
+											color="red"
+											onClick={() => {
+												setUserProfile((prevState) => ({
+													...prevState,
+													bannerImage: null,
+												}));
+											}}
+										>
+											Remove
+										</Button>
+									</div>
+								) : (
+									<Button
+										type="file"
+										onChange={(e) => console.log(e, "file")}
+										variant="outline"
+										size="xs"
+										color="dark"
+										typeof="file"
+									>
+										Add Image
+									</Button>
+								)}
+								<TextInput
+									size="xs"
+									placeholder="Enter your name"
+									classNames={{
+										input:
+											"border-black border focus:bg-gray-50 p-2 focus:outline-none",
+									}}
+									className="focus:outline-none outline-none"
+									onChange={(e) => {
+										const val = e.target.value;
+										setUserProfile((prevState) => ({
+											...prevState,
+											name: val,
+										}));
+									}}
+									my="xs"
+									value={userProfile.name}
+								/>
+								<Textarea
+									minRows={4}
+									placeholder="Tell us about yourself"
+									className="focus:outline-none outline-none"
+									classNames={{
+										input:
+											"border-black border focus:bg-gray-50 p-2 focus:outline-none",
+									}}
+									onChange={(e) => {
+										const val = e.target.value;
+										setUserProfile((prevState) => ({
+											...prevState,
+											description: val,
+										}));
+									}}
+									my="xs"
+									value={userProfile.description}
+								/>
 								{links.map((item) => {
 									return (
-										<div key={item.id}>
+										<div key={item.id} className="my-4">
 											<Popover
 												width={300}
 												position="bottom"
 												withArrow
-												onClose={() => setPopover({ id: null, button: false })}
+												onClose={() => {
+													setShowPopover({
+														showLinkPopver: false,
+														showAddButtonPopver: false,
+													});
+													setPopover({ id: null, button: false });
+												}}
 												opened={popover.id === item.id}
 												target={
 													<Button
@@ -137,7 +266,7 @@ const LinkTreeComponent = () => {
 															const val = e.target.value;
 															handleSocialMediaLinkUpdate({
 																id: item?.id,
-																value: val,
+																value: e.target.value,
 															});
 														}}
 														classNames={{
@@ -150,190 +279,26 @@ const LinkTreeComponent = () => {
 													/>
 													<Button
 														onClick={() =>
-															handleSocialMediaLinkUpdate(item?.id)
+															handleSocialMediaLinkUpdate(
+																item?.id,
+																item.id === linkValue.id
+																	? linkValue.value
+																	: null
+															)
 														}
 														variant="filled"
-														color={
-															item?.buttonColor ? item?.buttonColor : "dark"
-														}
+														color={"dark"}
 														size="xs"
 														my="xs"
 														fullWidth
 													>
 														Submit
 													</Button>
-													<Button
-														onClick={() =>
-															setLinks(links.filter((el) => el.id !== item.id))
-														}
-														variant="outline"
-														color="dark"
-														size="xs"
-														my="xs"
-														fullWidth
-													>
-														Delete
-													</Button>
 												</div>
 											</Popover>
 										</div>
 									);
 								})}
-								<div>
-									<Popover
-										width={300}
-										opened={showButtonPopover}
-										onClose={() => setPopover({ id: null, button: false })}
-										target={
-											<Button
-												color="dark"
-												onClick={() => {
-													setPopover((prevState) => ({
-														...prevState,
-														button: true,
-													}));
-												}}
-												leftIcon={<PlusCircleIcon size={18} />}
-												variant="outline"
-												size="xs"
-											>
-												Add more
-											</Button>
-										}
-										position="bottom"
-										withArrow
-										shadow="md"
-									>
-										<div>
-											<Text size="sm">What's this new link is about?</Text>
-											<TextInput
-												color="dark"
-												my="xs"
-												variant="default"
-												name="name"
-												onChange={(e) => {
-													const val = e.target.value;
-													setNewLink((prevState) => ({
-														...prevState,
-														name: val,
-													}));
-												}}
-												classNames={{
-													input:
-														"focus:border focus:border-black outline-none text-black",
-												}}
-												size="xs"
-												placeholder={"Add name"}
-												value={newLink?.name}
-											/>
-											<TextInput
-												color="dark"
-												variant="default"
-												name="label"
-												onChange={(e) => {
-													const val = e.target.value;
-													setNewLink((prevState) => ({
-														...prevState,
-														label: val,
-													}));
-												}}
-												classNames={{
-													input: "focus:border focus:border-black outline-none",
-												}}
-												size="xs"
-												placeholder={"Add label"}
-												value={newLink?.label}
-												my="xs"
-											/>
-											<TextInput
-												color="dark"
-												variant="default"
-												name="link"
-												onChange={(e) => {
-													const val = e.target.value;
-													setNewLink((prevState) => ({
-														...prevState,
-														link: val,
-													}));
-												}}
-												classNames={{
-													input: "focus:border focus:border-black outline-none",
-												}}
-												size="xs"
-												my="xs"
-												placeholder={"Add link"}
-												value={newLink?.link}
-											/>
-											<Select
-												placeholder="Select color"
-												size="xs"
-												classNames={{
-													input: "focus:border focus:border-black outline-none",
-												}}
-												onChange={(val) => {
-													setNewLink((prevState) => ({
-														...prevState,
-														buttonColor: val,
-														icon: (
-															<PlusCircleIcon
-																size={20}
-																color={
-																	val === "dark"
-																		? colors.black
-																		: colors[val][500]
-																}
-															/>
-														),
-													}));
-												}}
-												my="xs"
-												data={[
-													"dark",
-													"red",
-													"pink",
-													"indigo",
-													"teal",
-													"green",
-													"yellow",
-													"orange",
-												]}
-											/>
-											<IconSelect
-												getSelectedIconValue={(val) => {
-													const NewIcon = (
-														<Group position="left" my="xs">
-															{React.createElement(val, {
-																size: 20,
-																color: newLink.buttonColor,
-															})}
-														</Group>
-													);
-													setNewLink((prevState) => ({
-														...prevState,
-														icon: <NewIcon />,
-													}));
-												}}
-											/>
-											<Button
-												onClick={() => {
-													let newState = [...links];
-													newState.push(newLink);
-													setLinks(newState);
-													setNewLink(initialNewLink);
-												}}
-												variant="filled"
-												color={
-													newLink?.buttonColor ? newLink?.buttonColor : "dark"
-												}
-												size="xs"
-												my="xs"
-												fullWidth
-											>
-												Submit
-											</Button>
-										</div>
-									</Popover>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -351,6 +316,7 @@ const useStyles = createStyles((theme) => ({
 		justifyContent: "space-between",
 		alignItems: "center",
 		width: "100%",
+		minHeight: "100vh",
 	},
 	body: {
 		height: "100%",
