@@ -106,21 +106,21 @@ const LinkTreeComponent = () => {
 					<div
 						className={`${classes.body} flex justify-center gap-10 items-start min-h-screen w-full`}
 					>
-						<div className="h-full border-r border-gray-200 xxl:w-1/4 md:w-1/4 bg-gray-100 p-20 min-h-screen">
+						<div className="h-full border-r border-gray-200 xxl:w-1/4 md:w-1/4 bg-gray-50 p-20 min-h-screen">
 							<div
-								className="border-4 border-white min-h-screen max-w-xs"
+								className="border-4 border-whiteText min-h-screen max-w-xs bg-white relative"
 								style={{ minHeight: "80dvh", borderRadius: 36 }}
 							>
 								<div
-									className="flex flex-col items-start justify-start py-20"
+									className="flex flex-col items-start justify-start py-20 px-10 "
 									style={{ backgroundColor: "" }}
 								>
 									<div className="my-4">
 										{userProfile.bannerImage && (
 											<img
-												src={URL.createObjectURL(userProfile.bannerImage)}
+												src={userProfile.bannerImage}
 												alt="Uploaded"
-												className="w-32 h-32 rounded-full mb-4"
+												className="w-32 h-32 rounded-md"
 											/>
 										)}
 										{userProfile.name && (
@@ -134,7 +134,7 @@ const LinkTreeComponent = () => {
 										{links.map((item) => (
 											<div
 												key={item.id}
-												className={`flex items-center p-2 bg-${item.buttonColor}-100 rounded my-1 w-full`}
+												className={`flex items-center p-2 hover:underline hover:border border-black hover:rounded-full rounded my-1 w-full`}
 											>
 												{item.icon}
 												<a
@@ -147,6 +147,16 @@ const LinkTreeComponent = () => {
 												</a>
 											</div>
 										))}
+									</div>
+									<div className="absolute bottom-5 left-0 right-0 flex justify-center items-center">
+										<Button
+											onClick={() => {}}
+											variant="outline"
+											color="dark"
+											size="xs"
+										>
+											Made with Karyam
+										</Button>
 									</div>
 								</div>
 							</div>
@@ -165,6 +175,7 @@ const LinkTreeComponent = () => {
 										<Button
 											size="xs"
 											variant="outline"
+											my="xs"
 											color="red"
 											onClick={() => {
 												setUserProfile((prevState) => ({
@@ -177,19 +188,36 @@ const LinkTreeComponent = () => {
 										</Button>
 									</div>
 								) : (
-									<Button
+									<TextInput
 										type="file"
-										onChange={(e) => console.log(e, "file")}
+										onChange={(e) => {
+											const file = e.target.files[0];
+											if (file) {
+												try {
+													const createURLObj = URL.createObjectURL(file);
+													setUserProfile((prevState) => ({
+														...prevState,
+														bannerImage: createURLObj,
+													}));
+												} catch (error) {
+													console.error("Error creating object URL:", error);
+												}
+											} else {
+												console.error(
+													"No file selected or file object is invalid"
+												);
+											}
+										}}
+										accept="image/jpeg, image/png, img/jpeg, img/png, img/svg, image/svg, png, svg, jpeg"
 										variant="outline"
 										size="xs"
 										color="dark"
-										typeof="file"
-									>
-										Add Image
-									</Button>
+										label="Add image"
+									/>
 								)}
 								<TextInput
-									size="xs"
+									size="sm"
+									label="Enter name"
 									placeholder="Enter your name"
 									classNames={{
 										input:
@@ -208,6 +236,8 @@ const LinkTreeComponent = () => {
 								/>
 								<Textarea
 									minRows={4}
+									size="sm"
+									label="Enter your description"
 									placeholder="Tell us about yourself"
 									className="focus:outline-none outline-none"
 									classNames={{
@@ -224,6 +254,7 @@ const LinkTreeComponent = () => {
 									my="xs"
 									value={userProfile.description}
 								/>
+								<Text size="sm">Add social media links</Text>
 								{links.map((item) => {
 									return (
 										<div key={item.id} className="my-4">
