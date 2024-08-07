@@ -98,7 +98,6 @@ const LinkTreeComponent = () => {
 		description: "",
 		bannerImage: "",
 	});
-	console.log(links);
 	return (
 		<div className="">
 			<div className="mx-auto">
@@ -108,7 +107,7 @@ const LinkTreeComponent = () => {
 					>
 						<div className="h-full border-r border-gray-200 xxl:w-1/4 md:w-1/4 bg-gray-50 p-20 min-h-screen">
 							<div
-								className="border-4 border-whiteText min-h-screen max-w-xs bg-white relative"
+								className="border-4 border-gray-100 min-h-screen max-w-xs bg-white relative"
 								style={{ minHeight: "80dvh", borderRadius: 36 }}
 							>
 								<div
