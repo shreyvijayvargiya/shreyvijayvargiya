@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import colors from "tailwindcss/colors";
 
-const BackgroundDots = ({ pauseAnimation }) => {
+const BackgroundDots = () => {
 	const colorKeys = Object.keys(colors);
 
 	useEffect(() => {
@@ -44,7 +44,8 @@ const BackgroundDots = ({ pauseAnimation }) => {
 	getRandomArray(10);
 
 	const dotsParent = [
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+		22, 23, 24, 25, 26, 27, 28, 29, 30, 21, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 	];
 
 	return (
