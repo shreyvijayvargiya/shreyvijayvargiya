@@ -74,6 +74,10 @@ module.exports = {
 				zinc: colors.gray,
 				slate: colors.slate,
 			},
+			visibility: ["group-hover"],
+			display: ["group-hover"],
+			transitions: ["group-hover"],
+			rotation: ["group-hover"]
 		},
 	},
 	plugins: [],

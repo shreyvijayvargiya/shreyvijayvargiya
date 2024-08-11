@@ -1,21 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import dynamic from "next/dynamic";
-import {
-	Events,
-	Element,
-	animateScroll as scroll,
-	scrollSpy,
-} from "react-scroll";
-import { useParallax, Parallax } from "react-scroll-parallax";
-import { Button } from "@mantine/core";
+import { Parallax } from "react-scroll-parallax";
 import { makeStyles } from "@material-ui/core";
 import colors from "tailwindcss/colors";
 
 const objs = [
 	{
 		id: 1,
-		name: "i am a Software Developer",
+		name: "I am a Software Developer",
 		image: "./intro-images/Rectangle 6.svg",
 	},
 	{
@@ -30,22 +22,14 @@ const objs = [
 	},
 	{
 		id: 4,
-		name: "mobile app development &",
+		name: "Mobile app development &",
 		image: "./intro-images/Rectangle 9.svg",
 	},
 	{
 		id: 5,
-		name: "backend development",
+		name: "Backend development",
 		image: "./intro-images/Rectangle 10.svg",
 	},
-];
-
-const intervals = [
-	{ start: 0, end: 2, index: 0 },
-	{ start: 2, end: 4, index: 1 },
-	{ start: 4, end: 6, index: 2 },
-	{ start: 6, end: 8, index: 3 },
-	{ start: 8, end: 10, index: 4 },
 ];
 
 const Introduction = () => {
