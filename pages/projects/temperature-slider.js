@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useElementSize } from "@mantine/hooks";
 import { gsap } from "gsap";
 
-const TemperatureSlider = () => {
+const TemperatureSlider = ({ getValue }) => {
 	const [value, setValue] = useState(50);
 	const { ref: sliderRef, width: sliderWidth } = useElementSize();
 
@@ -14,6 +14,7 @@ const TemperatureSlider = () => {
 			duration: 0.2,
 			ease: "power2.out",
 		});
+		getValue(newValue);
 	};
 
 	const generateTicks = () => {
