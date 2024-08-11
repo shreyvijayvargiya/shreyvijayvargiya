@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import gsap from "gsap";
 import { useEffect } from "react";
-import { theme } from "tailwind.config";
 import colors from "tailwindcss/colors";
 
 const Om = () => {

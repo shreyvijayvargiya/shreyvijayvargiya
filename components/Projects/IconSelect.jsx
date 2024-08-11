@@ -1,61 +1,75 @@
 import React, { useState } from "react";
-import { Select, Group, Box, Text } from "@mantine/core";
+import { Box, Modal, Button, SimpleGrid, Center } from "@mantine/core";
 import * as lucideIcons from "lucide-react";
 import colors from "tailwindcss/colors";
 
-const iconNames = Object.keys(lucideIcons).slice(0, 50);
+const iconNames = Object.keys(lucideIcons).slice(1, 180);
 
-const IconSelect = ({ getSelectedIconValue }) => {
-	const [selectedIcon, setSelectedIcon] = useState(null);
+const IconSelect = () => {
+	const [activeIcon, setActiveIcon] = useState("Smile");
+	const [iconPickerOpened, setIconPickerOpened] = useState(false);
 
-	const iconOptions = iconNames.map((iconName) => {
-		const IconComponent = lucideIcons[iconName];
-		return {
-			value: iconName,
-			label: iconName,
-			icon: <IconComponent size={20} />,
-		};
-	});
-
-	const handleSelectChange = (value) => {
-		setSelectedIcon(value);
-		getSelectedIconValue(lucideIcons[selectedIcon]);
+	const toggleIconPicker = () => {
+		setIconPickerOpened((prev) => !prev);
 	};
 
+	const handleIconClick = (iconName) => {
+		setActiveIcon(iconName);
+		setIconPickerOpened(false);
+	};
+
+	const ActiveIconComponent = lucideIcons[activeIcon];
+
 	return (
-		<Box>
-			<Select
-				placeholder="Select an icon"
-				data={iconOptions}
-				size="xs"
+		<Box className="flex justify-center items-center h-screen w-full overflow-hidden flex-col">
+			<Center mb="md">
+				<Button
+					variant="outline"
+					size="md"
+					onClick={toggleIconPicker}
+					color="gray"
+				>
+					{activeIcon && (
+						<ActiveIconComponent size={24} color={colors.gray[900]} />
+					)}
+				</Button>
+			</Center>
+			<Center>
+				<div>Click to select icon</div>
+			</Center>
+
+			<Modal
+				opened={iconPickerOpened}
+				onClose={toggleIconPicker}
+				title="Pick an icon"
+				color="dark"
+				centered
+				width={400}
+				size="lg"
+				position="center"
 				classNames={{
-					input: "focus:border focus:border-black",
-					item: "selected:bg-gray-800",
+					modal: "h-1/2 overflow-y-auto mx-auto px-0",
+					body: "border-t border-gray-200 p-4",
+					header: "px-4",
 				}}
-				itemComponent={({ value, label, icon, ...others }) => (
-					<Group noWrap {...others}>
-						{icon}
-						{label}
-					</Group>
-				)}
-				styles={(theme, params) => ({
-					item: {
-						"&[data-selected]": {
-							backgroundColor: theme.colors.gray[800],
-							color: theme.white,
-						},
-					},
-				})}
-				onChange={handleSelectChange}
-			/>
-			{selectedIcon && (
-				<Group position="left" my="xs">
-					{React.createElement(lucideIcons[selectedIcon], {
-						size: 24,
-						color: colors.gray[800],
+			>
+				<SimpleGrid cols={6}>
+					{iconNames.map((iconName) => {
+						const IconComponent = lucideIcons[iconName];
+						if (IconComponent)
+							return (
+								<Button
+									variant="hover"
+									key={iconName}
+									color="dark"
+									onClick={() => handleIconClick(iconName)}
+								>
+									<IconComponent size={28} color={colors.gray[800]} />
+								</Button>
+							);
 					})}
-				</Group>
-			)}
+				</SimpleGrid>
+			</Modal>
 		</Box>
 	);
 };
