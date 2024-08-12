@@ -79,7 +79,8 @@ module.exports = {
 			transitions: ["group-hover"],
 			rotation: ["group-hover"],
 			margin: ["group-hover"],
-			padding: ["group-hover", "hover"]
+			padding: ["group-hover", "hover"],
+			border: ["group-hover", "hover"]
 		},
 	},
 	plugins: [],

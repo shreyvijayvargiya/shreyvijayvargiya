@@ -61,7 +61,7 @@ const Themer = () => {
 					</p>{" "}
 				</div>
 				<p className="flex flex-wrap items-center justify-start break-words">
-					I socially active on
+					I am socially active on
 					<span className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full px-1 py-1 gap-2 flex justify-start items-center">
 						<span className="hidden opacity-0 group-hover:opacity-100 group-hover:block cursor-pointer w-4 h-4 transition-all duration-100">
 							<svg
