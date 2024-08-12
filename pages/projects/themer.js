@@ -34,7 +34,7 @@ const Themer = () => {
 			}}
 		>
 			<Slider
-				color={val < 70 ? "dark" : "yellow"}
+				color={val < 70 ? val < 50 ? "dark": "red" : "pink"}
 				className="w-1/3 mx-auto"
 				style={{ transition: "color 1s ease-in-out" }}
 				onChange={(e) => setVal(e, "e")}
