@@ -28,11 +28,15 @@ const Themer = () => {
 	return (
 		<div
 			className="flex justify-center items-center h-screen w-full flex-col"
-			style={{ background: getColor() }}
+			style={{
+				backgroundColor: getColor(),
+				transition: "background-color 1s ease-in-out",
+			}}
 		>
 			<Slider
 				color={val < 70 ? "dark" : "yellow"}
 				className="w-1/3 mx-auto"
+				style={{ transition: "color 1s ease-in-out" }}
 				onChange={(e) => setVal(e, "e")}
 				marks={[
 					{ value: 20, label: "20%" },

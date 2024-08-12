@@ -77,7 +77,9 @@ module.exports = {
 			visibility: ["group-hover"],
 			display: ["group-hover"],
 			transitions: ["group-hover"],
-			rotation: ["group-hover"]
+			rotation: ["group-hover"],
+			margin: ["group-hover"],
+			padding: ["group-hover", "hover"]
 		},
 	},
 	plugins: [],
