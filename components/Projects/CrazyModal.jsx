@@ -28,19 +28,6 @@ const DammModal = () => {
 				scale: 1,
 				opacity: 1,
 			});
-			gsap.fromTo(
-				".paragraph",
-				{
-					opacity: 0,
-					width: "0%",
-					scale: 0,
-				},
-				{
-					opacity: 1,
-					width: "100%",
-					scale: 1,
-				}
-			);
 			gsap.to(modal.current, { opacity: 1, width: "100%" });
 			setShow(true);
 		}
@@ -74,9 +61,9 @@ const DammModal = () => {
 				style={{ boxShadow: "0px 0px 50px rgb(255, 255, 255, 0.2)" }}
 				ref={ref}
 			>
-				<div className="modal-content bg-none break-words flex-wrap">
+				<div className="bg-none break-words flex-wrap">
 					<p className="paragraph md:text-7xl">Dynamic Modal</p>
-					<p className="paragraph">Increase width on scroll</p>
+					<p className="paragraph">Scroll to increase the width</p>
 				</div>
 			</div>
 			<div
