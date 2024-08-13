@@ -48,7 +48,6 @@
 		"date-fns": "^2.25.0",
 		"dayjs": "^1.11.10",
 		"firebase": "^8.2.2",
-		"framer-motion": "^10.16.16",
 		"fs": "^0.0.1-security",
 		"fuse.js": "^6.6.2",
 		"ghost-cursor": "^1.1.19",

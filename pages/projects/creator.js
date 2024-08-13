@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Avatar, Button, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import {
 	TwitterIcon,
