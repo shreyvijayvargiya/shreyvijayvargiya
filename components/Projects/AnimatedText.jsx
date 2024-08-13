@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import gsap from "gsap";
 import colors from "tailwindcss/colors";
 import { useMediaQuery } from "@material-ui/core";
@@ -58,7 +57,7 @@ const AnimatedText = () => {
 		const { clientX, clientY } = event;
 		const centerX = window.innerWidth / 2;
 		const centerY = window.innerHeight / 2;
-		const rotationX = ((clientY - centerY) / centerY) * 20; // Adjust the factor for the rotation speed
+		const rotationX = ((clientY - centerY) / centerY) * 20;
 		const rotationY = ((centerX - clientX) / centerX) * 50;
 		gsap.to([".text-container", ".user-avatar"], {
 			rotationY,
@@ -68,8 +67,6 @@ const AnimatedText = () => {
 			transformOrigin: "center center",
 		});
 	};
-
-	const styles = useStyles({ colorKeys, index });
 
 	const isMobile = useMediaQuery("min-width: 600px");
 
@@ -96,15 +93,3 @@ const AnimatedText = () => {
 	);
 };
 export default AnimatedText;
-
-const useStyles = makeStyles((theme) => ({
-	character: {
-		transformStyle: "preserve-3d",
-		fontFamily: "phosphate",
-		fontStyle: "inline",
-		fontSize: "1em",
-		background: "transparent",
-		textShadow: "10px 10px 10px rgb(20, 250, 250, 0.2)",
-		color: (props) => props.colorKeys[props.index],
-	},
-}));
