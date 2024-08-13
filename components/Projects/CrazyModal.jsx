@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import ProgressBar from "react-scroll-progress-bar";
+import { useMediaQuery } from "@mantine/hooks";
 
 const DynamicModal = () => {
 	const ref = useRef(null);
 	const [show, setShow] = useState(true);
+
 	const [scrollPercent, setScrollPercent] = useState(0);
+	const isMobile = useMediaQuery("(max-width: 400px)");
 
 	useEffect(() => {
 		initialAnimation();
@@ -20,6 +23,13 @@ const DynamicModal = () => {
 		setScrollPercent(percent);
 		if (percent < 10) {
 			setShow(false);
+			if (isMobile) {
+				gsap.to(ref.current, {
+					width: "0%",
+					scale: 0,
+					opacity: 0,
+				});
+			}
 			gsap.to(ref.current, {
 				width: "25%",
 				scale: 1,
@@ -44,7 +54,10 @@ const DynamicModal = () => {
 	};
 
 	return (
-		<div className="bg-black bg-opacity-95 w-full" style={{ height: "200vh" }}>
+		<div
+			className="bg-black bg-opacity-95 w-full"
+			style={{ height: isMobile ? "100vh" : "200vh" }}
+		>
 			<ProgressBar />
 			<div className="fixed w-full mx-auto text-center bottom-10 flex justify-center items-center my-4 text-white">
 				<p className="text-center w-full">
