@@ -80,7 +80,9 @@ module.exports = {
 			rotation: ["group-hover"],
 			margin: ["group-hover"],
 			padding: ["group-hover", "hover"],
-			border: ["group-hover", "hover"]
+			border: ["group-hover", "hover"],
+			text: ["hover", "group-hover"],
+			size: ["hover", "group-hover"]
 		},
 	},
 	plugins: [],

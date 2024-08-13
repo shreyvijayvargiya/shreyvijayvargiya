@@ -61,7 +61,7 @@ const Themer = () => {
 						</span>
 					</p>{" "}
 				</div>
-				<div className="flex justify-start items-center gap-2 my-10">
+				<div className="flex justify-start items-center gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center">
 					<p className="break-words">
 						<div className="group relative bg-indigo-50 hover:underline my-1 cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full hover:rounded-xl py-2 gap-2 flex justify-start items-center">
 							<span className="cursor-pointer w-4 h-4 transition-all duration-100">
