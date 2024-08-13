@@ -1,13 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
+import ProgressBar from "react-scroll-progress-bar";
 
-const DammModal = () => {
-	const [show, setShow] = useState(true);
+const DynamicModal = () => {
 	const ref = useRef(null);
-	const modal = useRef(null);
-	const containerRef = useRef(null);
-
+	const [show, setShow] = useState(true);
 	const [scrollPercent, setScrollPercent] = useState(0);
+
+	useEffect(() => {
+		initialAnimation();
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	const handleScroll = () => {
 		const percent = Math.floor((window.scrollY / window.innerHeight) * 100);
@@ -15,67 +21,87 @@ const DammModal = () => {
 		if (percent < 10) {
 			setShow(false);
 			gsap.to(ref.current, {
-				opacity: 0,
-				scale: 0,
-			});
-			gsap.to(modal.current, {
-				opacity: 0,
-				width: 0,
-			});
-		} else if (percent >= 5) {
-			gsap.to(ref.current, {
-				width: percent >= 50 ? "80%" : percent + "%",
+				width: "25%",
 				scale: 1,
 				opacity: 1,
 			});
-			gsap.to(modal.current, { opacity: 1, width: "100%" });
+		} else if (percent >= 10) {
+			gsap.to(ref.current, {
+				width: percent >= 90 ? "80%" : percent + "%",
+				scale: 1,
+				opacity: 1,
+			});
 			setShow(true);
 		}
 	};
 
-	const initialGsapAnimation = () => {
+	const initialAnimation = () => {
 		gsap.fromTo(
 			ref.current,
 			{ width: "0%", opacity: 0 },
 			{ width: "20%", opacity: 1 }
 		);
-		gsap.fromTo(modal.current, { x: "-50px" }, { x: "10px" }, { delay: 1 });
 	};
 
-	useEffect(() => {
-		initialGsapAnimation();
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
-
 	return (
-		<div
-			className="bg-black bg-opacity-95 w-full"
-			style={{ height: "150vh" }}
-			ref={containerRef}
-		>
+		<div className="bg-black bg-opacity-95 w-full" style={{ height: "200vh" }}>
+			<ProgressBar />
+			<div className="fixed w-full mx-auto text-center bottom-10 flex justify-center items-center my-4 text-white">
+				<p className="text-center w-full">
+					Scroll to increase the container width
+				</p>
+			</div>
 			<div
-				className="fixed md:top-40 sm:top-20 xs:top-20 xxs:top-20 md:h-4/5 sm:h-3/5 xs:h-3/5 xxs:h-3/5 md:left-60 md:right-60 sm:left-10 xs:left-10 xxs:left-10 sm:right-20 mx-auto text-gray-400 hover:text-gray-200 border-dotted border-2 border-gray-600 p-4 rounded-xl cursor-pointer"
+				className="fixed md:top-20 sm:top-20 xs:top-20 xxs:top-20 md:h-4/5 sm:h-3/5 xs:h-3/5 xxs:h-3/5 md:left-60 md:right-60 sm:left-10 xs:left-10 xxs:left-10 sm:right-20 mx-auto text-gray-400 hover:text-gray-200 border-dotted border-4 border-gray-600 p-4 rounded-xl cursor-pointer overflow-scroll"
 				style={{ boxShadow: "0px 0px 50px rgb(255, 255, 255, 0.2)" }}
 				ref={ref}
 			>
-				<div className="bg-none break-words flex-wrap">
-					<p className="paragraph md:text-7xl">Dynamic Modal</p>
-					<p className="paragraph">Scroll to increase the width</p>
+				<div className="flex flex-wrap md:justify-start items-start gap-4 sm:justify-center xs:justify-center xxs:justify-center transition-all duration-100">
+					<img
+						className="w-80 h-auto rounded-md"
+						style={{ aspectRatio: "auto" }}
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2FBundle%20template%20-%202.png?alt=media&token=95c3d277-2ff6-4737-8b2d-22d0f9506228"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2FEv8_ccgXcAAFm3B.png?alt=media&token=17e0c391-0758-4ae3-a4e9-2f3589b5cc9f"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2F259e8fed-7241-4c92-b7ec-1c4aea104f7d_1920x959.webp?alt=media&token=4b846b85-1e49-498e-9bf6-8dba54caafbd"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2F1bf258e3-07fd-4dde-9851-4599acae586f-ezgif.com-video-to-gif-converter.gif?alt=media&token=36ba661f-696f-4fdc-9928-7d28a217da1d"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2FGithub%20repo%20collection%20banner.png?alt=media&token=cf50468f-dd88-4dc4-8a6b-07fe72396e3f"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						style={{ aspectRatio: "auto" }}
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2FBundle%20template%20-%202.png?alt=media&token=95c3d277-2ff6-4737-8b2d-22d0f9506228"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2FPersonal%20Portfolio%20Website%20-%201.png?alt=media&token=d46ed287-3ce7-4e64-ab14-e7789bd8cd34"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2F259e8fed-7241-4c92-b7ec-1c4aea104f7d_1920x959.webp?alt=media&token=4b846b85-1e49-498e-9bf6-8dba54caafbd"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2F1bf258e3-07fd-4dde-9851-4599acae586f-ezgif.com-video-to-gif-converter.gif?alt=media&token=36ba661f-696f-4fdc-9928-7d28a217da1d"
+					/>
+					<img
+						className="w-80 h-auto rounded-md"
+						src="https://firebasestorage.googleapis.com/v0/b/ihatereading-4ba52.appspot.com/o/Karyams%2FQXq1wZdVU3X7pGJJjdiB2JSavdk1%2Fimages%2F259e8fed-7241-4c92-b7ec-1c4aea104f7d_1920x959.webp?alt=media&token=4b846b85-1e49-498e-9bf6-8dba54caafbd"
+					/>
 				</div>
-			</div>
-			<div
-				ref={modal}
-				className="fixed md:top-10 md:left-10 sm:bottom-10 xxs:bottom-10 xs:bottom-10 sm:text-center xxs:text-center xs:text-center mx-auto cursor-pointer"
-			>
-				<p className="text-pink-600 font-mono text-center text-7xl underline">
-					{scrollPercent >= 50 ? 100 : scrollPercent}%
-				</p>
-				<p className="text-gray-600 text-sm text-center">modal width </p>
 			</div>
 		</div>
 	);
 };
-export default DammModal;
+export default DynamicModal;
