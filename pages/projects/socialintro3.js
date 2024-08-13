@@ -32,7 +32,7 @@ const Themer = () => {
 		<div className="flex justify-center items-center min-h-screen w-full flex-col bg-blackShade text-gray-200 ">
 			<div className="md:w-1/4 mx-auto">
 				<div>
-					<img src="/avatar.png" size="lg" className="w-10 h-10 my-4" />
+					<img src="/avatar.png" size="lg" className="w-20 h-20 my-4" />
 					<p className="text-left">
 						<span
 							className="group relative"
@@ -60,18 +60,13 @@ const Themer = () => {
 									for tools and frameworks that can speed up his workflow while
 									maintaining high-quality code.
 								</p>
-								<p className="text-md font-mono">
+								<p className="text-md font-mono my-2">
 									He values design and user experience as much as performance
 									and enjoys experimenting with new technologies. In his spare
 									time, he contributes to open-source projects and writes
 									technical blogs.
 								</p>
 							</div>
-							{/* <img
-								src="/avatar.png"
-								size="lg"
-								className="avatar group-hover:visible invisible absolute mb-8 bottom-0 left-0 transition-all duration-100 ease-in-out"
-							/> */}
 						</span>
 					</p>{" "}
 				</div>
