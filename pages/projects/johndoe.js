@@ -51,49 +51,48 @@ const Themer = () => {
 								);
 							}}
 						>
-							<p className="text-4xl font-serif my-4">Alex Borgen </p>
+							<p className="text-4xl font-mono my-4">Samantha </p>
 							<div className="text-left">
-								<p className="text-md font-mono">
-									Alex is a passionate frontend developer with 5 years of
-									experience in React and JavaScript. He loves creating visually
-									appealing and interactive UIs. Alex is always on the lookout
-									for tools and frameworks that can speed up his workflow while
-									maintaining high-quality code.
+								<p className="text-md font-serif">
+									Samantha is a skilled UI/UX designer who has a keen eye for
+									detail and aesthetics. She works closely with developers to
+									bring designs to life and is always exploring new design
+									trends and tools. Samantha prefers platforms that offer
+									customizable and theme-able options, allowing her to ensure
+									consistency across various projects.
 								</p>
-								<p className="text-md font-mono my-2">
-									He values design and user experience as much as performance
-									and enjoys experimenting with new technologies. In his spare
-									time, he contributes to open-source projects and writes
-									technical blogs.
+								<p className="text-md font-serif my-2">
+									She values clean design, responsive layouts, and accessibility
+									in her work. Samantha is also interested in learning more
+									about front-end technologies to better collaborate with her
+									development team.
 								</p>
 							</div>
 						</span>
 					</p>{" "}
 				</div>
-				<div className="flex md:justify-start items-center gap-2 my-10 sm:flex-wrap xxs:flex-wrap xs:flex-wrap xs:justify-center xxs:justify-center sm:justify-center ">
-					<p className="break-words">
-						<div className="group relative bg-indigo-100  hover:underline my-1 cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-white rounded-full hover:rounded-xl py-2 gap-2 flex justify-start items-center">
-							<span className="cursor-pointer w-4 h-4 transition-all duration-100">
-								<svg
-									role="img"
-									viewBox="0 0 24 24"
-									fill={colors.indigo[600]}
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<title>X</title>
-									<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-								</svg>
-							</span>
-							<a className="text-indigo-500 hover:underline">Twitter</a>
-						</div>
-					</p>
-					<span className="group bg-pink-100 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-white rounded-full py-2 gap-1 flex justify-start items-center">
+				<div className="gap-2 my-2">
+					<div className="group relative hover:underline cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-gray-800 hover:text-white border-t border-b border-gray-900 hover:rounded-xl py-2 gap-2 flex justify-start items-center">
+						<span className="cursor-pointer w-4 h-4 transition-all duration-100">
+							<svg
+								role="img"
+								viewBox="0 0 24 24"
+								fill={colors.indigo[600]}
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<title>X</title>
+								<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+							</svg>
+						</span>
+						<a className="text-indigo-500 hover:underline">Twitter</a>
+					</div>
+					<span className="group cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-gray-800 border-t border-b my-2 border-gray-900 py-2 gap-1 flex justify-start items-center">
 						<span className="cursor-pointer transition-all duration-100">
 							<GithubIcon color={colors.pink[600]} size={20} />
 						</span>
 						<a className="text-pink-500 hover:underline">Github</a>
 					</span>
-					<span className="group bg-orange-100 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-white rounded-full py-2 gap-1 flex justify-start items-center">
+					<span className="group hover:bg-gray-800 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out border-t border-b my-2 border-gray-900 py-2 gap-1 flex justify-start items-center">
 						<span className="cursor-pointer transition-all duration-100">
 							<Laptop2Icon color={colors.orange[600]} size={20} />
 						</span>
@@ -101,7 +100,7 @@ const Themer = () => {
 					</span>
 
 					<span>
-						<span className="group bg-red-100 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-white rounded-full py-2 gap-1 flex justify-start items-center">
+						<span className="group hover:bg-gray-800 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out border-t border-b my-2 border-gray-900 py-2 gap-1 flex justify-start items-center">
 							<span className="cursor-pointer transition-all duration-100">
 								<FaYoutube color={colors.red[600]} />
 							</span>
@@ -109,7 +108,7 @@ const Themer = () => {
 						</span>
 					</span>
 					<span>
-						<span className="group bg-green-100 hover:translate-x-4 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-white rounded-full py-2 gap-1 flex justify-start items-center">
+						<span className="group hover:bg-gray-800 hover:translate-x-4 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out border-t border-b my-2 border-gray-900 py-2 gap-1 flex justify-start items-center">
 							<span className="cursor-pointer transition-all duration-100 ">
 								<RssIcon color={colors.green[600]} size={20} />
 							</span>
