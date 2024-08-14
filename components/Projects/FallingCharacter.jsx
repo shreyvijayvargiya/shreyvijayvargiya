@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import gsap from "gsap";
-import { getRandomPagePoint } from "ghost-cursor";
 
 const FallingCharacter = () => {
 	const [char, setChar] = useState("");
-	const [fallenChar, setFallenChar] = useState("");
 
 	const fallenCharRef = useRef(null);
 	const ref = useRef(null);
@@ -12,8 +10,8 @@ const FallingCharacter = () => {
 	const fallCharacter = () => {
 		gsap
 			.timeline({ defaults: { duration: 1, ease: "power2.out" } })
-			.clear() // Clear previous animations
-			.to(".fallen-character", { y: 100, opacity: 0 }); // Animate previous characters
+			.clear()
+			.to(".fallen-character", { y: 100, opacity: 0 });
 
 		for (let i = 0; i < char.length; i++) {
 			gsap.fromTo(

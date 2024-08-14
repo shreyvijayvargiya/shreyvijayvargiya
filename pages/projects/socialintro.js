@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import colors from "tailwindcss/colors";
 
-const Themer = () => {
+const Portfolio1 = () => {
 	const [val, setVal] = useState(Number(0));
 
 	const getColor = () => {
@@ -29,8 +29,8 @@ const Themer = () => {
 	}, [val]);
 
 	return (
-		<div className="flex justify-center items-center h-screen w-full flex-col">
-			<div className="md:w-1/4 mx-auto text-left text-2xl">
+		<div className="flex justify-center items-center h-full w-full flex-col">
+			<div className="md:w-full mx-auto text-left text-2xl">
 				<div>
 					<p>
 						Hello, I am{" "}
@@ -109,4 +109,4 @@ const Themer = () => {
 		</div>
 	);
 };
-export default Themer;
+export default Portfolio1;
