@@ -5,6 +5,7 @@ import Portfolio3 from "./socialintro3";
 import SamanthaPortfolio from "./samantha-portfolio";
 import JohnDoePortfolio from "./johndoe";
 import { Button } from "@mantine/core";
+import AliceMacguire from "./alice-macquire";
 
 const Profiler = () => {
 	const [selectedPortfolio, setSelectedPortfolio] = useState(null);
@@ -21,6 +22,8 @@ const Profiler = () => {
 				return <SamanthaPortfolio />;
 			case "JohnDoePortfolio":
 				return <JohnDoePortfolio />;
+			case "AliceMacquire":
+				return <AliceMacguire />;
 			default:
 				return (
 					<div className="text-center text-gray-600">
@@ -93,6 +96,12 @@ const Profiler = () => {
 					onClick={() => setSelectedPortfolio("JohnDoePortfolio")}
 				>
 					John Doe Portfolio
+				</button>
+				<button
+					className="p-2 border border-gray-700 rounded-lg bg-white hover:bg-gray-200"
+					onClick={() => setSelectedPortfolio("AliceMacquire")}
+				>
+					Alice Maxquire
 				</button>
 			</div>
 		</div>
