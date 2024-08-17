@@ -31,7 +31,7 @@ const NavigationBarPage = () => {
 				<div
 					className={`${
 						showProperties.avatar ? "visible" : "hidden"
-					} transition-all make-transition`}
+					} transition-all duration-150 make-transition`}
 					onMouseEnter={() => {
 						gsap.to(".avatar", { scale: 1.1, yoyo: true });
 					}}
@@ -59,8 +59,11 @@ const NavigationBarPage = () => {
 				</div>
 				<div
 					className={`${
-						showProperties.name ? "visible" : "hidden"
-					} make-transition transition-all`}
+						showProperties.name
+							? "opacity-100 transform translate-y-0 visible"
+							: "opacity-0 transform translate-y-2 hidden"
+					} 
+					transition-all duration-300 `}
 				>
 					<div>
 						<p>Hello, I am</p>
@@ -70,7 +73,7 @@ const NavigationBarPage = () => {
 				<div
 					className={`${
 						showProperties.description ? "visible" : "hidden"
-					} make-transition transition-all`}
+					} make-transition transition-all duration-150`}
 				>
 					<div
 						className="cursor-pointer px-10 py-4 max-w-md"
@@ -98,7 +101,7 @@ const NavigationBarPage = () => {
 						showProperties.descriptionIcon
 							? "visible animate-pulse mx-4"
 							: "hidden"
-					} make-transition transition-all`}
+					} make-transition transition-all duration-150`}
 				>
 					<ActionIcon
 						size="md"
@@ -123,7 +126,7 @@ const NavigationBarPage = () => {
 				<div
 					className={`${
 						showProperties.ellipsisIcon ? "visible" : "hidden"
-					} make-transition transition-all`}
+					} make-transition transition-all duration-150`}
 				>
 					<ActionIcon
 						onClick={() => {
@@ -154,7 +157,7 @@ const NavigationBarPage = () => {
 						showProperties.addIcon
 							? "visible group bg-pink-600 rounded-full"
 							: "hidden"
-					} make-transition transition-all`}
+					} make-transition transition-all duration-150`}
 					onMouseEnter={() => {
 						gsap.to(".add-icon", { rotate: 180, yoyo: true });
 					}}
@@ -183,7 +186,7 @@ const NavigationBarPage = () => {
 				<div
 					className={`${
 						showProperties.socialLinks ? "visible" : "hidden"
-					} make-transition transition-all`}
+					} make-transition transition-all duration-150`}
 				>
 					<div className="flex justify-between items-center gap-4">
 						<div
