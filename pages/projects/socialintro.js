@@ -1,4 +1,3 @@
-import { ActionIcon, Avatar, Slider } from "@mantine/core";
 import gsap from "gsap";
 import { Laptop2Icon, RssIcon } from "lucide-react";
 import { useEffect, useState } from "react";
