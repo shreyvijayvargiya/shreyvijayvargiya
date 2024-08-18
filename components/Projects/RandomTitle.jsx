@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, Card, Text, Title, createStyles } from "@mantine/core";
+import { Card, Text, Title, createStyles } from "@mantine/core";
 import gsap from "gsap";
 import * as LucideIcons from "lucide-react";
 import colors from "tailwindcss/colors";
@@ -113,11 +113,8 @@ export const iconMap = [
 ];
 
 const iconGenerator = () => {
-	let number = Math.round(Math.random() * 50) + 1;
-	if (number < 1 || number > 100) {
-		throw new Error("Number must be between 1 and 100");
-	}
-	return iconMap[number + 1];
+	let number = Math.floor(Math.random() * iconMap.length);
+	return iconMap[number];
 };
 const useStyles = createStyles((theme) => ({
 	card: {
@@ -147,17 +144,11 @@ const RandomTitlesComponent = () => {
 	const carouselRef = useRef();
 	const [randomIndex, setRandomIndex] = useState(0);
 
-	const handleRandomize = () => {
-		const randomNum = Math.floor(Math.random() * randomTitlesData?.length);
-		setRandomIndex(randomNum);
-	};
-
 	useEffect(() => {
 		const tl = gsap.timeline({
 			repeat: -1,
 			yoyo: true,
 			repeatDelay: 0.5,
-			// onRepeat: handleRandomize,
 		});
 
 		if (carouselRef.current) {
