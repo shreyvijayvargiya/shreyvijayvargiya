@@ -197,10 +197,10 @@ const RandomTitlesComponent = () => {
 					className="flex space-x-4 justify-start gap-4 items-start"
 					ref={carouselRef}
 				>
-					{randomTitlesData.map((item, index) => {
+					{randomTitlesData.map((item) => {
 						const RandomIcon = iconGenerator();
 						return (
-							<Card key={index} className={classes.card}>
+							<Card key={item.id} className={classes.card}>
 								<RandomIcon />
 								<Title order={3} className={classes.title} my="xs">
 									{item.title}
