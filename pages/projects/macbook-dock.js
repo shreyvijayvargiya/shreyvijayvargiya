@@ -10,15 +10,44 @@ import {
 	FaTwitter,
 	FaYoutube,
 } from "react-icons/fa";
+import colors from "tailwindcss/colors";
 
 const icons = [
-	{ id: "twitter", icon: <FaTwitter />, link: "https://twitter.com" },
-	{ id: "facebook", icon: <FaFacebook />, link: "https://facebook.com" },
-	{ id: "instagram", icon: <FaInstagram />, link: "https://instagram.com" },
-	{ id: "youtube", icon: <FaYoutube />, link: "https://youtube.com" },
-	{ id: "snapchat", icon: <FaSnapchat />, link: "https://snapchat.com" },
-	{ id: "tiktok", icon: <FaTiktok />, link: "https://tiktok.com" },
-	{ id: "spotify", icon: <FaSpotify />, link: "https://tiktok.com" },
+	{
+		id: "twitter",
+		icon: <FaTwitter color={colors.blue[400]} />,
+		link: "https://twitter.com",
+	},
+	{
+		id: "facebook",
+		icon: <FaFacebook color={colors.indigo[500]} />,
+		link: "https://facebook.com",
+	},
+	{
+		id: "instagram",
+		icon: <FaInstagram color={colors.pink[500]} />,
+		link: "https://instagram.com",
+	},
+	{
+		id: "youtube",
+		icon: <FaYoutube color={colors.red[500]} />,
+		link: "https://youtube.com",
+	},
+	{
+		id: "snapchat",
+		icon: <FaSnapchat color={colors.yellow[500]} />,
+		link: "https://snapchat.com",
+	},
+	{
+		id: "tiktok",
+		icon: <FaTiktok color={colors.orange[500]} />,
+		link: "https://tiktok.com",
+	},
+	{
+		id: "spotify",
+		icon: <FaSpotify color={colors.green[500]} />,
+		link: "https://tiktok.com",
+	},
 ];
 
 const FloatingDock = () => {
@@ -40,18 +69,18 @@ const FloatingDock = () => {
 	}, []);
 
 	const onHover = (index) => {
-		gsap.to(dockRef.current[index], { scale: 1.3, y: -10, duration: 0.5 });
+		gsap.to(dockRef.current[index], { scale: 1.3, y: -10, duration: 0.8 });
 
 		if (dockRef.current[index - 1]) {
-			gsap.to(dockRef.current[index - 1], { scale: 1.1, y: -5, duration: 0.5 });
+			gsap.to(dockRef.current[index - 1], { scale: 1.1, y: -5, duration: 0.8 });
 		}
 		if (dockRef.current[index + 1]) {
-			gsap.to(dockRef.current[index + 1], { scale: 1.1, y: -5, duration: 0.5 });
+			gsap.to(dockRef.current[index + 1], { scale: 1.1, y: -5, duration: 0.8 });
 		}
 	};
 
 	const onHoverEnd = () => {
-		gsap.to(dockRef.current, { scale: 1, y: 0, duration: 0.5 });
+		gsap.to(dockRef.current, { scale: 1, y: 0, duration: 0.8 });
 	};
 
 	return (
@@ -65,7 +94,7 @@ const FloatingDock = () => {
 					>
 						<Card
 							id={`icon-${index}`}
-							className="p-3 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors duration-200 border border-gray-100"
+							className="p-3 flex items-center justify-center cursor-pointer transition-colors duration-200 border border-gray-100"
 							radius="md"
 							component="a"
 							target="_blank"
