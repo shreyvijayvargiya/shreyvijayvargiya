@@ -33,8 +33,8 @@ const Home = () => {
 					setToggle(false);
 				}}
 			>
-				<p className=" font-mono text-2xl">
-					this is <span className="text-7xl">SHREY</span>
+				<p>
+					this is <span className="text-7xl font-mono">SHREY</span>
 				</p>
 				{toggle ? (
 					<div
