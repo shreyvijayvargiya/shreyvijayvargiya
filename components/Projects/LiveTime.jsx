@@ -6,9 +6,9 @@ const LiveTime = () => {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			setCurrentTime(new Date());
-		}, 1000); // Update every second
+		}, 1000);
 
-		return () => clearInterval(intervalId); // Cleanup on unmount
+		return () => clearInterval(intervalId);
 	}, []);
 
 	const formatTime = (time) => {
@@ -17,8 +17,10 @@ const LiveTime = () => {
 	};
 
 	return (
-		<div>
-			<p className="text-indigo-400 text-xl underline font-mono">{formatTime(currentTime)}</p>
+		<div className="w-full h-screen flex justify-center items-center bg-gray-50">
+			<p className="text-indigo-500 hover:text-indigo-600 text-7xl font-mono hover:underline transition-all duration-150">
+				{formatTime(currentTime)}
+			</p>
 		</div>
 	);
 };
