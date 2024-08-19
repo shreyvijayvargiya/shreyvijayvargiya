@@ -22,7 +22,7 @@ const PinImage = () => {
 						<div className={styles.card} key={item}>
 							<div className={styles.cardFront}>
 								<img
-									src="./avatar.png"
+									src="/avatar.png"
 									className="w-auto h-auto aspect-square"
 								/>
 								<p className="text-sm text-gray-400 hover:text-gray-200 text-center">

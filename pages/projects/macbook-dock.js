@@ -84,26 +84,28 @@ const FloatingDock = () => {
 	};
 
 	return (
-		<div className="fixed top-1/2 h-20 left-0 right-0 transform max-w-xs min-w-1/4 mx-auto flex justify-center items-center space-x-4 z-50 bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200">
-			{icons.map((item, index) => {
-				return (
-					<div
-						key={item.id}
-						ref={(el) => (dockRef.current[index] = el)}
-						className="relative"
-					>
-						<Card
-							id={`icon-${index}`}
-							className="p-3 flex items-center justify-center cursor-pointer transition-colors duration-200 border border-gray-100"
-							radius="md"
-							component="a"
-							target="_blank"
+		<div className="w-full h-screen flex justify-center items-center">
+			<div className="bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200 flex justify-center items-center space-x-3 w-auto">
+				{icons.map((item, index) => {
+					return (
+						<div
+							key={item.id}
+							ref={(el) => (dockRef.current[index] = el)}
+							className="relative"
 						>
-							{item.icon}
-						</Card>
-					</div>
-				);
-			})}
+							<Card
+								id={`icon-${index}`}
+								className="p-3 flex items-center justify-center cursor-pointer transition-colors duration-200 border border-gray-100"
+								radius="md"
+								component="a"
+								target="_blank"
+							>
+								{item.icon}
+							</Card>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
