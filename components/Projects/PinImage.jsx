@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
 import colors from "tailwindcss/colors";
 import { createStyles } from "@mantine/core";
 
@@ -34,14 +33,6 @@ const PinImage = () => {
 	);
 };
 
-const translations = {
-	1: "rotateZ(-90deg) rotateY(-10deg)",
-};
-
-const getTranslation = (index) => {
-	return translations[index];
-};
-
 const useStyles = createStyles((theme) => ({
 	card: {
 		position: "relative",
@@ -65,7 +56,7 @@ const useStyles = createStyles((theme) => ({
 		transition: "all 1s ease",
 		transform: "rotateZ(12deg) translateY(-4px)",
 		"&:hover": {
-			transform: "rotateZ(-90deg) rotateY(-10deg)", // Applied translation directly
+			transform: "rotateZ(-90deg) rotateY(-10deg)",
 			transformOrigin: "top left",
 		},
 	},
