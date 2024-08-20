@@ -2,14 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import colors from "tailwindcss/colors";
 
-const translations = {
-	1: "rotateZ(-90deg) rotateY(-10deg)",
-};
-
-const getTranslation = (index) => {
-	return translations[index];
-};
-
 const PinImage = () => {
 	const styles = useStyles();
 
@@ -48,6 +40,14 @@ const PinImage = () => {
 			</div>
 		</div>
 	);
+};
+
+const translations = {
+	1: "rotateZ(-90deg) rotateY(-10deg)",
+};
+
+const getTranslation = (index) => {
+	return translations[index];
 };
 
 const useStyles = makeStyles((theme) => ({
