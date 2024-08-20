@@ -1,42 +1,34 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import colors from "tailwindcss/colors";
+import { createStyles } from "@mantine/core";
 
 const PinImage = () => {
-	const styles = useStyles();
-
-	const cards = [1];
+	const { classes: styles } = useStyles();
 	return (
 		<div className="w-screen h-screen bg-black bg-opacity-95 flex flex-col justify-center items-center md:p-10">
 			<div className="flex flex-wrap md:w-1/5 sm:w-full xxs:w-full xs:w-full mx-auto justify-center items-center gap-10 relative border-t-2 border-dashed border-gray-800 z-70">
-				{cards.map((item) => {
-					return (
-						<div className={styles.card} key={item}>
-							<div className={styles.cardFront}>
-								<img
-									src="/avatar.png"
-									className="w-auto h-auto aspect-square"
-								/>
-								<p className="text-sm text-gray-400 hover:text-gray-200 text-center">
-									Hover the image
-								</p>
-							</div>
-							<div className={styles.cardBack}>
-								<p className="text-gray-400 hover:text-gray-200 text-center">
-									Hi I am Shrey, I am software developer by profession and doing
-									this for past 4 years.
-								</p>
-								<a
-									href="https://www.iamshrey.me"
-									target="_blank"
-									className="text-orange-400 hover:text-organge-700 underline text-center"
-								>
-									Website
-								</a>
-							</div>
-						</div>
-					);
-				})}
+				<div className={styles.card}>
+					<div className={styles.cardFront}>
+						<img src="/avatar.png" className="w-auto h-auto aspect-square" />
+						<p className="text-sm text-gray-400 hover:text-gray-200 text-center">
+							Hover the image
+						</p>
+					</div>
+					<div className={styles.cardBack}>
+						<p className="text-gray-400 hover:text-gray-200 text-center">
+							Hi I am Shrey, I am software developer by profession and doing
+							this for past 4 years.
+						</p>
+						<a
+							href="https://www.iamshrey.me"
+							target="_blank"
+							className="text-orange-400 hover:text-organge-700 underline text-center"
+						>
+							Website
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -50,7 +42,7 @@ const getTranslation = (index) => {
 	return translations[index];
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = createStyles((theme) => ({
 	card: {
 		position: "relative",
 		cursor: "pointer",
@@ -73,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 		transition: "all 1s ease",
 		transform: "rotateZ(12deg) translateY(-4px)",
 		"&:hover": {
-			transform: getTranslation(1),
+			transform: "rotateZ(-90deg) rotateY(-10deg)", // Applied translation directly
 			transformOrigin: "top left",
 		},
 	},
@@ -102,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
 		top: "-18px",
 		left: "-10px",
 		zIndex: 200,
-		rotate: "-90deg",
+		transform: "rotate(-90deg)",
 	},
 }));
 export default PinImage;
