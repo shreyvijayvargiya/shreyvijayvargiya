@@ -24,7 +24,7 @@ const Home = () => {
 			}}
 		>
 			<div
-				className="md:2/5 sm:w-full xl:w-2/5 xs:w-full xxs:w-full mx-auto break-words"
+				className="md:w-2/5 sm:w-full xl:w-2/5 xs:w-full xxs:w-full mx-auto break-words"
 				onMouseMoveCapture={(e) => {
 					setToggle(true);
 					setMousePosition({ x: e.clientX, y: e.clientY });
