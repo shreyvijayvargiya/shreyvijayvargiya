@@ -3,7 +3,7 @@ import { Box, Modal, Button, SimpleGrid, Center } from "@mantine/core";
 import * as lucideIcons from "lucide-react";
 import colors from "tailwindcss/colors";
 
-const iconNames = Object.keys(lucideIcons).slice(1, 180);
+const iconNames = Object.keys(lucideIcons).slice(1, 200);
 
 const IconSelect = () => {
 	const [activeIcon, setActiveIcon] = useState("Smile");
