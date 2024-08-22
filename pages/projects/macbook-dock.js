@@ -85,7 +85,7 @@ const FloatingDock = () => {
 
 	return (
 		<div className="w-full h-screen flex justify-center items-center">
-			<div className="bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200 flex justify-center items-center space-x-6 w-auto">
+			<div className="bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200 flex justify-center items-center space-x-4 w-auto">
 				{icons.map((item, index) => {
 					return (
 						<div
