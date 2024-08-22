@@ -15,37 +15,37 @@ import colors from "tailwindcss/colors";
 const icons = [
 	{
 		id: "twitter",
-		icon: <FaTwitter color={colors.blue[400]} />,
+		icon: <FaTwitter color={colors.blue[400]} size={24} />,
 		link: "https://twitter.com",
 	},
 	{
 		id: "facebook",
-		icon: <FaFacebook color={colors.indigo[500]} />,
+		icon: <FaFacebook color={colors.indigo[500]} size={24} />,
 		link: "https://facebook.com",
 	},
 	{
 		id: "instagram",
-		icon: <FaInstagram color={colors.pink[500]} />,
+		icon: <FaInstagram color={colors.pink[500]} size={24} />,
 		link: "https://instagram.com",
 	},
 	{
 		id: "youtube",
-		icon: <FaYoutube color={colors.red[500]} />,
+		icon: <FaYoutube color={colors.red[500]} size={24} />,
 		link: "https://youtube.com",
 	},
 	{
 		id: "snapchat",
-		icon: <FaSnapchat color={colors.yellow[500]} />,
+		icon: <FaSnapchat color={colors.yellow[500]} size={24} />,
 		link: "https://snapchat.com",
 	},
 	{
 		id: "tiktok",
-		icon: <FaTiktok color={colors.orange[500]} />,
+		icon: <FaTiktok color={colors.orange[500]} size={24} />,
 		link: "https://tiktok.com",
 	},
 	{
 		id: "spotify",
-		icon: <FaSpotify color={colors.green[500]} />,
+		icon: <FaSpotify color={colors.green[500]} size={24} />,
 		link: "https://tiktok.com",
 	},
 ];
@@ -85,7 +85,7 @@ const FloatingDock = () => {
 
 	return (
 		<div className="w-full h-screen flex justify-center items-center">
-			<div className="bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200 flex justify-center items-center space-x-3 w-auto">
+			<div className="bg-gray-50 p-2 border border-gray-200 rounded-xl hover:scale-125 duration-200 flex justify-center items-center space-x-6 w-auto">
 				{icons.map((item, index) => {
 					return (
 						<div
