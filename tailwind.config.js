@@ -83,6 +83,8 @@ module.exports = {
 			border: ["group-hover", "hover"],
 			text: ["hover", "group-hover"],
 			size: ["hover", "group-hover"],
+			width: ["hover", "group-hover"],
+			height: ["hover", "group-hover"],
 		},
 	},
 	plugins: [],
