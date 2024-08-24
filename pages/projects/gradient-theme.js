@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Button, Box, Text } from "@mantine/core";
+import {
+	Button,
+	Box,
+	Text,
+	TextInput,
+	Textarea,
+	Accordion,
+	AccordionItem,
+} from "@mantine/core";
 import colors from "tailwindcss/colors";
-import { Laptop2Icon, RssIcon } from "lucide-react";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { Laptop2Icon, Palette, RssIcon, TypeOutline } from "lucide-react";
+import { FaInstagram, FaSnapchat, FaYoutube } from "react-icons/fa";
 
 const gradientColors = [
 	"bg-gray-50",
@@ -81,6 +89,40 @@ const gradientColors = [
 const GradientPreview = () => {
 	const [selectedGradient, setSelectedGradient] = useState(gradientColors[0]);
 	const [order, setOrder] = useState("flex-col");
+	const [avatar, setAvatar] = useState(null);
+	const [detail, setDetail] = useState({
+		name: "",
+		description: "",
+	});
+	const [socialLinks, setSocialLinks] = useState({
+		twitter: "",
+		website: "",
+		youtube: "",
+		instagram: "",
+		medium: "",
+		snapchat: "",
+	});
+
+	const handleAvatarChange = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			setAvatar(URL.createObjectURL(file));
+		}
+	};
+
+	const handleSocialLinkChange = (platform, value) => {
+		setSocialLinks((prevLinks) => ({
+			...prevLinks,
+			[platform]: value,
+		}));
+	};
+
+	const handleDetailChange = (platform, value) => {
+		setDetail((prevLinks) => ({
+			...prevLinks,
+			[platform]: value,
+		}));
+	};
 
 	return (
 		<div className="p-6 h-screen w-full relative">
@@ -88,17 +130,28 @@ const GradientPreview = () => {
 				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold ${selectedGradient}`}
 				sx={{ borderRadius: "10px" }}
 			>
-				<div className="flex justify-center items-center h-full w-full flex-col ">
+				<div className="flex justify-center items-center h-full w-full flex-col">
 					<div className="md:w-full mx-auto">
-						<img src="/avatar.png" size="lg" className="w-20 h-20 mx-auto" />
+						{avatar && (
+							<img
+								src={avatar}
+								alt="User Avatar"
+								className="w-20 h-20 mx-auto rounded-full"
+							/>
+						)}
 						<div>
-							<p className="text-center text-4xl">Shrey Vijayvargiya</p>
+							<p className="text-center text-3xl text-gray-600">
+								{detail.name ? detail.name : "Shrey Vijayvargiya"}
+							</p>
+							<p className="text-center text-md text-gray-500 my-2">
+								{detail.description ? detail.description : null}
+							</p>
 						</div>
 						<div
 							className={`flex justify-start items-center ${order} gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
 						>
-							<p className="break-words">
-								<div className="group relative bg-indigo-50 hover:underline my-1 cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full hover:rounded-xl py-2 gap-2 flex justify-start items-center">
+							{socialLinks.twitter && (
+								<span className="group relative bg-indigo-50 hover:underline my-1 cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full hover:rounded-xl py-2 gap-2 flex justify-start items-center">
 									<span className="cursor-pointer w-4 h-4 transition-all duration-100">
 										<svg
 											role="img"
@@ -110,69 +163,218 @@ const GradientPreview = () => {
 											<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
 										</svg>
 									</span>
-									<a className="text-indigo-500 hover:underline">Twitter</a>
-								</div>
-							</p>
-							<span className="group bg-orange-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-orange-50 rounded-full py-2 gap-1 flex justify-start items-center">
-								<span className="cursor-pointer transition-all duration-100">
-									<Laptop2Icon color={colors.orange[600]} size={20} />
+									<a
+										href={socialLinks.twitter}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-indigo-500 hover:underline"
+									>
+										Twitter
+									</a>
 								</span>
-								<a className="text-orange-500 hover:underline">Website</a>
-							</span>
-
-							<span>
+							)}
+							{socialLinks.website && (
+								<span className="group bg-orange-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-orange-50 rounded-full py-2 gap-1 flex justify-start items-center">
+									<span className="cursor-pointer transition-all duration-100">
+										<Laptop2Icon color={colors.orange[600]} size={20} />
+									</span>
+									<a
+										href={socialLinks.website}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-orange-500 hover:underline"
+									>
+										Website
+									</a>
+								</span>
+							)}
+							{socialLinks.youtube && (
 								<span className="group bg-red-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-red-50 rounded-full py-2 gap-1 flex justify-start items-center">
 									<span className="cursor-pointer transition-all duration-100">
 										<FaYoutube color={colors.red[600]} />
 									</span>
-									<a className="text-red-500 hover:underline">Youtube</a>
+									<a
+										href={socialLinks.youtube}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-red-500 hover:underline"
+									>
+										YouTube
+									</a>
 								</span>
-							</span>
-							<span>
+							)}
+							{socialLinks.instagram && (
 								<span className="group bg-pink-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-pink-50 rounded-full py-2 gap-1 flex justify-start items-center">
 									<span className="cursor-pointer transition-all duration-100">
 										<FaInstagram color={colors.pink[600]} />
 									</span>
-									<a className="text-pink-500 hover:underline">Instagram</a>
+									<a
+										href={socialLinks.instagram}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-pink-500 hover:underline"
+									>
+										Instagram
+									</a>
 								</span>
-							</span>
-							<span>
+							)}
+							{socialLinks.medium && (
 								<span className="group bg-green-50 hover:translate-x-4 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-green-50 rounded-full py-2 gap-1 flex justify-start items-center">
-									<span className="cursor-pointer transition-all duration-100 ">
+									<span className="cursor-pointer transition-all duration-100">
 										<RssIcon color={colors.green[600]} size={20} />
 									</span>
-									<a className="text-green-500 hover:underline">Medium</a>
+									<a
+										href={socialLinks.medium}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-green-500 hover:underline"
+									>
+										Medium
+									</a>
 								</span>
-							</span>
+							)}
 						</div>
 					</div>
 				</div>
 			</Box>
 
 			<div
-				className="fixed bottom-10 left-2 w-96 overflow-x-scroll"
+				className="fixed top-10 left-10 w-96 overflow-x-scroll"
 				style={{ scrollbarWidth: 0 }}
 			>
-				<Text className="text-center mb-4 font-medium text-md">
-					Choose a Gradient:
-				</Text>
-				<div className="flex w-full mx-auto justify-start items-center gap-2 flex-wrap p-2">
-					{gradientColors.map((gradient, index) => (
-						<div>
-							<Button
-								fullWidth
-								variant="unstyled"
-								className={`h-12 w-12 rounded-xl hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
-								sx={{
-									borderRadius: "10px",
-									border:
-										selectedGradient === gradient ? "3px solid #000" : "none",
-								}}
-								onClick={() => setSelectedGradient(gradient)}
+				<Accordion
+					className="rounded-md border border-gray-400 max-h-96 overflow-y-scroll"
+					classNames={{ itemTitle: "border-b border-gray-400" }}
+				>
+					<Accordion.Item label="Add your profile" icon={<TypeOutline />}>
+						<Text className="mb-2 font-medium text-lg">Profile Setup</Text>
+						<Button fullWidth variant="outline" color="dark" component="label">
+							Upload Avatar
+							<input
+								type="file"
+								accept="image/*"
+								onChange={handleAvatarChange}
+								hidden
 							/>
+						</Button>
+						<TextInput
+							my="xs"
+							placeholder="Add Name"
+							color="dark"
+							value={detail.name}
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							onChange={(e) => handleDetailChange("name", e.target.value)}
+						/>
+						<Textarea
+							my="xs"
+							placeholder="Add description"
+							value={detail.description}
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							onChange={(e) =>
+								handleDetailChange("description", e.target.value)
+							}
+						/>
+
+						<TextInput
+							mt="md"
+							placeholder="Twitter Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							value={socialLinks.twitter}
+							onChange={(e) =>
+								handleSocialLinkChange("twitter", e.target.value)
+							}
+						/>
+						<TextInput
+							mt="md"
+							placeholder="Website Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							value={socialLinks.website}
+							onChange={(e) =>
+								handleSocialLinkChange("website", e.target.value)
+							}
+						/>
+						<TextInput
+							mt="md"
+							placeholder="YouTube Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							value={socialLinks.youtube}
+							onChange={(e) =>
+								handleSocialLinkChange("youtube", e.target.value)
+							}
+						/>
+						<TextInput
+							mt="md"
+							placeholder="Instagram Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							value={socialLinks.instagram}
+							onChange={(e) =>
+								handleSocialLinkChange("instagram", e.target.value)
+							}
+						/>
+						<TextInput
+							mt="md"
+							placeholder="Medium Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							value={socialLinks.medium}
+							onChange={(e) => handleSocialLinkChange("medium", e.target.value)}
+						/>
+						<TextInput
+							mt="md"
+							placeholder="Snapchat Link"
+							classNames={{
+								input:
+									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+							}}
+							leftIcon={<FaSnapchat />}
+							value={socialLinks.snapchat}
+							onChange={(e) =>
+								handleSocialLinkChange("snapchat", e.target.value)
+							}
+						/>
+					</Accordion.Item>
+					<Accordion.Item label="Choose a gradient" icon={<Palette />}>
+						<div className="flex w-full mx-auto justify-start items-center gap-2 flex-wrap py-2">
+							{gradientColors.map((gradient) => (
+								<div key={gradient}>
+									<Button
+										fullWidth
+										variant="unstyled"
+										className={`h-12 w-12 rounded-xl hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
+										sx={{
+											borderRadius: "10px",
+											border:
+												selectedGradient === gradient
+													? "3px solid #000"
+													: "none",
+										}}
+										onClick={() => setSelectedGradient(gradient)}
+									/>
+								</div>
+							))}
 						</div>
-					))}
-				</div>
+					</Accordion.Item>
+				</Accordion>
 			</div>
 		</div>
 	);
