@@ -94,7 +94,6 @@ export const iconMap = [
 	LucideIcons.DollarSign,
 	LucideIcons.DownloadCloud,
 	LucideIcons.Download,
-	LucideIcons.Drip,
 	LucideIcons.Droplet,
 	LucideIcons.Edit2,
 	LucideIcons.Edit3,
