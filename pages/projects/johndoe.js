@@ -1,8 +1,7 @@
-import { ActionIcon, Avatar, Slider } from "@mantine/core";
 import gsap from "gsap";
 import { GithubIcon, Laptop2Icon, RssIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
 import colors from "tailwindcss/colors";
 
 const JohnDoePortfolio = () => {

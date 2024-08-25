@@ -6,11 +6,24 @@ import {
 	TextInput,
 	Textarea,
 	Accordion,
-	AccordionItem,
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
 import { Laptop2Icon, Palette, RssIcon, TypeOutline } from "lucide-react";
 import { FaInstagram, FaSnapchat, FaYoutube } from "react-icons/fa";
+import { z } from "zod";
+
+const schema = z.object({
+	name: z.string().min(1, "Name is required"),
+	description: z.string().optional(),
+	socialLinks: z.object({
+		twitter: z.string().url("Invalid URL").optional(),
+		website: z.string().url("Invalid URL").optional(),
+		youtube: z.string().url("Invalid URL").optional(),
+		instagram: z.string().url("Invalid URL").optional(),
+		medium: z.string().url("Invalid URL").optional(),
+		snapchat: z.string().url("Invalid URL").optional(),
+	}),
+});
 
 const gradientColors = [
 	"bg-gray-50",
@@ -103,6 +116,24 @@ const GradientPreview = () => {
 		snapchat: "",
 	});
 
+	const validate = () => {
+		try {
+			schema.parse({
+				name: detail.name,
+				description: detail.description,
+				socialLinks: socialLinks,
+			});
+			setErrors({});
+			return true;
+		} catch (error) {
+			if (error instanceof z.ZodError) {
+				const newErrors = error.format();
+				setErrors(newErrors);
+			}
+			return false;
+		}
+	};
+
 	const handleAvatarChange = (e) => {
 		const file = e.target.files[0];
 		if (file) {
@@ -124,11 +155,16 @@ const GradientPreview = () => {
 		}));
 	};
 
+	const handleSubmit = () => {
+		if (validate()) {
+		}
+	};
+
 	return (
 		<div className="p-6 h-screen w-full relative">
 			<Box
-				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold ${selectedGradient}`}
-				sx={{ borderRadius: "10px" }}
+				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold ${selectedGradient} border-4 border-black ring-offset-4`}
+				sx={{ borderRadius: "20px" }}
 			>
 				<div className="flex justify-center items-center h-full w-full flex-col">
 					<div className="md:w-full mx-auto">
