@@ -65,6 +65,7 @@ module.exports = {
 				mono: ["Fira Code", "Courier New", "monospace"],
 				cool: ["Comic Sans", "sans-serif"],
 				fancy: ["Phosphate", "cursive"],
+				display: "Oswald, ui-serif",
 			},
 		},
 	},
