@@ -31,7 +31,8 @@ const AccordionItem = ({ isOpen, onToggle, title, children }) => {
 			<button
 				onClick={onToggle}
 				className={`flex justify-between items-center w-full p-4 transition-colors ${
-					isOpen && "border-b border-gray-200 bg-indigo-100 rounded-tr-xl rounded-tl-xl"
+					isOpen &&
+					"border-b border-gray-200 bg-indigo-100 rounded-tr-xl rounded-tl-xl"
 				}`}
 			>
 				<span className="text-lg font-semibold">{title}</span>
