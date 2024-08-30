@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useSpring, animated } from "@react-spring/web";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CoolAccordion = ({ items }) => {
 	const [openIndex, setOpenIndex] = useState(null);
@@ -26,32 +26,44 @@ const CoolAccordion = ({ items }) => {
 };
 
 const AccordionItem = ({ isOpen, onToggle, title, children }) => {
-	const animationProps = useSpring({
-		opacity: isOpen ? 1 : 0,
-		maxHeight: isOpen ? "300px" : "0px",
-		config: { tension: 250, friction: 30, duration: 200 },
-	});
-
-	const roationIcon = useSpring({
-		rotateX: "180deg",
-	});
-
 	return (
 		<div className="border border-gray-200 my-2 rounded-xl hover:bg-gray-100">
 			<button
 				onClick={onToggle}
-				className="flex justify-between items-center w-full p-4 transition-colors"
+				className={`flex justify-between items-center w-full p-4 transition-colors ${
+					isOpen && "border-b border-gray-200 bg-indigo-100 rounded-tr-xl rounded-tl-xl"
+				}`}
 			>
 				<span className="text-lg font-semibold">{title}</span>
 				{isOpen ? (
-					<MinusIcon className="w-5 h-5" style={roationIcon} />
+					<motion.div animate={{ rotate: "180deg" }}>
+						<MinusIcon className="w-5 h-5" />
+					</motion.div>
 				) : (
-					<PlusIcon className="w-5 h-5" style={roationIcon} />
+					<motion.div animate={{ rotate: "-180deg" }}>
+						<PlusIcon className="w-5 h-5" />
+					</motion.div>
 				)}
 			</button>
-			<animated.div style={animationProps} className="overflow-hidden">
-				<div className="p-4  text-gray-700">{children}</div>
-			</animated.div>
+			<motion.div
+				initial={false}
+				animate={{ height: isOpen ? "auto" : 0 }}
+				style={{ overflow: "hidden" }}
+				transition={{ duration: 0.3 }}
+			>
+				<AnimatePresence>
+					{isOpen && (
+						<motion.div
+							initial={{ opacity: 0, scale: 0 }}
+							animate={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+							className="p-4 text-gray-700"
+						>
+							{children}
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</motion.div>
 		</div>
 	);
 };
