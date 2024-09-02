@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { gsap } from "gsap";
 
-const CircleMenu = () => {
+const FlowerMenu = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const circleItems = [
 		{ Icon: HomeIcon, label: "Home" },
@@ -84,4 +84,4 @@ const CircleMenu = () => {
 	);
 };
 
-export default CircleMenu;
+export default FlowerMenu;
