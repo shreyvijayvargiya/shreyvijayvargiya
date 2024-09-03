@@ -6,7 +6,7 @@ const CursorMagic = () => {
 	const [mousePosition, setMousePosition] = useState({
 		x: 0,
 		y: 0,
-		show: false,
+		show: false, 
 	});
 
 	const handleMouseMove = (e) => {
