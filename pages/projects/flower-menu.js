@@ -19,7 +19,6 @@ const FlowerMenu = () => {
 		{ Icon: Settings, label: "Settings" },
 		{ Icon: PhoneCall, label: "Phone" },
 	];
-
 	const handleMenuClick = () => {
 		setIsOpen(!isOpen);
 		gsap.to(".container", {
