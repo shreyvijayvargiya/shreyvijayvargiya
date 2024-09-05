@@ -7,7 +7,6 @@ import {
 	Calendar,
 	PlusIcon,
 	DollarSign,
-	PartyPopperIcon,
 } from "lucide-react";
 import { gsap } from "gsap";
 import colors from "tailwindcss/colors";
@@ -306,7 +305,7 @@ const CardPaymentForm = () => {
 							/>
 						</div>
 						<div className="flex justify-start items-center my-4 gap-1 border border-gray-200 rounded-xl p-2">
-              <p className="text-xs">Your orders</p>
+							<p className="text-xs">Your orders</p>
 							{userOrders.map((item, index) => {
 								return (
 									<div key={item.id}>
