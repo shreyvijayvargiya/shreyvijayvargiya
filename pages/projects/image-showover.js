@@ -3,9 +3,7 @@ import gsap from "gsap";
 import React, { useState } from "react";
 
 const images = [
-	{
-		src: "/demo-images/img-1.avif",
-	},
+	{ src: "/demo-images/img-1.avif" },
 	{ src: "/demo-images/img-2.avif" },
 	{ src: "/demo-images/img-3.avif" },
 	{ src: "/demo-images/img-4.avif" },
@@ -66,7 +64,7 @@ const ImageShowOver = () => {
 					});
 				}}
 			>
-				add gaps
+				Add gaps
 			</Button>
 		</div>
 	);

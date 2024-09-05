@@ -30,13 +30,13 @@ const Themer = () => {
 			className="flex justify-center items-center h-screen w-full flex-col"
 			style={{
 				backgroundColor: getColor(),
-				transition: "background-color 1s ease-in-out",
+				transition: "background-color 0.2s ease-in-out",
 			}}
 		>
 			<Slider
 				color={val < 70 ? val < 50 ? "dark": "red" : "pink"}
 				className="w-1/3 mx-auto"
-				style={{ transition: "color 1s ease-in-out" }}
+				style={{ transition: "all 0.2s ease-in-out" }}
 				onChange={(e) => setVal(e, "e")}
 				marks={[
 					{ value: 20, label: "20%" },
