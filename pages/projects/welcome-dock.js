@@ -1,4 +1,5 @@
 import { Button } from "@mantine/core";
+import { ArrowLeft, ArrowRight, GalleryThumbnailsIcon } from "lucide-react";
 import React, { useState } from "react";
 
 const images = [
@@ -43,6 +44,21 @@ const WelcomeDock = () => {
 				variant="filled"
 				onClick={() => {
 					setShowGallery(!showGallery);
+				}}
+				leftIcon={
+					!showGallery ? <ArrowRight size={16} /> : <ArrowLeft size={16} />
+				}
+				classNames={{
+					leftIcon: "group-hover:block hidden",
+					root: "group transition-transform duration-200",
+				}}
+				sx={{
+					"&.left-icon": {},
+					"&:hover": {
+						transform: "scale(2)",
+						transition: "transform 0.2s ease-in-out",
+					},
+					transition: "transform 0.2s ease-in-out",
 				}}
 			>
 				{!showGallery ? "Get Started" : "Let's Leave"}
