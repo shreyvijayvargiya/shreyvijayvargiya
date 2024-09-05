@@ -53,7 +53,6 @@ const WelcomeDock = () => {
 					root: "group transition-transform duration-200",
 				}}
 				sx={{
-					"&.left-icon": {},
 					"&:hover": {
 						transform: "scale(2)",
 						transition: "transform 0.2s ease-in-out",
