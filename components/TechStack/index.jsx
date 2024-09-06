@@ -235,7 +235,6 @@ const TechStack = ({ showAnimationButtons = false }) => {
 				<span className="github-contribution-text absolute left-0 bottom-0 top-0 right-0 text-gray-400 text-xs w-full p-1 flex justify-center items-center">
 					Github contributions
 				</span>
-				{/* <p className="text-gray-600 absolute top-0 left-0 bottom-0 right-0 bg-black bg-opacity-10 border border-dashed border-gray-900 p-2 rounded-xl flex justify-center items-center github-contribution-text text-xs z-0" /> */}
 			</div>
 			{showAnimationButtons && (
 				<div className="flex justify-evenly items-center gap-4">

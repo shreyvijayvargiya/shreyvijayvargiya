@@ -49,11 +49,10 @@ const StickyNavbar = () => {
 	};
 
 	return (
-		<div className={`fixed top-4 left-0 right-0 rounded-md px-4`}>
+		<div className={`w-full rounded-md px-4`}>
 			<div
 				className={`flex justify-between items-center px-8 py-3 rounded-md ${styles.navbar}`}
 				ref={ref}
-				style={{ boxShadow: "0px 0px 30px rgb(255, 255, 255, 0.2)" }}
 			>
 				<button
 					className="button-link hover:text-white hover:translate-y-10 text-yellow-600 hover:bg-blackShade text-sm px-2 rounded-md"

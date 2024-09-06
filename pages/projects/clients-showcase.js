@@ -14,7 +14,7 @@ const demoImages = [
 	{ src: "/logos/mongodb.svg" },
 ];
 
-const DeleteImages = () => {
+const ClientShowcase = () => {
 	const [images, setImages] = useState(demoImages);
 
 	useEffect(() => {
@@ -55,4 +55,4 @@ const DeleteImages = () => {
 	);
 };
 
-export default DeleteImages;
+export default ClientShowcase;

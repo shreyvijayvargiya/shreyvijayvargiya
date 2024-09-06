@@ -16,7 +16,6 @@ const Body = ({ children }) => {
 
 	return (
 		<div className="w-full h-full">
-			{showNavbar && <StickyNavbar />}
 			{children}
 		</div>
 	);

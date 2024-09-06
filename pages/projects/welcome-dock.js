@@ -1,5 +1,5 @@
 import { Button } from "@mantine/core";
-import { ArrowLeft, ArrowRight, GalleryThumbnailsIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import React, { useState } from "react";
 
 const images = [

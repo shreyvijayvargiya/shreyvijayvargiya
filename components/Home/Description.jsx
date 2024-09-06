@@ -336,7 +336,7 @@ const Description = () => {
 						left: mousePosition.x + "px",
 					}}
 				>
-					{/* <img src="./circular-cursor.svg" className="w-40 h-40 cursor-image" /> */}
+					<img src="./circular-cursor.svg" className="w-40 h-40 cursor-image" />
 				</div>
 			)}
 		</div>

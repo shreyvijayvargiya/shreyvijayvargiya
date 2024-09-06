@@ -148,9 +148,6 @@ const WorkExperience = () => {
 					})}
 				</div>
 			</div>
-			<div className="live-time absolute right-10 top-8 md:none sm:none lg:block xxs:none xs:none">
-				<LiveTime />
-			</div>
 			<div className={`fixed bottom-10 left-0 right-0 w-full`}>
 				<p className="text-orange-300 font-serif m-2">
 					{activeNum} {percent * 100}
