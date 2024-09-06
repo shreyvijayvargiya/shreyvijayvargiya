@@ -74,7 +74,7 @@ const UpiPaymentForm = () => {
   }, [])
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen">
+		<div className="flex flex-col items-center justify-center h-screen">
 			<div className="complete-card w-full max-w-md bg-white p-6 rounded-lg shadow-lg border border-gray-200">
 				<div className="payment-form">
 					<h2 className="text-xl font-semibold mb-6 text-gray-800">
