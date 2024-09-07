@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@mantine/core";
 import {
 	GalleryThumbnailsIcon,
 	Languages,
 	Laptop,
-	Laptop2Icon,
-	Mail,
 	RssIcon,
+	Mail,
 	User,
 } from "lucide-react";
 import TimelineWorkExperience from "./WorkExperience";
-import { FaYoutube } from "react-icons/fa";
 import colors from "tailwindcss/colors";
 
 const techstacks = [
@@ -22,7 +20,6 @@ const techstacks = [
 	"css",
 	"firebase",
 	"supabase",
-	"blockchain",
 ];
 
 const HomeComponent = () => {
@@ -43,7 +40,9 @@ const HomeComponent = () => {
 							className="w-20 h-20 hover:w-40 hover:h-40 transition-all duration-100 ease-in"
 							alt="Avatar"
 						/>
-						<p className="text-4xl font-fancy">Shrey Vijayvargiya</p>
+						<p className="text-4xl font-mono font-semibold">
+							Shrey Vijayvargiya
+						</p>
 						<p className="text-md">Software Developer (Frontend + Backend)</p>
 					</div>
 				</div>
@@ -164,7 +163,11 @@ const HomeComponent = () => {
 				<div className="my-5">
 					<p className="flex flex-wrap items-center justify-start break-words">
 						I am socially active on
-						<span className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full px-1 py-1 gap-2 flex justify-start items-center">
+						<a
+							className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full px-1 py-1 gap-2 flex justify-start items-center"
+							href="https://www.twitter.com/treyvijay"
+							target="_blank"
+						>
 							<span className="hidden opacity-0 group-hover:opacity-100 group-hover:block cursor-pointer w-4 h-4 transition-all duration-100">
 								<svg
 									role="img"
@@ -176,21 +179,23 @@ const HomeComponent = () => {
 									<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
 								</svg>
 							</span>
-							<a className="text-indigo-500 hover:underline px-1">Twitter</a>
-						</span>
+							<span className="text-indigo-500 group-hover:underline px-1">
+								Twitter
+							</span>
+						</a>
 						and read my blogs on{" "}
-						<span className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-green-50 rounded-full px-1 py-1 gap-2 flex justify-start items-center">
+						<a
+							className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-green-50 rounded-full px-1 py-1 gap-2 flex justify-start items-center"
+							target="_blank"
+							href="https://www.ihatereading.in"
+						>
 							<span className="hidden opacity-0 group-hover:opacity-100 group-hover:block cursor-pointer transition-all duration-100">
 								<RssIcon color={colors.green[600]} size={20} />
 							</span>
-							<a
-								className="text-green-500 hover:underline"
-								target="_blank"
-								href="https://medium.com/@shreyvijayvargiya26/"
-							>
-								Medium
-							</a>
-						</span>
+							<span className="text-green-500 group-hover:underline">
+								iHateReading
+							</span>
+						</a>
 					</p>
 				</div>
 

@@ -47,10 +47,10 @@ const workExperience = [
 
 const TimelineWorkExperience = () => {
 	return (
-		<div className="flex justify-center items-center min-h-screen my-4">
+		<div className="flex justify-center items-center my-2">
 			<Timeline active={workExperience.length - 1} lineWidth={4} color="dark">
 				{workExperience.map((work, index) => (
-					<Timeline.Item key={index} title={work.name} className="mb-4">
+					<Timeline.Item key={index} title={work.name} className="mb-1">
 						<div className="mb-2 flex items-center text-gray-600">
 							<Calendar size={16} className="mr-2" />
 							<Text size="sm">{work.date}</Text>
