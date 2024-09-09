@@ -1,8 +1,11 @@
+import { Button } from "@mantine/core";
+import gsap from "gsap";
 import React, { useState } from "react";
 
 const EmailInputProgress = () => {
 	const [email, setEmail] = useState("");
 	const [progress, setProgress] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 	const calculateProgress = (email) => {
 		let percentage = 0;
@@ -34,22 +37,63 @@ const EmailInputProgress = () => {
 		setProgress(newProgress);
 	};
 
+	const handleSubscribe = () => {
+		const tl = gsap.timeline();
+		setLoading(true);
+		setTimeout(() => {
+			tl.to(".email-form", {
+				opacity: 0,
+				duration: 0.5,
+				y: 50,
+				display: "none",
+			}).fromTo(
+				".subscription-message",
+				{
+					y: -80,
+				},
+				{
+					opacity: 1,
+					duration: 0.2,
+					y: 0,
+					display: "inline-block",
+					onComplete: () => {
+						setLoading(false);
+					},
+				}
+			);
+		}, 200);
+	};
 	return (
 		<div className="w-full flex justify-center items-center h-screen">
-			<div>
-				<p className="my-2 text-sm text-gray-600">Email validator</p>
-				<input
-					type="text"
-					className="p-4 border-2 border-gray-200 w-96 outline-none rounded-md active:rounded-full focus:border-black focus:border"
-					style={{
-						background: `linear-gradient(to right, #dcfce7 ${progress}%, white ${progress}%)`,
-						transition: "background 0.3s ease",
-					}}
-					placeholder="Enter your email"
-					onChange={handleChange}
-					value={email}
-				/>
-				<p className="mt-2 text-sm text-gray-600">Progress: {progress}%</p>
+			<div className="min-w-lg">
+				<div className="email-form">
+					<p className="my-2 text-gray-600">Subscribe to our newsletter</p>
+					<input
+						type="text"
+						className="p-4 border-2 border-gray-200 w-96 text-gray-700 outline-none rounded-md active:rounded-full focus:border-gray-500 focus:border"
+						style={{
+							background: `linear-gradient(to right, #dcfce7 ${progress}%, white ${progress}%)`,
+							transition: "all 0.5s ease",
+						}}
+						placeholder="Enter your email"
+						onChange={handleChange}
+						value={email}
+					/>
+					<Button
+						color="dark"
+						fullWidth
+						my="sm"
+						loading={loading}
+						size="md"
+						disabled={progress === 100 ? false : true}
+						onClick={handleSubscribe}
+					>
+						Subscribe
+					</Button>
+				</div>
+				<p className="hidden opacity-0 subscription-message">
+					Thank you for subscription
+				</p>
 			</div>
 		</div>
 	);

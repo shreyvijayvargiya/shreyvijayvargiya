@@ -22,10 +22,10 @@ const colors = [
 const InlineToolbar = ({ show, onStyleClick, activeStyles }) => {
 	return (
 		<div
-			className={`absolute bg-white border border-gray-300 p-2 rounded-md flex space-x-2 transition-all duration-300 ${
+			className={`bg-white border border-gray-300 p-2 rounded-md flex space-x-2 transition-all duration-300 ${
 				show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
 			}`}
-			style={{ top: "10px" }}
+			// style={{ top: "10px" }}
 		>
 			<button
 				onClick={() => onStyleClick("bold")}
@@ -169,12 +169,13 @@ const TextEditor = () => {
 	};
 
 	return (
-		<div className="relative p-5 flex justify-center items-center h-screen">
+		<div className="relative p-5 flex justify-center items-center h-screen flex-col">
 			<InlineToolbar
 				show={true}
 				onStyleClick={handleStyleClick}
 				activeStyles={activeStyles}
 			/>
+			<br />
 			<textarea
 				ref={textAreaRef}
 				className="w-96 h-64 mx-auto p-2 border border-gray-300 rounded-md resize-none"
