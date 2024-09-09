@@ -183,9 +183,9 @@ const CardPaymentForm = () => {
 					<div
 						className={`${
 							cards.length > 0
-								? "w-full h-full inline-block mb-6"
-								: "w-0 h-0 hidden"
-						}  flex justify-start items-center gap-3 user-cards`}
+								? "w-full h-full mb-6"
+								: "w-0 h-0 invisible"
+						}  flex justify-start items-center gap-3 user-cards transition-all duration-500 ease-in`}
 					>
 						<Tooltip label="Add new card">
 							<button

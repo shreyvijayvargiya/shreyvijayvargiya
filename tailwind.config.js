@@ -7,7 +7,7 @@ module.exports = {
 		"./modules/**/*.{js,ts,jsx,tsx}",
 		"./utils/**/*.{js,ts,jsx,tsx}",
 	],
-	darkMode: false, // or 'media' or 'class'
+	darkMode: false,
 	theme: {
 		colors: {
 			blackBg: "rgb(2, 2, 2)",
@@ -66,6 +66,18 @@ module.exports = {
 				cool: ["Comic Sans", "sans-serif"],
 				fancy: ["Phosphate", "cursive"],
 				display: "Oswald, ui-serif",
+			},
+			spacing: {
+				xxs: "0.25rem", 
+			},
+			fontSize: {
+				xxs: "0.625rem", 
+			},
+			width: {
+				xxs: "16rem",
+			},
+			height: {
+				xxs: "16rem",
 			},
 		},
 	},
