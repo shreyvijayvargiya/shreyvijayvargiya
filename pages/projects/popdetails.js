@@ -26,12 +26,12 @@ const PopDetails = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex justify-start items-center gap-1 relative rounded-full px-2 py-1 w-60 border border-gray-200 cursor-pointer group transition-all duration-500">
+				<div className="flex justify-start items-center gap-1 relative rounded-full px-2 py-1 w-60 border border-white hover:border hover:border-gray-200 cursor-pointer group transition-all duration-500">
 					<img
 						src="/avatar.png"
 						className="w-0 h-0 group-hover:w-10 group-hover:h-10 opacity-0 invisible group-hover:visible group-hover:opacity-100 rounded-full transition-all duration-500 ease-in-out group-hover:ml-1"
 					/>
-					<p className="group-hover:underline group-hover:px-1 group-hover:text-center text-gray-700 transition-all duration-500 ease-in-out group-hover:text-pink-600 font-cool">
+					<p className="group-hover:underline group-hover:px-1 group-hover:text-center text-gray-700 transition-all duration-500 ease-in-out group-hover:text-black group-hover:font-semibold font-cool">
 						Shrey Vijayvargiya
 					</p>
 				</div>
