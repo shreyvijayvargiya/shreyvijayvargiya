@@ -1,19 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge } from "@mantine/core";
-import { ChevronRightIcon, Circle, Github, Linkedin, Mail, NetworkIcon, SendIcon } from "lucide-react";
+import {
+	ChevronRightIcon,
+	Circle,
+	Cloud,
+	CloudCogIcon,
+	CloudIcon,
+	Github,
+	Linkedin,
+	Mail,
+	NetworkIcon,
+	SendIcon,
+	SunIcon,
+} from "lucide-react";
+import { IoCloudyNight } from "react-icons/io5";
 
 const AliceMacguire = () => {
+	const [dark, setDark] = useState(true);
 	return (
-		<div className="bg-gray-900 text-gray-100 min-h-screen flex justify-center items-center p-10">
-			<div className="max-w-2xl w-full space-y-6">
+		<div
+			className={`min-h-screen flex justify-center items-center p-10 flex-col ${
+				dark ? "text-white bg-gray-900" : "text-black bg-white"
+			} transition-all duration-200 ease-in-out `}
+		>
+			<div className="flex justify-center fixed top-10 items-center my-2">
+				<button
+					onClick={() => setDark(!dark)}
+					className="p-2 rounded-full border border-gray-100 hover:px-10 duration-100 transition-all ease-in"
+				>
+					{dark ? <SunIcon /> : <CloudCogIcon />}
+				</button>
+			</div>
+			<div className={`max-w-2xl w-full space-y-6 `}>
 				<h1 className="text-3xl font-bold">Alice Maguire</h1>
 				<p className="text-lg">
 					I design and developed products With 5 years of experience in{" "}
-					<span className="font-semibold text-gray-100">
+					<span
+						className={`font-semibold ${
+							dark ? "text-gray-100" : "text-gray-800"
+						}`}
+					>
 						Frontend Development
 					</span>{" "}
-					and <span className="font-semibold text-gray-100">UI/UX Design</span>,
-					I craft user-centric and visually appealing interfaces.
+					and
+					<span
+						className={`font-semibold ${
+							dark ? "text-gray-100" : "text-gray-800"
+						}`}
+					>
+						UI/UX Design
+					</span>
+					, I craft user-centric and visually appealing interfaces.
 				</p>
 				<p className="text-lg ">
 					Lately, I have been building{" "}
