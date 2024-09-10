@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { DollarSign, Star, Shield } from "lucide-react";
-import colors from "tailwindcss/colors";
 
 const SubscriptionForm = () => {
 	const planRefs = useRef([]);
@@ -57,7 +56,11 @@ const SubscriptionForm = () => {
 						setActive("$29.99");
 					}}
 				>
-					<input type="radio" checked={active === "$29.99"} className="checked:bg-black bg-black" />
+					<input
+						type="radio"
+						checked={active === "$29.99"}
+						className="checked:bg-black bg-black"
+					/>
 					<Shield className="w-12 h-12 group-hover:text-green-500 mb-4 group-hover:w-14 group-hover:h-14 transition-all duration-500 ease-in" />
 					<h2 className="text-xl font-bold">Enterprise Plan</h2>
 					<p className="">Advanced features for enterprises.</p>

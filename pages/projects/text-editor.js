@@ -4,10 +4,10 @@ import {
 	ImageIcon,
 	LinkIcon,
 	AlignCenter,
-	ItalicIcon,
-	BoldIcon,
+	LucideItalic,
 	Strikethrough,
 	UnderlineIcon,
+	BoldIcon,
 } from "lucide-react";
 import { ImTextColor } from "react-icons/im";
 
@@ -24,20 +24,15 @@ const colors = [
 
 const TextEditor = () => {
 	const [text, setText] = useState("");
-	const [showMenu, setShowMenu] = useState(false);
 	const [bgColor, setBgColor] = useState("transparent");
 	const [textColor, setTextColor] = useState("black");
 	const [alignment, setAlignment] = useState("left");
 	const [isImageAdding, setIsImageAdding] = useState(false);
 	const [showColorPalette, setShowColorPalette] = useState("");
+	const [showBackgroundColorPalette, setShowBackgroundColorPalette] =
+		useState(false);
 	const [showLinkInput, setShowLinkInput] = useState(false);
 	const inputRef = useRef(null);
-
-	const handleKeyDown = (e) => {
-		if (e.key === "/") {
-			setShowMenu(true);
-		}
-	};
 
 	const ColorPalette = ({ onColorSelect, type }) => {
 		return (
@@ -127,26 +122,30 @@ const TextEditor = () => {
 		if (showLinkInput) {
 			return <showLinkInput />;
 		} else if (showColorPalette) {
-			<ColorPalette
-				onColorSelect={(color) => {
-					setTextColor(color);
-				}}
-				type={showColorPalette === "text" ? "text" : "background"}
-			/>;
+			return (
+				<ColorPalette
+					onColorSelect={(color) => {
+						setTextColor(color);
+					}}
+					type={showColorPalette === "text" ? "text" : "background"}
+				/>
+			);
 		} else if (showBackgroundColorPalette) {
-			<ColorPalette
-				onColorSelect={(color) => {
-					setBgColor(color);
-				}}
-				type={showColorPalette === "text" ? "text" : "background"}
-			/>;
+			return (
+				<ColorPalette
+					onColorSelect={(color) => {
+						setBgColor(color);
+					}}
+					type={showColorPalette === "text" ? "text" : "background"}
+				/>
+			);
 		}
+		return "";
 	};
 
 	return (
-		<div className="relative flex justify-center items-center flex-col h-screen">
-			{/* Toolbar */}
-			<div className="p-4 min-w-1/4">
+		<div className="relative flex justify-center items-center flex-col h-screen w-full">
+			<div className="p-4 w-1/4">
 				<div
 					className="flex justify-between items-center my-2 gap-4 border border-gray-200 px-4 py-2 rounded-xl relative"
 					style={{
@@ -178,7 +177,7 @@ const TextEditor = () => {
 						onClick={() => handleToolbarAction("italic")}
 						className="p-1 hover:bg-gray-100 rounded-md hover:p-2 transition-all duration-200 ease-in text-gray-500 hover:text-gray-800"
 					>
-						<ItalicIcon />
+						<LucideItalic />
 					</button>
 					<button
 						onClick={() => handleToolbarAction("strike")}
@@ -220,14 +219,12 @@ const TextEditor = () => {
 						/>
 					)}
 				</div>
-
 				<textarea
 					ref={inputRef}
 					value={text}
 					placeholder="Start typing"
 					className="w-full border border-gray-200 active:outline-none focus:outline-none outline-none rounded-xl p-2 text-lg text-gray-800 bg-white shadow-sm"
 					onChange={(e) => setText(e.target.value)}
-					onKeyDown={handleKeyDown}
 					autosize
 					minRows={4}
 				/>
