@@ -6,7 +6,7 @@ import colors from "tailwindcss/colors";
 import { FaGoogle } from "react-icons/fa";
 
 const UserOnboarding = () => {
-	const [isExpanded, setIsExpanded] = useState(false);
+	const [isExpanded, setIsExpanded] = useState(true);
 	const cardRef = useRef(null);
 
 	const toggleExpansion = () => {
@@ -114,7 +114,7 @@ const UserOnboarding = () => {
 				ref={cardRef}
 				className={`p-4 w-96 bg-white opacity-0 hidden rounded-xl border border-gray-200`}
 			>
-				{loginStatus ? <LoginButtonComponent /> : <LoggedInUserDataComponent />}
+				{loginStatus ? <LoggedInUserDataComponent /> : <LoginButtonComponent />}
 			</div>
 			<div className="flex justify-center items-center">
 				{isExpanded && (
