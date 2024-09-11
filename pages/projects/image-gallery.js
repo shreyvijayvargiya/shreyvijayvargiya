@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Button } from "@mantine/core";
-import { MoveIcon } from "lucide-react";
 
 const images = [
 	{ src: "/demo-images/img-1.avif", alt: "Image 1" },

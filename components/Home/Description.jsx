@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import router from "next/router";
 import React, { useEffect, useState } from "react";
-import colors from "tailwindcss/colors";
 import useSound from "use-sound";
 
 const Description = () => {

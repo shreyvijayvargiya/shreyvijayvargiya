@@ -28,28 +28,20 @@ module.exports = {
 		},
 		screens: {
 			xsm: "200px",
-			// => @media (min-width:  280px) { ... }
 
 			xxs: "320px",
-			// => @media (min-width: 320px) { ... }
 
 			xs: { max: "575px" },
-			// => @media (min-width: 420px) { ... }
 
 			sm: { min: "576px", max: "897px" },
-			// => @media (min-width: 640px) { ... }
 
 			md: "768px",
-			// => @media (min-width: 768px) { ... }
 
 			lg: "1024px",
-			// => @media (min-width: 1024px) { ... }
 
 			xl: "1280px",
-			// => @media (min-width: 1280px) { ... }
 
 			xxl: "1536px",
-			// => @media (min-width: 1536px) { ... }
 		},
 		minWidth: {
 			0: "0",
@@ -64,14 +56,14 @@ module.exports = {
 				serif: ["Georgia", "Cambria", "Times New Roman", "serif"],
 				mono: ["Fira Code", "Courier New", "monospace"],
 				cool: ["Comic Sans", "sans-serif"],
-				fancy: ["Phosphate", "cursive"],
+				fancy: ["'Dancing Script'", "cursive"],
 				display: "Oswald, ui-serif",
 			},
 			spacing: {
-				xxs: "0.25rem", 
+				xxs: "0.25rem",
 			},
 			fontSize: {
-				xxs: "0.625rem", 
+				xxs: "0.625rem",
 			},
 			width: {
 				xxs: "16rem",
