@@ -5,10 +5,10 @@ import {
 	Text,
 	TextInput,
 	Textarea,
-	Accordion,
+	ColorInput,
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
-import { Laptop2Icon, Palette, RssIcon, TypeOutline } from "lucide-react";
+import { Laptop2Icon, RssIcon } from "lucide-react";
 import { FaInstagram, FaSnapchat, FaYoutube } from "react-icons/fa";
 import { z } from "zod";
 
@@ -26,69 +26,21 @@ const schema = z.object({
 });
 
 const gradientColors = [
-	"bg-gray-50",
-	"bg-gray-100",
-	"bg-gray-200",
-	"bg-gray-300",
-	"bg-gray-400",
-	"bg-gray-500",
-	"bg-gray-600",
-	"bg-gray-700",
-	"bg-gray-800",
-	"bg-gray-900",
-	"bg-indigo-50",
-	"bg-indigo-100",
-	"bg-indigo-200",
-	"bg-indigo-300",
-	"bg-indigo-400",
-	"bg-indigo-500",
-	"bg-indigo-600",
-	"bg-indigo-700",
-	"bg-indigo-800",
-	"bg-indigo-900",
-	"bg-blue-50",
-	"bg-blue-100",
-	"bg-blue-200",
-	"bg-blue-300",
-	"bg-blue-400",
-	"bg-blue-500",
-	"bg-blue-600",
-	"bg-blue-700",
-	"bg-blue-800",
-	"bg-blue-900",
-	"bg-pink-200",
-	"bg-pink-300",
-	"bg-pink-400",
-	"bg-pink-500",
-	"bg-pink-600",
-	"bg-pink-700",
-	"bg-pink-800",
-	"bg-pink-900",
-	"bg-red-50",
-	"bg-red-100",
-	"bg-red-200",
-	"bg-red-300",
-	"bg-red-400",
-	"bg-red-500",
-	"bg-red-600",
-	"bg-red-700",
-	"bg-red-800",
-	"bg-red-900",
-	"bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300",
-	"bg-gradient-to-r from-green-200 to-blue-300",
-	"bg-gradient-to-r from-yellow-200 to-red-300",
-	"bg-gradient-to-r from-blue-400 to-green-300",
-	"bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300",
-	"bg-gradient-to-r from-red-300 to-yellow-300",
-	"bg-gradient-to-r from-blue-300 to-indigo-400",
-	"bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-200",
-	"bg-gradient-to-r from-green-300 to-purple-200",
-	"bg-gradient-to-r from-orange-200 to-red-200",
-	"bg-gradient-to-r from-indigo-400 to-purple-300",
-	"bg-gradient-to-r from-gray-900 to-gray-700",
+	"bg-gradient-to-t from-indigo-300 via-purple-300 to-pink-300",
+	"bg-gradient-to-t from-green-200 to-blue-300",
+	"bg-gradient-to-t from-yellow-200 to-red-300",
+	"bg-gradient-to-t from-blue-400 to-green-300",
+	"bg-gradient-to-t from-pink-300 via-red-300 to-yellow-300",
+	"bg-gradient-to-t from-red-300 to-yellow-300",
+	"bg-gradient-to-t from-blue-300 to-indigo-400",
+	"bg-gradient-to-t from-pink-300 via-purple-300 to-indigo-200",
+	"bg-gradient-to-t from-green-300 to-purple-200",
+	"bg-gradient-to-t from-orange-200 to-red-200",
+	"bg-gradient-to-t from-indigo-400 to-purple-300",
+	"bg-gradient-to-t from-gray-900 to-gray-700",
 	"bg-gradient-to-l from-gray-900 to-gray-700",
 	"bg-gradient-to-l from-gray-200 to-gray-100",
-	"bg-gradient-to-r from-pink-200 to-pink-400",
+	"bg-gradient-to-b from-pink-200 to-pink-400",
 	"bg-gradient-to-r from-red-200 via-red-300 to-yellow-200",
 	"bg-gradient-to-r from-green-200 via-green-300 to-blue-200",
 	"bg-gradient-to-r from-yellow-300 to-red-400",
@@ -98,9 +50,10 @@ const gradientColors = [
 	"bg-gradient-to-r from-green-200 via-teal-300 to-blue-400",
 	"bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400",
 ];
-
 const GradientPreview = () => {
-	const [selectedGradient, setSelectedGradient] = useState(gradientColors[0]);
+	const [backgroundColor, setBackgroundColor] = useState("#FFFFF");
+	const [selectedGradient, setSelectedGradient] = useState("");
+	const [backgroundOpacity, setBackgroundOpacity] = useState(100);
 	const [order, setOrder] = useState("flex-col");
 	const [avatar, setAvatar] = useState(null);
 	const [detail, setDetail] = useState({
@@ -155,15 +108,35 @@ const GradientPreview = () => {
 		}));
 	};
 
-	const handleSubmit = () => {
-		if (validate()) {
-		}
+	const hexToRgba = (hex, opacity) => {
+		hex = hex.replace("#", "");
+		const r = parseInt(hex.substring(0, 2), 16);
+		const g = parseInt(hex.substring(2, 4), 16);
+		const b = parseInt(hex.substring(4, 6), 16);
+		return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 	};
 
+	function getCustomStyle() {
+		if (backgroundColor) {
+			return {
+				backgroundColor: hexToRgba(
+					backgroundColor,
+					Number(backgroundOpacity) / 100
+				),
+			};
+		} else if (selectedGradient) {
+			return {
+				background: selectedGradient,
+			};
+		}
+	}
+
+	console.log(backgroundColor);
 	return (
 		<div className="p-6 h-screen w-full relative">
 			<Box
-				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold ${selectedGradient} border-4 border-black ring-offset-4`}
+				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold border-4 border-black ring-offset-4`}
+				style={getCustomStyle()}
 				sx={{ borderRadius: "20px" }}
 			>
 				<div className="flex justify-center items-center h-full w-full flex-col">
@@ -278,139 +251,145 @@ const GradientPreview = () => {
 				className="fixed top-10 left-10 w-96 overflow-x-scroll"
 				style={{ scrollbarWidth: 0 }}
 			>
-				<Accordion
-					className="rounded-md border border-gray-400 max-h-96 overflow-y-scroll"
-					classNames={{ itemTitle: "border-b border-gray-400" }}
-				>
-					<Accordion.Item label="Add your profile" icon={<TypeOutline />}>
-						<Text className="mb-2 font-medium text-lg">Profile Setup</Text>
-						<Button fullWidth variant="outline" color="dark" component="label">
-							Upload Avatar
-							<input
-								type="file"
-								accept="image/*"
-								onChange={handleAvatarChange}
-								hidden
-							/>
-						</Button>
-						<TextInput
-							my="xs"
-							placeholder="Add Name"
-							color="dark"
-							value={detail.name}
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							onChange={(e) => handleDetailChange("name", e.target.value)}
+				<div className="rounded-md border border-gray-400 max-h-96 overflow-y-scroll my-4 p-4">
+					<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
+					<Button fullWidth variant="outline" color="dark" component="label">
+						Upload Avatar
+						<input
+							type="file"
+							accept="image/*"
+							onChange={handleAvatarChange}
+							hidden
 						/>
-						<Textarea
-							my="xs"
-							placeholder="Add description"
-							value={detail.description}
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							onChange={(e) =>
-								handleDetailChange("description", e.target.value)
-							}
-						/>
+					</Button>
+					<TextInput
+						my="xs"
+						placeholder="Add Name"
+						color="dark"
+						value={detail.name}
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						onChange={(e) => handleDetailChange("name", e.target.value)}
+					/>
+					<Textarea
+						my="xs"
+						placeholder="Add description"
+						value={detail.description}
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						onChange={(e) => handleDetailChange("description", e.target.value)}
+					/>
 
-						<TextInput
-							mt="md"
-							placeholder="Twitter Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							value={socialLinks.twitter}
-							onChange={(e) =>
-								handleSocialLinkChange("twitter", e.target.value)
-							}
+					<TextInput
+						mt="md"
+						placeholder="Twitter Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						value={socialLinks.twitter}
+						onChange={(e) => handleSocialLinkChange("twitter", e.target.value)}
+					/>
+					<TextInput
+						mt="md"
+						placeholder="Website Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						value={socialLinks.website}
+						onChange={(e) => handleSocialLinkChange("website", e.target.value)}
+					/>
+					<TextInput
+						mt="md"
+						placeholder="YouTube Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						value={socialLinks.youtube}
+						onChange={(e) => handleSocialLinkChange("youtube", e.target.value)}
+					/>
+					<TextInput
+						mt="md"
+						placeholder="Instagram Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						value={socialLinks.instagram}
+						onChange={(e) =>
+							handleSocialLinkChange("instagram", e.target.value)
+						}
+					/>
+					<TextInput
+						mt="md"
+						placeholder="Medium Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						value={socialLinks.medium}
+						onChange={(e) => handleSocialLinkChange("medium", e.target.value)}
+					/>
+					<TextInput
+						mt="md"
+						placeholder="Snapchat Link"
+						classNames={{
+							input:
+								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+						}}
+						leftIcon={<FaSnapchat />}
+						value={socialLinks.snapchat}
+						onChange={(e) => handleSocialLinkChange("snapchat", e.target.value)}
+					/>
+				</div>
+			</div>
+			<div className="fixed top-10 right-10 max-w-lg">
+				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl">
+					<p className="text-gray-600">Background Gradients</p>
+					<div className="flex flex-wrap justify-start items-center gap-2 my-2">
+						{gradientColors.map((gradient) => (
+							<div
+								key={gradient}
+								style={{ background: gradient, borderRadius: 1000 }}
+							>
+								<Button
+									fullWidth
+									variant="unstyled"
+									className={`h-12 w-12 rounded-full hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
+									sx={{
+										border:
+											selectedGradient === gradient ? "3px solid #000" : "none",
+									}}
+									onClick={() => setSelectedGradient(gradient)}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl my-4">
+					<p className="text-gray-600">Background Colors</p>
+					<div className="my-2">
+						<ColorInput
+							value={backgroundColor}
+							onChange={(val) => setBackgroundColor(val)}
 						/>
-						<TextInput
-							mt="md"
-							placeholder="Website Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							value={socialLinks.website}
-							onChange={(e) =>
-								handleSocialLinkChange("website", e.target.value)
-							}
-						/>
-						<TextInput
-							mt="md"
-							placeholder="YouTube Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							value={socialLinks.youtube}
-							onChange={(e) =>
-								handleSocialLinkChange("youtube", e.target.value)
-							}
-						/>
-						<TextInput
-							mt="md"
-							placeholder="Instagram Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							value={socialLinks.instagram}
-							onChange={(e) =>
-								handleSocialLinkChange("instagram", e.target.value)
-							}
-						/>
-						<TextInput
-							mt="md"
-							placeholder="Medium Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							value={socialLinks.medium}
-							onChange={(e) => handleSocialLinkChange("medium", e.target.value)}
-						/>
-						<TextInput
-							mt="md"
-							placeholder="Snapchat Link"
-							classNames={{
-								input:
-									"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
-							}}
-							leftIcon={<FaSnapchat />}
-							value={socialLinks.snapchat}
-							onChange={(e) =>
-								handleSocialLinkChange("snapchat", e.target.value)
-							}
-						/>
-					</Accordion.Item>
-					<Accordion.Item label="Choose a gradient" icon={<Palette />}>
-						<div className="flex w-full mx-auto justify-start items-center gap-2 flex-wrap py-2">
-							{gradientColors.map((gradient) => (
-								<div key={gradient}>
-									<Button
-										fullWidth
-										variant="unstyled"
-										className={`h-12 w-12 rounded-xl hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
-										sx={{
-											borderRadius: "10px",
-											border:
-												selectedGradient === gradient
-													? "3px solid #000"
-													: "none",
-										}}
-										onClick={() => setSelectedGradient(gradient)}
-									/>
-								</div>
-							))}
-						</div>
-					</Accordion.Item>
-				</Accordion>
+					</div>
+					<p>Background Opacity</p>
+					<input
+						type="range"
+						id="backgroundOpacity"
+						name="backgroundOpacity"
+						min="0"
+						max="100"
+						onChange={(e) => setBackgroundOpacity(e.target.value)}
+					/>
+				</div>
 			</div>
 		</div>
 	);
