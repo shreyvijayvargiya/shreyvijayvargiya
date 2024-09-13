@@ -6,6 +6,7 @@ import {
 	TextInput,
 	Textarea,
 	ColorInput,
+	Select,
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
 import { Laptop2Icon, RssIcon } from "lucide-react";
@@ -26,30 +27,55 @@ const schema = z.object({
 });
 
 const gradientColors = [
-	"bg-gradient-to-t from-indigo-300 via-purple-300 to-pink-300",
-	"bg-gradient-to-t from-green-200 to-blue-300",
-	"bg-gradient-to-t from-yellow-200 to-red-300",
-	"bg-gradient-to-t from-blue-400 to-green-300",
-	"bg-gradient-to-t from-pink-300 via-red-300 to-yellow-300",
-	"bg-gradient-to-t from-red-300 to-yellow-300",
-	"bg-gradient-to-t from-blue-300 to-indigo-400",
-	"bg-gradient-to-t from-pink-300 via-purple-300 to-indigo-200",
-	"bg-gradient-to-t from-green-300 to-purple-200",
-	"bg-gradient-to-t from-orange-200 to-red-200",
-	"bg-gradient-to-t from-indigo-400 to-purple-300",
-	"bg-gradient-to-t from-gray-900 to-gray-700",
-	"bg-gradient-to-l from-gray-900 to-gray-700",
-	"bg-gradient-to-l from-gray-200 to-gray-100",
-	"bg-gradient-to-b from-pink-200 to-pink-400",
-	"bg-gradient-to-r from-red-200 via-red-300 to-yellow-200",
-	"bg-gradient-to-r from-green-200 via-green-300 to-blue-200",
-	"bg-gradient-to-r from-yellow-300 to-red-400",
-	"bg-gradient-to-r from-blue-200 to-blue-400",
-	"bg-gradient-to-r from-pink-200 via-purple-200 to-indigo-200",
-	"bg-gradient-to-r from-orange-300 via-red-300 to-yellow-300",
-	"bg-gradient-to-r from-green-200 via-teal-300 to-blue-400",
-	"bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400",
+	"linear-gradient(to top, #d3d7f2, #caa0e2, #f9a7b2)",
+	"linear-gradient(to top, #d1f8d0, #a0d3f5)",
+	"linear-gradient(to top, #fef8c5, #f88c8c)",
+	"linear-gradient(to top, #3f92f2, #a4d3a2)",
+	"linear-gradient(to top, #fcb5d4, #f9716e, #f4e5a5)",
+	"linear-gradient(to top, #f9716e, #f4e5a5)",
+	"linear-gradient(to top, #a2c3f9, #4b68f7)",
+	"linear-gradient(to top, #fcb5d4, #9b4cce, #8ac4f0)",
+	"linear-gradient(to top, #9fdf9f, #c7a8e4)",
+	"linear-gradient(to top, #f6b737, #f63e4d)",
+	"linear-gradient(to top, #5b3f8a, #cda7e0)",
+	"linear-gradient(to left, #1e1e1e, #3f3f3f)",
+	"linear-gradient(to left, #e0e0e0, #f5f5f5)",
+	"linear-gradient(to bottom, #fbd3e9, #f97877)",
+	"linear-gradient(to right, #fbd3e9, #f8a3a3, #f7e33d)",
+	"linear-gradient(to right, #d1f2e7, #a3f3d3, #9bb9f1)",
+	"linear-gradient(to right, #fef9d9, #f86a6a)",
+	"linear-gradient(to right, #b3cde8, #5b8fce)",
+	"linear-gradient(to right, #fbd3e9, #c2a2f1, #8c7cf4)",
+	"linear-gradient(to right, #f3a26f, #f87c6f, #fef5a2)",
+	"linear-gradient(to right, #b9d6b1, #82c7c7, #4a7f98)",
+	"linear-gradient(to right, #e0e0e0, #d0d0d0, #c0c0c0)",
 ];
+
+const fontSizeOptions = [
+	{ value: "10", label: "10px" },
+	{ value: "11", label: "11px" },
+	{ value: "12", label: "12px" },
+	{ value: "14", label: "14px" },
+	{ value: "15", label: "15px" },
+	{ value: "16", label: "16px" },
+	{ value: "18", label: "18px" },
+	{ value: "20", label: "20px" },
+	{ value: "24", label: "24px" },
+	{ value: "28", label: "28px" },
+	{ value: "32", label: "32px" },
+	{ value: "36", label: "36px" },
+	{ value: "40", label: "40px" },
+	{ value: "44", label: "44px" },
+	{ value: "48", label: "48px" },
+	{ value: "60", label: "60px" },
+	{ value: "64", label: "64px" },
+	{ value: "72", label: "72px" },
+	{ value: "84", label: "84px" },
+	{ value: "96", label: "96px" },
+	{ value: "108", label: "108px" },
+	{ value: "120", label: "120px" },
+];
+
 const GradientPreview = () => {
 	const [backgroundColor, setBackgroundColor] = useState("#FFFFF");
 	const [selectedGradient, setSelectedGradient] = useState("");
@@ -59,6 +85,14 @@ const GradientPreview = () => {
 	const [detail, setDetail] = useState({
 		name: "",
 		description: "",
+	});
+	const [styles, setStyles] = useState({
+		nameFontColor: "",
+		descriptionFontColor: "",
+		fontStyle: "",
+		nameFontSize: "",
+		descriptionFontSize: "",
+		align: "",
 	});
 	const [socialLinks, setSocialLinks] = useState({
 		twitter: "",
@@ -131,7 +165,6 @@ const GradientPreview = () => {
 		}
 	}
 
-	console.log(backgroundColor);
 	return (
 		<div className="p-6 h-screen w-full relative">
 			<Box
@@ -145,14 +178,26 @@ const GradientPreview = () => {
 							<img
 								src={avatar}
 								alt="User Avatar"
-								className="w-20 h-20 mx-auto rounded-full"
+								className="w-40 h-40 mx-auto rounded-full object-cover my-10 hover:w-44 hover:h-44 transition-all duration-300 ease-in"
 							/>
 						)}
 						<div>
-							<p className="text-center text-3xl text-gray-600">
+							<p
+								className="text-center"
+								style={{
+									color: styles.nameFontColor,
+									fontSize: styles.nameFontSize + "px",
+								}}
+							>
 								{detail.name ? detail.name : "Shrey Vijayvargiya"}
 							</p>
-							<p className="text-center text-md text-gray-500 my-2">
+							<p
+								className="text-center text-gray-500 my-6"
+								style={{
+									color: styles.descriptionFontColor,
+									fontSize: styles.descriptionFontSize + "px",
+								}}
+							>
 								{detail.description ? detail.description : null}
 							</p>
 						</div>
@@ -160,7 +205,12 @@ const GradientPreview = () => {
 							className={`flex justify-start items-center ${order} gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
 						>
 							{socialLinks.twitter && (
-								<span className="group relative bg-indigo-50 hover:underline my-1 cursor-pointer hover:px-6 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 rounded-full hover:rounded-xl py-2 gap-2 flex justify-start items-center">
+								<a
+									href={socialLinks.twitter}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group relative bg-indigo-50 my-1 cursor-pointer hover:px-10 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 hover:rounded-full rounded-xl py-2 gap-2 flex justify-start items-center"
+								>
 									<span className="cursor-pointer w-4 h-4 transition-all duration-100">
 										<svg
 											role="img"
@@ -172,75 +222,81 @@ const GradientPreview = () => {
 											<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
 										</svg>
 									</span>
-									<a
-										href={socialLinks.twitter}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-indigo-500 hover:underline"
-									>
+									<p className="text-indigo-500 group-hover:underline">
 										Twitter
-									</a>
-								</span>
+									</p>
+								</a>
 							)}
 							{socialLinks.website && (
-								<span className="group bg-orange-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-orange-50 rounded-full py-2 gap-1 flex justify-start items-center">
+								<a
+									href={socialLinks.website}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group bg-orange-50 my-1 cursor-pointer hover:px-10 px-4 duration-100 transition-all ease-in-out hover:bg-orange-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
+								>
 									<span className="cursor-pointer transition-all duration-100">
 										<Laptop2Icon color={colors.orange[600]} size={20} />
 									</span>
-									<a
-										href={socialLinks.website}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-orange-500 hover:underline"
-									>
+									<p className="text-orange-500 group-hover:underline">
 										Website
-									</a>
-								</span>
+									</p>
+								</a>
 							)}
 							{socialLinks.youtube && (
-								<span className="group bg-red-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-red-50 rounded-full py-2 gap-1 flex justify-start items-center">
+								<a
+									href={socialLinks.youtube}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group bg-red-50 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-red-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
+								>
 									<span className="cursor-pointer transition-all duration-100">
 										<FaYoutube color={colors.red[600]} />
 									</span>
-									<a
-										href={socialLinks.youtube}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-red-500 hover:underline"
-									>
-										YouTube
-									</a>
-								</span>
+									<p className="text-red-500 group-hover:underline">YouTube</p>
+								</a>
 							)}
 							{socialLinks.instagram && (
-								<span className="group bg-pink-50 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-pink-50 rounded-full py-2 gap-1 flex justify-start items-center">
+								<a
+									href={socialLinks.instagram}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group bg-pink-50 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-pink-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
+								>
 									<span className="cursor-pointer transition-all duration-100">
 										<FaInstagram color={colors.pink[600]} />
 									</span>
-									<a
-										href={socialLinks.instagram}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-pink-500 hover:underline"
-									>
+									<p className="text-pink-500 group-hover:underline">
 										Instagram
-									</a>
-								</span>
+									</p>
+								</a>
 							)}
 							{socialLinks.medium && (
-								<span className="group bg-green-50 hover:translate-x-4 my-1 cursor-pointer hover:px-6 px-4 hover:underline duration-100 transition-all ease-in-out hover:bg-green-50 rounded-full py-2 gap-1 flex justify-start items-center">
+								<a
+									href={socialLinks.medium}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group bg-blue-50 hover:translate-x-4 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-green-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
+								>
+									<span className="cursor-pointer transition-all duration-100">
+										<RssIcon color={colors.blue[600]} size={20} />
+									</span>
+									<p className="text-blue-500 group-hover:underline">Medium</p>
+								</a>
+							)}
+							{socialLinks.snapchat && (
+								<a
+									href={socialLinks.snapchat}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="group bg-green-50 hover:translate-x-4 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-green-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
+								>
 									<span className="cursor-pointer transition-all duration-100">
 										<RssIcon color={colors.green[600]} size={20} />
 									</span>
-									<a
-										href={socialLinks.medium}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-green-500 hover:underline"
-									>
-										Medium
-									</a>
-								</span>
+									<p className="text-green-500 group-hover:underline">
+										Snapchat
+									</p>
+								</a>
 							)}
 						</div>
 					</div>
@@ -248,11 +304,11 @@ const GradientPreview = () => {
 			</Box>
 
 			<div
-				className="fixed top-10 left-10 w-96 overflow-x-scroll"
+				className="fixed top-0 left-0 bottom-0 w-1/6 overflow-x-scroll border-r border-gray-200 bg-gray-50 bg-opacity-80 p-4"
 				style={{ scrollbarWidth: 0 }}
 			>
-				<div className="rounded-md border border-gray-400 max-h-96 overflow-y-scroll my-4 p-4">
-					<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
+				<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
+				<div className="rounded-md border border-gray-200 my-4 p-4 bg-white">
 					<Button fullWidth variant="outline" color="dark" component="label">
 						Upload Avatar
 						<input
@@ -349,8 +405,8 @@ const GradientPreview = () => {
 					/>
 				</div>
 			</div>
-			<div className="fixed top-10 right-10 max-w-lg">
-				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl">
+			<div className="fixed top-0 right-0 bottom-0 max-w-lg p-4 border-l border-gray-200 bg-gray-50 bg-opacity-70">
+				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl bg-white">
 					<p className="text-gray-600">Background Gradients</p>
 					<div className="flex flex-wrap justify-start items-center gap-2 my-2">
 						{gradientColors.map((gradient) => (
@@ -366,17 +422,21 @@ const GradientPreview = () => {
 										border:
 											selectedGradient === gradient ? "3px solid #000" : "none",
 									}}
-									onClick={() => setSelectedGradient(gradient)}
+									onClick={() => {
+										setSelectedGradient(gradient);
+										setBackgroundColor("");
+									}}
 								/>
 							</div>
 						))}
 					</div>
 				</div>
-				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl my-4">
-					<p className="text-gray-600">Background Colors</p>
+				<div className="w-full mx-auto p-4 border border-gray-200 rounded-xl my-4 bg-white">
+					<p className="text-gray-600">Background Color</p>
 					<div className="my-2">
 						<ColorInput
 							value={backgroundColor}
+							label="Select background color"
 							onChange={(val) => setBackgroundColor(val)}
 						/>
 					</div>
@@ -387,8 +447,68 @@ const GradientPreview = () => {
 						name="backgroundOpacity"
 						min="0"
 						max="100"
+						className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
 						onChange={(e) => setBackgroundOpacity(e.target.value)}
 					/>
+					<div className="my-4">
+						<p>Name styles</p>
+						<div className="flex justify-start items-center gap-2">
+							<div>
+								<p>color</p>
+								<ColorInput
+									value={styles.nameFontColor}
+									onChange={(val) => {
+										setStyles((prevState) => ({
+											...prevState,
+											nameFontColor: val,
+										}));
+									}}
+								/>
+							</div>
+							<div>
+								<p>size</p>
+								<Select
+									placeholder="Choose font size"
+									value={styles.nameFontSize}
+									onChange={(val) => {
+										setStyles((prevState) => ({
+											...prevState,
+											nameFontSize: val,
+										}));
+									}}
+									data={fontSizeOptions}
+									className="w-full max-w-xs"
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="my-4">
+						<p>Description styles</p>
+						<div className="flex justify-start items-center gap-2">
+							<ColorInput
+								value={styles.descriptionFontColor}
+								label="color"
+								onChange={(val) => {
+									setStyles((prevState) => ({
+										...prevState,
+										descriptionFontColor: val,
+									}));
+								}}
+							/>
+							<Select
+								label="size"
+								placeholder="Choose font size"
+								value={styles.descriptionFontSize}
+								onChange={(val) => {
+									setStyles((prevState) => ({
+										...prevState,
+										descriptionFontSize: val,
+									}));
+								}}
+								data={fontSizeOptions}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
