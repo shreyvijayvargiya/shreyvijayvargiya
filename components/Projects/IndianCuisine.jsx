@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import colors from "tailwindcss/colors";
 import { animated, useSpring } from "react-spring";
-import { supabaseApp } from "utils";
+import supabaseApp from "utils/supabase";
 import { ImFire } from "react-icons/im";
 import {
 	FaCookieBite,
@@ -132,15 +132,12 @@ const IndianCuisineComponent = () => {
 		}
 	};
 
-	const [loading, setLoading] = useState(false);
-
+	const [loading, setLoading] = useState(isLoading);
 	const [progress, setProgress] = useState(0);
 
 	const loadingSpring = useSpring({
 		from: { width: "0%" },
 		to: { width: "100%" },
-		onStart: () => setLoading(true),
-		onRest: () => setLoading(false),
 		onChange: (val) => setProgress(val?.value?.width?.split("%")[0]),
 		config: {
 			duration: 3000,
@@ -187,9 +184,6 @@ const IndianCuisineComponent = () => {
 	useEffect(() => {
 		const handleScroll = () => {
 			const currentScrollPos = window.scrollY;
-			// if scroll up move element from left -50% to 0% left to right
-			// if scroll down move element from 0% to 50% from right to left
-
 			if (currentScrollPos > scrollPos) {
 				console.log("moving down");
 			} else {
@@ -221,7 +215,7 @@ const IndianCuisineComponent = () => {
 				lineColor={colors.gray[400]}
 				className="h-screen fixed w-full transform rotate-5 opacity-5 z-100"
 			/>
-			{loading ? (
+			{isLoading ? (
 				<LoadingPage />
 			) : (
 				<div className="md:w-full sm:w-full lg:w-3/6 xl:3/6 2xl:w-3/6 mx-auto">

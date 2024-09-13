@@ -18,7 +18,7 @@ const ImageCarousel = () => {
 						<div key={item.id}>
 							<img
 								src={item.src}
-								className={`item w-96 h-96 perspective-1000 rounded-2xl cursor-pointer object-cover transition-all duration-300 ease-in`}
+								className={`item w-96 h-96 rounded-2xl cursor-pointer object-cover transition-all duration-300 ease-in`}
 							/>
 						</div>
 					);
