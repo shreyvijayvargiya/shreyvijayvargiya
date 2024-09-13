@@ -72,8 +72,7 @@ const HomeComponent = () => {
 					</button>
 					<a
 						className="group cursor-pointer hover:px-4 duration-100 transition-all ease-in-out hover:bg-gray-100 hover:border hover:border-gray-400 rounded-md p-2 gap-2 flex justify-start items-center"
-						href={"https://ihatereading.in/customrepo"}
-						target="_blank"
+						href={"/projects"}
 						rel="noopener noreferrer"
 					>
 						<span className="cursor-pointer transition-all duration-100">

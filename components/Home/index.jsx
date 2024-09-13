@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const Home = () => {
 	const [toggle, setToggle] = useState(false);
-	const [move, setMove] = useState(false);
 
 	const [mousePosition, setMousePosition] = useState({
 		x: 0,
