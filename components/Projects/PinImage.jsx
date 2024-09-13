@@ -78,7 +78,7 @@ const useStyles = createStyles((theme) => ({
 		justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "column",
-		transform: "rotateZ(4deg) translateY(-3px)",
+		transform: "rotateZ(2deg) translateY(-3px)",
 	},
 	pinIcon: {
 		position: "absolute",
