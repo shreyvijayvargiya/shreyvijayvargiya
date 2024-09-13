@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-module.exports = async (req, res) => {
+const getProjectsApi = async (req, res) => {
 	const dirPath = path.join(process.cwd(), "/pages", "/projects");
 	const projectFiles = fs.readdirSync(dirPath, { recursive: true });
 	const files = projectFiles?.map((item, index) => {
@@ -13,3 +13,4 @@ module.exports = async (req, res) => {
 	});
 	res.send(files);
 };
+export default getProjectsApi;
