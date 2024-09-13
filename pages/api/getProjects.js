@@ -3,7 +3,6 @@ import path from "path";
 
 const getProjectsApi = async (req, res) => {
 	const dirPath = path.join(process.cwd(), "/pages/projects");
-	console.log(dirPath, "dirPath");
 	const projectFiles = fs.readdirSync(dirPath, { recursive: true });
 	const files = projectFiles?.map((item, index) => {
 		return {
