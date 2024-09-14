@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
 	Button,
 	Box,
@@ -10,8 +10,10 @@ import {
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
 import { Laptop2Icon, RssIcon } from "lucide-react";
-import { FaInstagram, FaSnapchat, FaYoutube } from "react-icons/fa";
+import { FaFontAwesome, FaInstagram, FaLaptop, FaMedium, FaSnapchat, FaTextWidth, FaTwitter, FaYoutube } from "react-icons/fa";
 import { z } from "zod";
+import { useFullscreen } from "@mantine/hooks";
+import { ImTwitter } from "react-icons/im";
 
 const schema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -86,6 +88,7 @@ const GradientPreview = () => {
 		name: "",
 		description: "",
 	});
+	const profileRef = useRef(null);
 	const [styles, setStyles] = useState({
 		nameFontColor: "",
 		descriptionFontColor: "",
@@ -165,12 +168,40 @@ const GradientPreview = () => {
 		}
 	}
 
+	const gridlines = [];
+	for (let i = 0; i < 20; i++) {
+		gridlines.push(i);
+	}
+
+	const [previewSize, setPreviewSize] = useState("");
+	const [preview, setPreview] = useState(false);
+	const { toggle, ref } = useFullscreen();
+
 	return (
-		<div className="p-6 h-screen w-full relative">
+		<div className="p-6 h-screen w-full relative bg-gray-50 bg-opacity-50">
+			<div className="fixed w-full h-full" style={{ zIndex: -10 }}>
+				<div className="fixed top-0 bottom-0 left-0 right-0 flex justify-between items-center h-screen w-full z-0">
+					{gridlines.map((item) => (
+						<div
+							key={item}
+							className="w-0.5 h-full bg-gray-300 bg-opacity-20"
+						/>
+					))}
+					<div className="fixed top-0 bottom-0 left-0 right-0 flex flex-col justify-between items-center h-screen w-full z-0">
+						{gridlines.map((item) => (
+							<div
+								key={item}
+								className="w-full h-0.5 bg-gray-300 bg-opacity-20"
+							/>
+						))}
+					</div>
+				</div>
+			</div>
 			<Box
 				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold border-4 border-black ring-offset-4`}
 				style={getCustomStyle()}
-				sx={{ borderRadius: "20px" }}
+				sx={{ borderRadius: "40px", zIndex: 100 }}
+				ref={profileRef}
 			>
 				<div className="flex justify-center items-center h-full w-full flex-col">
 					<div className="md:w-full mx-auto">
@@ -202,11 +233,11 @@ const GradientPreview = () => {
 							</p>
 						</div>
 						<div
-							className={`flex justify-start items-center ${order} gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
+							className={`flex justify-start items-center gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
 						>
 							{socialLinks.twitter && (
 								<a
-									href={socialLinks.twitter}
+									href={`https://${socialLinks.twitter}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="group relative bg-indigo-50 my-1 cursor-pointer hover:px-10 px-4 duration-100 transition-all ease-in-out hover:bg-indigo-50 hover:rounded-full rounded-xl py-2 gap-2 flex justify-start items-center"
@@ -229,7 +260,7 @@ const GradientPreview = () => {
 							)}
 							{socialLinks.website && (
 								<a
-									href={socialLinks.website}
+									href={`https://${socialLinks.website}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="group bg-orange-50 my-1 cursor-pointer hover:px-10 px-4 duration-100 transition-all ease-in-out hover:bg-orange-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
@@ -244,7 +275,7 @@ const GradientPreview = () => {
 							)}
 							{socialLinks.youtube && (
 								<a
-									href={socialLinks.youtube}
+									href={`https://${socialLinks.youtube}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="group bg-red-50 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-red-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
@@ -257,7 +288,7 @@ const GradientPreview = () => {
 							)}
 							{socialLinks.instagram && (
 								<a
-									href={socialLinks.instagram}
+									href={`https://${socialLinks.instagram}`}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="group bg-pink-50 my-1 cursor-pointer hover:px-10 px-4  duration-100 transition-all ease-in-out hover:bg-pink-50 hover:rounded-full rounded-xl py-2 gap-1 flex justify-start items-center"
@@ -304,16 +335,17 @@ const GradientPreview = () => {
 			</Box>
 
 			<div
-				className="fixed top-0 left-0 bottom-0 w-1/6 overflow-x-scroll border-r border-gray-200 bg-gray-50 bg-opacity-80 p-4"
+				className="fixed top-2 left-2 bottom-2 rounded-2xl w-1/6 overflow-x-scroll border border-gray-200 bg-white bg-opacity-80 p-4"
 				style={{ scrollbarWidth: 0 }}
 			>
 				<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
-				<div className="rounded-md border border-gray-200 my-4 p-4 bg-white">
-					<Button fullWidth variant="outline" color="dark" component="label">
+				<div className="rounded-md my-4">
+					<Button fullWidth variant="outline" color="gray" component="label">
 						Upload Avatar
 						<input
 							type="file"
 							accept="image/*"
+							className="border border-gray-200"
 							onChange={handleAvatarChange}
 							hidden
 						/>
@@ -321,21 +353,23 @@ const GradientPreview = () => {
 					<TextInput
 						my="xs"
 						placeholder="Add Name"
+						icon={<FaFontAwesome />}
 						color="dark"
 						value={detail.name}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						onChange={(e) => handleDetailChange("name", e.target.value)}
 					/>
 					<Textarea
 						my="xs"
 						placeholder="Add description"
+						icon={<FaTextWidth />}
 						value={detail.description}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						onChange={(e) => handleDetailChange("description", e.target.value)}
 					/>
@@ -343,9 +377,10 @@ const GradientPreview = () => {
 					<TextInput
 						mt="md"
 						placeholder="Twitter Link"
+						icon={<FaTwitter />}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						value={socialLinks.twitter}
 						onChange={(e) => handleSocialLinkChange("twitter", e.target.value)}
@@ -353,9 +388,10 @@ const GradientPreview = () => {
 					<TextInput
 						mt="md"
 						placeholder="Website Link"
+						icon={<FaLaptop />}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						value={socialLinks.website}
 						onChange={(e) => handleSocialLinkChange("website", e.target.value)}
@@ -363,9 +399,10 @@ const GradientPreview = () => {
 					<TextInput
 						mt="md"
 						placeholder="YouTube Link"
+						icon={<FaYoutube />}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						value={socialLinks.youtube}
 						onChange={(e) => handleSocialLinkChange("youtube", e.target.value)}
@@ -375,8 +412,9 @@ const GradientPreview = () => {
 						placeholder="Instagram Link"
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
+						icon={<FaInstagram />}
 						value={socialLinks.instagram}
 						onChange={(e) =>
 							handleSocialLinkChange("instagram", e.target.value)
@@ -385,9 +423,10 @@ const GradientPreview = () => {
 					<TextInput
 						mt="md"
 						placeholder="Medium Link"
+						icon={<FaMedium />}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						value={socialLinks.medium}
 						onChange={(e) => handleSocialLinkChange("medium", e.target.value)}
@@ -395,9 +434,10 @@ const GradientPreview = () => {
 					<TextInput
 						mt="md"
 						placeholder="Snapchat Link"
+						icon={<FaSnapchat />}
 						classNames={{
 							input:
-								"border border-black outline-none focus:outline-none focus:border-2 focus:border-black hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
 						}}
 						leftIcon={<FaSnapchat />}
 						value={socialLinks.snapchat}
@@ -405,7 +445,7 @@ const GradientPreview = () => {
 					/>
 				</div>
 			</div>
-			<div className="fixed top-0 right-0 bottom-0 max-w-lg p-4 border-l border-gray-200 bg-gray-50 bg-opacity-70">
+			<div className="fixed top-2 right-2 bottom-2 max-w-sm p-4 border border-gray-200 bg-white bg-opacity-80 rounded-2xl">
 				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl bg-white">
 					<p className="text-gray-600">Background Gradients</p>
 					<div className="flex flex-wrap justify-start items-center gap-2 my-2">
