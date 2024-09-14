@@ -7,13 +7,33 @@ import {
 	Textarea,
 	ColorInput,
 	Select,
+	Divider,
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
-import { Laptop2Icon, RssIcon } from "lucide-react";
-import { FaFontAwesome, FaInstagram, FaLaptop, FaMedium, FaSnapchat, FaTextWidth, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	Laptop2Icon,
+	PanelLeftClose,
+	PanelRightClose,
+	RssIcon,
+	ToggleLeftIcon,
+	ToggleRight,
+	ToggleRightIcon,
+	User,
+} from "lucide-react";
+import {
+	FaFontAwesome,
+	FaInstagram,
+	FaLaptop,
+	FaMedium,
+	FaSnapchat,
+	FaTextWidth,
+	FaTwitter,
+	FaYoutube,
+} from "react-icons/fa";
 import { z } from "zod";
 import { useFullscreen } from "@mantine/hooks";
-import { ImTwitter } from "react-icons/im";
 
 const schema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -173,32 +193,31 @@ const GradientPreview = () => {
 		gridlines.push(i);
 	}
 
-	const [previewSize, setPreviewSize] = useState("");
-	const [preview, setPreview] = useState(false);
-	const { toggle, ref } = useFullscreen();
+	const [showLeftBar, setShowLeftBar] = useState(false);
+	const [showRightBar, setShowRightBar] = useState(true);
 
 	return (
-		<div className="p-6 h-screen w-full relative bg-gray-50 bg-opacity-50">
+		<div className="p-6 h-screen w-full relative bg-gray-50 bg-opacity-40">
 			<div className="fixed w-full h-full" style={{ zIndex: -10 }}>
 				<div className="fixed top-0 bottom-0 left-0 right-0 flex justify-between items-center h-screen w-full z-0">
 					{gridlines.map((item) => (
 						<div
 							key={item}
-							className="w-0.5 h-full bg-gray-300 bg-opacity-20"
+							className="w-0.5 h-full bg-gray-200 bg-opacity-10"
 						/>
 					))}
 					<div className="fixed top-0 bottom-0 left-0 right-0 flex flex-col justify-between items-center h-screen w-full z-0">
 						{gridlines.map((item) => (
 							<div
 								key={item}
-								className="w-full h-0.5 bg-gray-300 bg-opacity-20"
+								className="w-full h-0.5 bg-gray-200 bg-opacity-10"
 							/>
 						))}
 					</div>
 				</div>
 			</div>
 			<Box
-				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-2xl justify-center text-white text-xl font-bold border-4 border-black ring-offset-4`}
+				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-md justify-center text-white text-xl font-bold border-4 border-black ring-offset-4`}
 				style={getCustomStyle()}
 				sx={{ borderRadius: "40px", zIndex: 100 }}
 				ref={profileRef}
@@ -335,13 +354,36 @@ const GradientPreview = () => {
 			</Box>
 
 			<div
-				className="fixed top-2 left-2 bottom-2 rounded-2xl w-1/6 overflow-x-scroll border border-gray-200 bg-white bg-opacity-80 p-4"
+				className={`fixed top-2 left-2 bottom-2 rounded-2xl overflow-x-scroll border border-gray-300 bg-white  shadow-xl w-1/6 ${
+					showLeftBar ? "w-1/6 h-full py-4" : "w-20 h-14 py-2"
+				} transition-all duration-300 ease-in `}
 				style={{ scrollbarWidth: 0 }}
 			>
-				<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
-				<div className="rounded-md my-4">
-					<Button fullWidth variant="outline" color="gray" component="label">
-						Upload Avatar
+				<div className="flex justify-between items-center w-full my-1 px-4">
+					<p className="text-2xl font-mono font-semibold">Profiler</p>
+					<button
+						onClick={() => setShowLeftBar(!showLeftBar)}
+						className="text-gray-800"
+					>
+						{showLeftBar ? <PanelLeftClose /> : <PanelRightClose />}
+					</button>
+				</div>
+				{showLeftBar && <Divider className="mt-4" color={colors.gray[200]} />}
+				<div
+					className={`rounded-md my-4 px-4 ${
+						showLeftBar ? "opacity-100 h-full" : "opacity-0 h-0"
+					} transition-all duration-300 ease-in`}
+				>
+					<Text className="mb-2 text-gray-600 text-lg">Personal Details</Text>
+					<Button
+						fullWidth
+						variant="outline"
+						leftIcon={<User size="18" />}
+						color="gray"
+						component="label"
+						className="flex justify-start items-center px-2 text-gray-400 border border-gray-200"
+					>
+						Add image
 						<input
 							type="file"
 							accept="image/*"
@@ -358,7 +400,7 @@ const GradientPreview = () => {
 						value={detail.name}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						onChange={(e) => handleDetailChange("name", e.target.value)}
 					/>
@@ -369,7 +411,7 @@ const GradientPreview = () => {
 						value={detail.description}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						onChange={(e) => handleDetailChange("description", e.target.value)}
 					/>
@@ -380,7 +422,7 @@ const GradientPreview = () => {
 						icon={<FaTwitter />}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						value={socialLinks.twitter}
 						onChange={(e) => handleSocialLinkChange("twitter", e.target.value)}
@@ -391,7 +433,7 @@ const GradientPreview = () => {
 						icon={<FaLaptop />}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						value={socialLinks.website}
 						onChange={(e) => handleSocialLinkChange("website", e.target.value)}
@@ -402,7 +444,7 @@ const GradientPreview = () => {
 						icon={<FaYoutube />}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						value={socialLinks.youtube}
 						onChange={(e) => handleSocialLinkChange("youtube", e.target.value)}
@@ -412,7 +454,7 @@ const GradientPreview = () => {
 						placeholder="Instagram Link"
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						icon={<FaInstagram />}
 						value={socialLinks.instagram}
@@ -426,7 +468,7 @@ const GradientPreview = () => {
 						icon={<FaMedium />}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						value={socialLinks.medium}
 						onChange={(e) => handleSocialLinkChange("medium", e.target.value)}
@@ -437,7 +479,7 @@ const GradientPreview = () => {
 						icon={<FaSnapchat />}
 						classNames={{
 							input:
-								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-100",
+								"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
 						}}
 						leftIcon={<FaSnapchat />}
 						value={socialLinks.snapchat}
@@ -445,58 +487,96 @@ const GradientPreview = () => {
 					/>
 				</div>
 			</div>
-			<div className="fixed top-2 right-2 bottom-2 max-w-sm p-4 border border-gray-200 bg-white bg-opacity-80 rounded-2xl">
-				<div className="w-full mx-auto p-4 max-h-96 overflow-y-scroll border border-gray-200 rounded-xl bg-white">
-					<p className="text-gray-600">Background Gradients</p>
-					<div className="flex flex-wrap justify-start items-center gap-2 my-2">
-						{gradientColors.map((gradient) => (
-							<div
-								key={gradient}
-								style={{ background: gradient, borderRadius: 1000 }}
-							>
-								<Button
-									fullWidth
-									variant="unstyled"
-									className={`h-12 w-12 rounded-full hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
-									sx={{
-										border:
-											selectedGradient === gradient ? "3px solid #000" : "none",
-									}}
-									onClick={() => {
-										setSelectedGradient(gradient);
-										setBackgroundColor("");
-									}}
-								/>
-							</div>
-						))}
-					</div>
+			<div
+				className={`fixed top-2 right-2 bottom-2 max-w-sm border border-gray-200 bg-white bg-opacity-80 rounded-2xl overflow-y-scroll ${
+					showRightBar ? "w-full h-full py-4" : "w-84 h-14 py-2"
+				} transition-all duration-300 ease-in `}
+			>
+				<div className="flex justify-between items-center w-full my-1 px-2">
+					<p className="text-2xl font-mono font-semibold">Customisation</p>
+					<button
+						onClick={() => setShowRightBar(!showRightBar)}
+						className="text-gray-800"
+					>
+						{showRightBar ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+					</button>
 				</div>
-				<div className="w-full mx-auto p-4 border border-gray-200 rounded-xl my-4 bg-white">
-					<p className="text-gray-600">Background Color</p>
-					<div className="my-2">
-						<ColorInput
-							value={backgroundColor}
-							label="Select background color"
-							onChange={(val) => setBackgroundColor(val)}
-						/>
+				{showRightBar && <Divider className="mt-4" color={colors.gray[200]} />}
+				<div className="p-4">
+					<div
+						className={`w-full mx-auto p-4 border border-gray-200 rounded-xl bg-white ${
+							showRightBar ? "opacity-100 max-h-84" : "opacity-0 h-0"
+						} transition-all duration-300 ease-in}`}
+					>
+						<p className="text-gray-600">Background Gradients</p>
+						<div className="flex flex-wrap justify-start items-center gap-2 my-2">
+							{gradientColors.map((gradient) => (
+								<div
+									key={gradient}
+									style={{ background: gradient, borderRadius: 1000 }}
+								>
+									<Button
+										fullWidth
+										variant="unstyled"
+										className={`h-12 w-12 rounded-full hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
+										sx={{
+											border:
+												selectedGradient === gradient
+													? "3px solid #000"
+													: "none",
+										}}
+										onClick={() => {
+											setSelectedGradient(gradient);
+											setBackgroundColor("");
+										}}
+									/>
+								</div>
+							))}
+						</div>
 					</div>
-					<p>Background Opacity</p>
-					<input
-						type="range"
-						id="backgroundOpacity"
-						name="backgroundOpacity"
-						min="0"
-						max="100"
-						className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-						onChange={(e) => setBackgroundOpacity(e.target.value)}
-					/>
-					<div className="my-4">
-						<p>Name styles</p>
-						<div className="flex justify-start items-center gap-2">
-							<div>
-								<p>color</p>
+					<div
+						className={`w-full mx-auto p-4 border border-gray-200 rounded-xl my-4 bg-white ${
+							showRightBar ? "opacity-100" : "opacity-0"
+						} transition-all duration-300 ease-in}`}
+					>
+						<p className="text-gray-600">Background Color & Opacity</p>
+						<div className="my-2 flex justify-start items-center gap-2">
+							<ColorInput
+								value={backgroundColor}
+								placeholder="Select background color"
+								onChange={(val) => setBackgroundColor(val)}
+							/>
+							<TextInput
+								size="sm"
+								placeholder="Background opacity"
+								rightSection={<p className="text-gray-500">%</p>}
+								classNames={{
+									input:
+										"border border-gray-200 outline-none focus:outline-none focus:border-2 focus:border-gray-400 hover:bg-gray-50 text-gray-500",
+								}}
+								value={backgroundOpacity.toString()}
+								onChange={(e) => {
+									setBackgroundOpacity(Number(e.target.value));
+								}}
+							/>
+						</div>
+						{/* <p>Background Opacity</p>
+						<input
+							type="range"
+							id="backgroundOpacity"
+							name="backgroundOpacity"
+							min="0"
+							max="100"
+							className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+							onChange={(e) => setBackgroundOpacity(e.target.value)}
+						/> */}
+
+						<div className="my-4">
+							<p>Name styles</p>
+							<div className="flex justify-start items-center gap-2">
 								<ColorInput
 									value={styles.nameFontColor}
+									placeholder="Select color"
 									onChange={(val) => {
 										setStyles((prevState) => ({
 											...prevState,
@@ -504,11 +584,8 @@ const GradientPreview = () => {
 										}));
 									}}
 								/>
-							</div>
-							<div>
-								<p>size</p>
 								<Select
-									placeholder="Choose font size"
+									placeholder="select size"
 									value={styles.nameFontSize}
 									onChange={(val) => {
 										setStyles((prevState) => ({
@@ -517,36 +594,34 @@ const GradientPreview = () => {
 										}));
 									}}
 									data={fontSizeOptions}
-									className="w-full max-w-xs"
 								/>
 							</div>
 						</div>
-					</div>
-					<div className="my-4">
-						<p>Description styles</p>
-						<div className="flex justify-start items-center gap-2">
-							<ColorInput
-								value={styles.descriptionFontColor}
-								label="color"
-								onChange={(val) => {
-									setStyles((prevState) => ({
-										...prevState,
-										descriptionFontColor: val,
-									}));
-								}}
-							/>
-							<Select
-								label="size"
-								placeholder="Choose font size"
-								value={styles.descriptionFontSize}
-								onChange={(val) => {
-									setStyles((prevState) => ({
-										...prevState,
-										descriptionFontSize: val,
-									}));
-								}}
-								data={fontSizeOptions}
-							/>
+						<div className="my-4">
+							<p>Description styles</p>
+							<div className="flex justify-start items-center gap-2">
+								<ColorInput
+									value={styles.descriptionFontColor}
+									placeholder="Select color"
+									onChange={(val) => {
+										setStyles((prevState) => ({
+											...prevState,
+											descriptionFontColor: val,
+										}));
+									}}
+								/>
+								<Select
+									placeholder="Choose size"
+									value={styles.descriptionFontSize}
+									onChange={(val) => {
+										setStyles((prevState) => ({
+											...prevState,
+											descriptionFontSize: val,
+										}));
+									}}
+									data={fontSizeOptions}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
