@@ -17,9 +17,6 @@ import {
 	PanelLeftClose,
 	PanelRightClose,
 	RssIcon,
-	ToggleLeftIcon,
-	ToggleRight,
-	ToggleRightIcon,
 	User,
 } from "lucide-react";
 import {
@@ -33,7 +30,6 @@ import {
 	FaYoutube,
 } from "react-icons/fa";
 import { z } from "zod";
-import { useFullscreen } from "@mantine/hooks";
 
 const schema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -193,7 +189,7 @@ const GradientPreview = () => {
 		gridlines.push(i);
 	}
 
-	const [showLeftBar, setShowLeftBar] = useState(false);
+	const [showLeftBar, setShowLeftBar] = useState(true);
 	const [showRightBar, setShowRightBar] = useState(true);
 
 	return (
@@ -355,15 +351,15 @@ const GradientPreview = () => {
 
 			<div
 				className={`fixed top-2 left-2 bottom-2 rounded-2xl overflow-x-scroll border border-gray-300 bg-white  shadow-xl w-1/6 ${
-					showLeftBar ? "w-1/6 h-full py-4" : "w-20 h-14 py-2"
+					showLeftBar ? "w-1/6 h-full py-4" : "w-20 h-16 py-2"
 				} transition-all duration-300 ease-in `}
 				style={{ scrollbarWidth: 0 }}
 			>
-				<div className="flex justify-between items-center w-full my-1 px-4">
+				<div className="flex justify-between items-center w-full py-1 px-4">
 					<p className="text-2xl font-mono font-semibold">Profiler</p>
 					<button
 						onClick={() => setShowLeftBar(!showLeftBar)}
-						className="text-gray-800"
+						className="text-gray-500 hover:bg-gray-100 hover:bg-opacity-50 rounded-md p-2"
 					>
 						{showLeftBar ? <PanelLeftClose /> : <PanelRightClose />}
 					</button>
@@ -488,15 +484,15 @@ const GradientPreview = () => {
 				</div>
 			</div>
 			<div
-				className={`fixed top-2 right-2 bottom-2 max-w-sm border border-gray-200 bg-white bg-opacity-80 rounded-2xl overflow-y-scroll ${
+				className={`fixed top-3 right-2 bottom-2 max-w-sm border border-gray-200 bg-white bg-opacity-80 rounded-2xl overflow-y-scroll ${
 					showRightBar ? "w-full h-full py-4" : "w-84 h-14 py-2"
 				} transition-all duration-300 ease-in `}
 			>
-				<div className="flex justify-between items-center w-full my-1 px-2">
-					<p className="text-2xl font-mono font-semibold">Customisation</p>
+				<div className="flex justify-between items-center w-full px-2">
+					<p className="text-xl font-mono font-semibold">Customisation</p>
 					<button
 						onClick={() => setShowRightBar(!showRightBar)}
-						className="text-gray-800"
+						className="text-gray-500 hover:bg-gray-100 hover:bg-opacity-50 rounded-md p-2"
 					>
 						{showRightBar ? <ChevronLeftIcon /> : <ChevronRightIcon />}
 					</button>
@@ -560,17 +556,6 @@ const GradientPreview = () => {
 								}}
 							/>
 						</div>
-						{/* <p>Background Opacity</p>
-						<input
-							type="range"
-							id="backgroundOpacity"
-							name="backgroundOpacity"
-							min="0"
-							max="100"
-							className="w-auto h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-							onChange={(e) => setBackgroundOpacity(e.target.value)}
-						/> */}
-
 						<div className="my-4">
 							<p>Name styles</p>
 							<div className="flex justify-start items-center gap-2">
