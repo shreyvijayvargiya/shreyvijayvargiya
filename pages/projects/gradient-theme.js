@@ -33,6 +33,7 @@ import {
 	FaYoutube,
 } from "react-icons/fa";
 import { z } from "zod";
+import { IoLogIn } from "react-icons/io5";
 
 const schema = z.object({
 	name: z.string().min(1, "Name is required"),
@@ -219,9 +220,14 @@ const GradientPreview = () => {
 				</div>
 			</div>
 			<Box
-				className={`w-1/3 mx-auto h-full mb-6 overflow-scroll flex items-center shadow-md justify-center text-white text-xl font-bold border-4 border-black ring-offset-4`}
+				className={`mx-auto my-14 overflow-scroll flex items-center justify-center shadow-md text-white text-xl font-bold border-4 border-black ring-offset-4`}
 				style={getCustomStyle()}
-				sx={{ borderRadius: "40px", zIndex: 100 }}
+				sx={{
+					borderRadius: "40px",
+					zIndex: 100,
+					height: "80vh",
+					width: "25vw",
+				}}
 				ref={profileRef}
 			>
 				<div className="flex justify-center items-center h-full w-full flex-col">
@@ -254,7 +260,7 @@ const GradientPreview = () => {
 							</p>
 						</div>
 						<div
-							className={`flex justify-start items-center gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
+							className={`flex justify-start items-center flex-col gap-2 my-10 sm:flex-wrap xs:flex-wrap xxs:flex-wrap sm:justify-center xxs:justify-center xs:justify-center`}
 						>
 							{socialLinks.twitter && (
 								<a
@@ -356,7 +362,7 @@ const GradientPreview = () => {
 			</Box>
 
 			<div
-				className={`fixed top-2 left-2 bottom-2 rounded-2xl overflow-x-scroll border border-gray-300 bg-white  shadow-xl w-1/6 ${
+				className={`fixed top-2 left-2 bottom-2 rounded-xl overflow-x-scroll border border-gray-300 bg-white  shadow-xl w-1/6 ${
 					showLeftBar ? "w-1/6 h-full py-4" : "w-20 h-16 py-2"
 				} transition-all duration-300 ease-in `}
 				style={{ scrollbarWidth: 0 }}
@@ -490,7 +496,7 @@ const GradientPreview = () => {
 				</div>
 			</div>
 			<div
-				className={`fixed top-3 right-2 bottom-2 max-w-sm border border-gray-200 bg-white bg-opacity-80 rounded-2xl overflow-y-scroll ${
+				className={`fixed top-3 right-2 bottom-2 max-w-sm max-h-screen border border-gray-200 shadow-xl bg-white bg-opacity-80 rounded-xl overflow-y-scroll ${
 					showRightBar ? "w-full h-full py-4" : "w-84 h-14 py-2"
 				} transition-all duration-300 ease-in `}
 			>
@@ -617,7 +623,7 @@ const GradientPreview = () => {
 					</div>
 				</div>
 			</div>
-			<div className="fixed top-2 left-0 right-0 bg-white w-96 mx-auto p-4 border border-gray-200 rounded-md">
+			<div className="fixed top-2 left-0 right-0 bg-white w-96 mx-auto p-2 border border-gray-200 rounded-md shadow-xl ">
 				<div className="flex justify-between items-center gap-2">
 					{!isUserLoggedIn ? <p>Profiler</p> : "John Doe"}
 					{isUserLoggedIn ? (
@@ -642,6 +648,7 @@ const GradientPreview = () => {
 							color="gray"
 							variant="outline"
 							size="xs"
+							leftIcon={<IoLogIn size={18} />}
 							onClick={() => {
 								setLoginModal(true);
 							}}
@@ -652,7 +659,12 @@ const GradientPreview = () => {
 				</div>
 			</div>
 
-			<Modal opened={loginModal} centered classNames={{ header: "hidden" }}>
+			<Modal
+				opened={loginModal}
+				centered
+				classNames={{ header: "hidden" }}
+				onClose={() => setLoginModal(false)}
+			>
 				<div>
 					<h2 className="text-xl font-semibold text-gray-800">
 						Welcome to Profiler
