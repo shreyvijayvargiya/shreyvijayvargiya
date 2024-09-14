@@ -8,12 +8,14 @@ import {
 	ColorInput,
 	Select,
 	Divider,
+	Modal,
 } from "@mantine/core";
 import colors from "tailwindcss/colors";
 import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	Laptop2Icon,
+	LogOut,
 	PanelLeftClose,
 	PanelRightClose,
 	RssIcon,
@@ -21,6 +23,7 @@ import {
 } from "lucide-react";
 import {
 	FaFontAwesome,
+	FaGoogle,
 	FaInstagram,
 	FaLaptop,
 	FaMedium,
@@ -191,6 +194,9 @@ const GradientPreview = () => {
 
 	const [showLeftBar, setShowLeftBar] = useState(true);
 	const [showRightBar, setShowRightBar] = useState(true);
+	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+	const [loginLoader, setLoginLoader] = useState(false);
+	const [loginModal, setLoginModal] = useState(false);
 
 	return (
 		<div className="p-6 h-screen w-full relative bg-gray-50 bg-opacity-40">
@@ -611,6 +617,79 @@ const GradientPreview = () => {
 					</div>
 				</div>
 			</div>
+			<div className="fixed top-2 left-0 right-0 bg-white w-96 mx-auto p-4 border border-gray-200 rounded-md">
+				<div className="flex justify-between items-center gap-2">
+					{!isUserLoggedIn ? <p>Profiler</p> : "John Doe"}
+					{isUserLoggedIn ? (
+						<Button
+							onClick={() => {
+								setLoginLoader(true);
+								setTimeout(() => {
+									setLoginLoader(false);
+									setIsUserLoggedIn(false);
+								}, 500);
+							}}
+							size="xs"
+							loading={loginLoader}
+							radius="md"
+							color="red"
+							leftIcon={<LogOut size={18} />}
+						>
+							Logout
+						</Button>
+					) : (
+						<Button
+							color="gray"
+							variant="outline"
+							size="xs"
+							onClick={() => {
+								setLoginModal(true);
+							}}
+						>
+							Login
+						</Button>
+					)}
+				</div>
+			</div>
+
+			<Modal opened={loginModal} centered classNames={{ header: "hidden" }}>
+				<div>
+					<h2 className="text-xl font-semibold text-gray-800">
+						Welcome to Profiler
+					</h2>
+					<p className="text-gray-600 mt-2">
+						Please google login to continue using our services and accepting the
+						policies and terms.{" "}
+					</p>
+					<Button
+						onClick={() => {
+							setLoginLoader(true);
+							setTimeout(() => {
+								setIsUserLoggedIn(true);
+								setLoginLoader(false);
+								setLoginModal(false);
+							}, 500);
+						}}
+						fullWidth
+						my="md"
+						size="md"
+						radius="md"
+						color="dark"
+						loading={loginLoader}
+						leftIcon={<FaGoogle size={18} />}
+						sx={{
+							"&:hover": {
+								backgroundColor: colors.bgBlack,
+								transform: "scale(1.02)",
+								transition: "transform 0.2s ease-in-out",
+							},
+							transition: "transform 0.2s ease-in-out",
+						}}
+					>
+						Google Login
+					</Button>
+				</div>
+			</Modal>
 		</div>
 	);
 };
