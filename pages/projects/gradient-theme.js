@@ -93,9 +93,6 @@ const fontSizeOptions = [
 	{ value: "64", label: "64px" },
 	{ value: "72", label: "72px" },
 	{ value: "84", label: "84px" },
-	{ value: "96", label: "96px" },
-	{ value: "108", label: "108px" },
-	{ value: "120", label: "120px" },
 ];
 
 const GradientPreview = () => {
@@ -200,27 +197,29 @@ const GradientPreview = () => {
 	const [loginModal, setLoginModal] = useState(false);
 
 	return (
-		<div className="p-6 h-screen w-full relative bg-gray-50 bg-opacity-40">
+		<div className="p-6 h-screen w-full relative">
 			<div className="fixed w-full h-full" style={{ zIndex: -10 }}>
 				<div className="fixed top-0 bottom-0 left-0 right-0 flex justify-between items-center h-screen w-full z-0">
 					{gridlines.map((item) => (
 						<div
 							key={item}
-							className="w-0.5 h-full bg-gray-200 bg-opacity-10"
+							className="w-0.5 h-full bg-gray-300 bg-opacity-10"
+							style={{ transform: "skewX(5deg)" }}
 						/>
 					))}
 					<div className="fixed top-0 bottom-0 left-0 right-0 flex flex-col justify-between items-center h-screen w-full z-0">
 						{gridlines.map((item) => (
 							<div
 								key={item}
-								className="w-full h-0.5 bg-gray-200 bg-opacity-10"
+								className="w-full h-0.5 bg-gray-300 bg-opacity-10"
+								style={{ transform: "skewX(-5deg)" }}
 							/>
 						))}
 					</div>
 				</div>
 			</div>
 			<Box
-				className={`mx-auto my-14 overflow-scroll flex items-center justify-center shadow-md text-white text-xl font-bold border-4 border-black ring-offset-4`}
+				className={`mx-auto my-14 overflow-scroll flex items-center justify-center shadow-md text-white text-xl font-bold border-4 border-black ring-offset-4 resize-x max-w-7xl min-w-1/4`}
 				style={getCustomStyle()}
 				sx={{
 					borderRadius: "40px",
@@ -362,8 +361,8 @@ const GradientPreview = () => {
 			</Box>
 
 			<div
-				className={`fixed top-2 left-2 bottom-2 rounded-xl overflow-x-scroll border border-gray-300 bg-white  shadow-xl w-1/6 ${
-					showLeftBar ? "w-1/6 h-full py-4" : "w-20 h-16 py-2"
+				className={`fixed top-2 left-2 bottom-2 rounded-xl overflow-y-scroll border border-gray-300 bg-white shadow-xl w-1/6 ${
+					showLeftBar ? "w-1/6 py-4" : "w-20 h-14 py-1"
 				} transition-all duration-300 ease-in `}
 				style={{ scrollbarWidth: 0 }}
 			>
@@ -496,8 +495,8 @@ const GradientPreview = () => {
 				</div>
 			</div>
 			<div
-				className={`fixed top-3 right-2 bottom-2 max-w-sm max-h-screen border border-gray-200 shadow-xl bg-white bg-opacity-80 rounded-xl overflow-y-scroll ${
-					showRightBar ? "w-full h-full py-4" : "w-84 h-14 py-2"
+				className={`fixed top-2 right-2 bottom-2 max-w-sm max-h-screen border border-gray-200 shadow-xl bg-white rounded-xl overflow-y-scroll ${
+					showRightBar ? "w-full py-4" : "w-84 h-14 py-2"
 				} transition-all duration-300 ease-in `}
 			>
 				<div className="flex justify-between items-center w-full px-2">
@@ -623,7 +622,7 @@ const GradientPreview = () => {
 					</div>
 				</div>
 			</div>
-			<div className="fixed top-2 left-0 right-0 bg-white w-96 mx-auto p-2 border border-gray-200 rounded-md shadow-xl ">
+			<div className="fixed top-3 left-0 right-0 bg-white bg-opacity-80 w-96 mx-auto p-3 border border-gray-200 rounded-md shadow-xl ">
 				<div className="flex justify-between items-center gap-2">
 					{!isUserLoggedIn ? <p>Profiler</p> : "John Doe"}
 					{isUserLoggedIn ? (
