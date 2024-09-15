@@ -203,16 +203,14 @@ const GradientPreview = () => {
 					{gridlines.map((item) => (
 						<div
 							key={item}
-							className="w-0.5 h-full bg-gray-300 bg-opacity-10"
-							style={{ transform: "skewX(5deg)" }}
+							className="w-0.5 h-full bg-gray-200 bg-opacity-10"
 						/>
 					))}
 					<div className="fixed top-0 bottom-0 left-0 right-0 flex flex-col justify-between items-center h-screen w-full z-0">
 						{gridlines.map((item) => (
 							<div
 								key={item}
-								className="w-full h-0.5 bg-gray-300 bg-opacity-10"
-								style={{ transform: "skewX(-5deg)" }}
+								className="w-full h-0.5 bg-gray-200 bg-opacity-10"
 							/>
 						))}
 					</div>
@@ -525,7 +523,7 @@ const GradientPreview = () => {
 									<Button
 										fullWidth
 										variant="unstyled"
-										className={`h-12 w-12 rounded-full hover:w-14 hover:h-14 transition-all duration-200 ${gradient}`}
+										className={`w-10 h-10 rounded-full hover:w-12 hover:h-12 transition-all duration-200 ${gradient}`}
 										sx={{
 											border:
 												selectedGradient === gradient
