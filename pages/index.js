@@ -1,5 +1,5 @@
 import React from "react";
-import HomeComponent from "components/Home/Home";
+import GradientPreview from "./projects/gradient-theme";
 
-const HomePage = () => <HomeComponent />;
+const HomePage = () => <GradientPreview />;
 export default HomePage;

@@ -18,6 +18,13 @@ module.exports = () => {
 		env: {
 			SUPABASE_KEY:
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidmlld21zcWd0ZXB3a2JwYWtsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2ODc3MDYyMCwiZXhwIjoxOTg0MzQ2NjIwfQ.quS6qtS81uaJ2QRgoZ4PyDXIQQvmbk0nHyaZs-xOOEM",
+			apiKey: process.env.apiKey,
+			authDomain: process.env.authDomain,
+			projectId: process.env.projectId,
+			storageBucket: process.env.storageBucket,
+			messagingSenderId: process.env.messagingSenderId,
+			appId: process.env.appId,
+			measurementId: process.env.measurementId,
 		},
 		transpilePackages: ["gsap"],
 		webpack: (config) => {
