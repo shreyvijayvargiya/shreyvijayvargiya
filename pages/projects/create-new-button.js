@@ -11,7 +11,7 @@ export const iconMap = [
 	{ id: 6, name: "Website", icon: LucideIcons.Monitor },
 ];
 
-const CreateNewComponent = () => {
+const CreateNewButton = () => {
 	const [show, setShow] = useState(false);
 
 	return (
@@ -76,4 +76,4 @@ const CreateNewComponent = () => {
 		</div>
 	);
 };
-export default CreateNewComponent;
+export default CreateNewButton;
