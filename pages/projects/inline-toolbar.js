@@ -8,15 +8,15 @@ import {
 	AlignRight,
 } from "lucide-react";
 
-const colors = [
-	"blue-300",
-	"indigo-300",
-	"green-300",
-	"yellow-300",
-	"pink-300",
-	"red-300",
-	"black",
-	"gray-300",
+const textColors = [
+	"#93c5fd",
+	"#a5b4fc",
+	"#86efac",
+	"#fef08a",
+	"#fbcfe8",
+	"#fca5a5",
+	"#000000",
+	"#d1d5db",
 ];
 
 const InlineToolbar = ({ show, onStyleClick, activeStyles }) => {
@@ -25,7 +25,6 @@ const InlineToolbar = ({ show, onStyleClick, activeStyles }) => {
 			className={`bg-white border border-gray-300 p-2 rounded-md flex space-x-2 transition-all duration-300 ${
 				show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
 			}`}
-			// style={{ top: "10px" }}
 		>
 			<button
 				onClick={() => onStyleClick("bold")}
@@ -82,13 +81,14 @@ const InlineToolbar = ({ show, onStyleClick, activeStyles }) => {
 				<AlignRight size={16} />
 			</button>
 			<div className="flex space-x-1">
-				{colors.map((color) => (
+				{textColors.map((color) => (
 					<button
 						key={color}
 						onClick={() => onStyleClick(color)}
-						className={`w-6 h-6 rounded-full bg-${color} ${
+						className={`w-6 h-6 rounded-full ${
 							activeStyles.color === color ? "border-2 border-indigo-600" : ""
 						}`}
+						style={{ background: color }}
 					/>
 				))}
 			</div>
@@ -97,6 +97,8 @@ const InlineToolbar = ({ show, onStyleClick, activeStyles }) => {
 };
 
 const TextEditor = () => {
+	const [paragraphs, setParagraphs] = useState([{ id: 1, content: "<br>" }]);
+	const [activeParagraphId, setActiveParagraphId] = useState(1);
 	const [showToolbar, setShowToolbar] = useState(false);
 	const [activeStyles, setActiveStyles] = useState({
 		bold: false,
@@ -105,84 +107,111 @@ const TextEditor = () => {
 		align: "left",
 		color: "black",
 	});
-	const textAreaRef = useRef(null);
-	const toolbarRef = useRef(null);
+	const editorRef = useRef(null);
 
 	useEffect(() => {
-		const handleSelection = () => {
-			const selection = window.getSelection();
-			if (selection.toString()) {
-				setShowToolbar(true);
-			} else {
-				setShowToolbar(false);
+		const handleClick = (e) => {
+			const paragraph = e.target.closest("p");
+			if (paragraph) {
+				setActiveParagraphId(Number(paragraph.dataset.id));
+				updateActiveStyles(paragraph);
 			}
 		};
 
-		document.addEventListener("selectionchange", handleSelection);
-		return () => {
-			document.removeEventListener("selectionchange", handleSelection);
-		};
+		document.addEventListener("click", handleClick);
+		return () => document.removeEventListener("click", handleClick);
 	}, []);
 
-	const applyStyle = (command, value) => {
-		document.execCommand(command, false, value);
-		updateActiveStyles();
+	const updateActiveStyles = (element) => {
+		const computedStyle = window.getComputedStyle(element);
+		setActiveStyles({
+			bold:
+				computedStyle.fontWeight === "bold" ||
+				Number(computedStyle.fontWeight) >= 700,
+			italic: computedStyle.fontStyle === "italic",
+			underline: computedStyle.textDecoration.includes("underline"),
+			align: computedStyle.textAlign,
+			color: computedStyle.color,
+		});
 	};
 
-	const updateActiveStyles = () => {
-		const selection = window.getSelection();
-		const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
-		if (range) {
-			setActiveStyles({
-				bold: document.querySelector("bold"),
-				italic: document.querySelector("italic"),
-				underline: document.querySelector("underline"),
-				align: document.querySelector("textAlign") || "left",
-				color: document.querySelector("foreColor") || "black",
-			});
+	const handleKeyDown = (e, id) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			const newId = Date.now();
+			setParagraphs((prev) => [...prev, { id: newId, content: "<br>" }]);
+			setActiveParagraphId(newId);
 		}
 	};
 
-	const handleStyleClick = (style) => {
+	const handleContentChange = (e, id) => {
+		setActiveParagraphId(id);
+		setParagraphs((prev) =>
+			prev.map((p) => (p.id === id ? { ...p, content: e.target.innerHTML } : p))
+		);
+	};
+
+	const applyStyle = (style, value) => {
+		const activeParagraph = document.querySelector(
+			`p[data-id="${activeParagraphId}"]`
+		);
+		if (!activeParagraph) return;
+
 		switch (style) {
 			case "bold":
-				applyStyle("bold");
+				activeParagraph.style.fontWeight = activeStyles.bold
+					? "normal"
+					: "bold";
 				break;
 			case "italic":
-				applyStyle("italic");
+				activeParagraph.style.fontStyle = activeStyles.italic
+					? "normal"
+					: "italic";
 				break;
 			case "underline":
-				applyStyle("underline");
+				activeParagraph.style.textDecoration = activeStyles.underline
+					? "none"
+					: "underline";
 				break;
-			case "left":
-				applyStyle("justifyLeft");
+			case "align":
+				activeParagraph.style.textAlign = activeStyles.align;
 				break;
-			case "center":
-				applyStyle("justifyCenter");
+			case "color":
+				console.log(activeStyles, value, "active styles");
+				activeParagraph.style.color = activeStyles.color;
 				break;
-			case "right":
-				applyStyle("justifyRight");
-				break;
-			default:
-				applyStyle("foreColor", style);
 		}
+
+		updateActiveStyles(activeParagraph);
 	};
 
 	return (
 		<div className="relative p-5 flex justify-center items-center h-screen flex-col">
-			<InlineToolbar
-				show={true}
-				onStyleClick={handleStyleClick}
-				activeStyles={activeStyles}
-			/>
-			<br />
-			<textarea
-				ref={textAreaRef}
-				className="w-96 h-64 mx-auto p-2 border border-gray-300 rounded-md resize-none"
-				style={{ fontSize: "1rem" }}
-				onFocus={() => setShowToolbar(true)}
-				onBlur={() => setShowToolbar(false)}
-			/>
+			<div className="max-w-xl">
+				<InlineToolbar
+					show={true}
+					onStyleClick={applyStyle}
+					activeStyles={activeStyles}
+				/>
+				<div
+					ref={editorRef}
+					className="w-full mx-auto p-2 border border-gray-300 rounded-md overflow-auto"
+					onClick={() => setShowToolbar(true)}
+					onBlur={(e) => setShowToolbar(false)}
+				>
+					{paragraphs.map(({ id, content }) => (
+						<p
+							key={id}
+							data-id={id}
+							dangerouslySetInnerHTML={{ __html: content }}
+							onKeyDown={(e) => handleKeyDown(e, id)}
+							onInput={(e) => handleContentChange(e, id)}
+							contentEditable={activeParagraphId === id}
+							className="outline-none"
+						/>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };

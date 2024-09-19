@@ -11,7 +11,7 @@ const HundredCharacter = () => {
 	const progressWidth = `${(val.trim().length / 100) * 100}`;
 
 	return (
-		<div className="h-screen w-full flex justify-center items-center">
+		<div className="w-full flex justify-center items-center h-screen">
 			<div className="w-96 overflow-hidden">
 				<div className="relative flex gap-4 items-center justify-end my-3 h-12 overflow-x-scroll w-full border border-gray-200 rounded-2xl">
 					<div
