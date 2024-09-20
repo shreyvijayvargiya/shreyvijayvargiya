@@ -3,23 +3,47 @@ import React, { useEffect, useState } from "react";
 
 const Gallery = () => {
 	const [activeItem, setActiveItem] = useState(null);
-
 	useEffect(() => {
-		gsap.fromTo(
-			randomTitlesData.map((item) => `.blog-${item.id}`),
-			{ opacity: 0, scale: 0.9 },
-			{
-				opacity: 1,
-				scale: 1,
-				stagger: 0.3,
-			}
-		);
+		const tl = gsap.timeline();
+		tl.fromTo(
+			".heading-text",
+			{ opacity: 1, x: -300, display: "flex" },
+			{ opacity: 0, duration: 3, display: "none", x: 0 }
+		)
+			.fromTo(
+				randomTitlesData.map((item) => `.blog-${item.id}`),
+				{
+					scale: (i) => randomTitlesData[i].id / 10 - 0.7,
+					opacity: (i) => randomTitlesData[i].id / 10 - 0.7,
+					rotate: (i) => randomTitlesData[i].id * 360 + "deg",
+				},
+				{
+					rotate: 0,
+					opacity: 1,
+					scale: 1,
+					stagger: 0.1,
+					duration: 3,
+				},
+				"-=0.3"
+			)
+
+			.fromTo(
+				".latest-blog-heading",
+				{
+					opacity: 0,
+					x: -100,
+				},
+				{
+					opacity: 1,
+					x: 0,
+				}
+			);
 	}, []);
 
 	return (
 		<div className="flex h-screen w-full flex-col justify-center items-center">
 			<div className="w-full relative h-5/6">
-				<p className="text-2xl px-20 mb-2">Latest blogs</p>
+				<p className="text-2xl px-20 mb-2 latest-blog-heading">Latest blogs</p>
 				<div>
 					{randomTitlesData.map((item) => {
 						return (
@@ -41,7 +65,7 @@ const Gallery = () => {
 						);
 					})}
 					<div
-						className={`px-10 overflow-y-scroll bg-white border border-gray-200 rounded-2xl shadow-2xl ${
+						className={`px-10 overflow-y-scroll bg-white border border-gray-400 rounded-2xl shadow-2xl ${
 							activeItem !== null ? "h-5/6 w-1/6 visible " : " h-0 w-0 hidden"
 						}`}
 						style={{
@@ -63,6 +87,11 @@ const Gallery = () => {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="heading-text fixed w-full h-screen flex flex-col justify-center items-center p-10 bg-gray-100 bg-opacity-80">
+				<p className="text-5xl text-center font-serif">
+					Welcome to iHateReading
+				</p>
 			</div>
 		</div>
 	);
