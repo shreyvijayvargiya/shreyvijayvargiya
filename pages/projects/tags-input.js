@@ -30,8 +30,6 @@ const TagsInput = () => {
 					width: "100%",
 					duration: 0.3,
 					onComplete: () => {
-						setTags(prevtags);
-						setNewTag("");
 						gsap.fromTo(
 							".tag-input",
 							{
@@ -42,6 +40,10 @@ const TagsInput = () => {
 								backgroundColor: colors.white,
 								duration: 0.4,
 								width: "100%",
+								onComplete: () => {
+									setTags(prevtags);
+									setNewTag("");
+								},
 							}
 						);
 					},
@@ -68,6 +70,31 @@ const TagsInput = () => {
 	return (
 		<div className="w-full h-screen flex justify-center items-center flex-col">
 			<div className="max-w-md min-w-1/4">
+				{tags.length > 1 && (
+					<div className="flex justify-end items-center">
+						<button
+							className="flex justify-around items-center gap-2 p-2 bg-gray-50 rounded-md hover:border hover:border-gray-200 hover:bg-gray-100 hover:px-4 hover:py-2 my-2 transition-all duration-150 ease-in"
+							onClick={() => {
+								gsap.to(
+									tags.map((i, index) => `.tag-${index}`),
+									{
+										duration: 0.5,
+										width: 0,
+										opacity: 0,
+										stagger: 0.2,
+										display: "none",
+										ease: "power1",
+										onComplete: () => {
+											setTags([]);
+										},
+									}
+								);
+							}}
+						>
+							Clear all <X size={18} />
+						</button>
+					</div>
+				)}
 				<input
 					placeholder="write tag and press Enter"
 					value={newTag}
