@@ -6,32 +6,17 @@ const Gallery = () => {
 	const [activeItem, setActiveItem] = useState(null);
 	useEffect(() => {
 		const tl = gsap.timeline();
+
 		tl.fromTo(
-			randomTitlesData.map((item) => `.blog-${item.id}`),
-			{
-				scale: (i) => randomTitlesData[i].id / 10 - 0.6,
-				opacity: (i) => randomTitlesData[i].id / 10 - 0.5,
-				x: (i) => -randomTitlesData[i].id * 200 + "px",
-			},
-			{
-				x: 0,
-				opacity: 0,
-				scale: 0,
-				stagger: 0.1,
-				duration: 1,
-			}
+			".heading-text",
+			{ opacity: 1, scale: 1, display: "flex" },
+			{ opacity: 0.1, duration: 3, display: "none", scale: 0.9 }
 		)
-			.fromTo(
-				".heading-text",
-				{ opacity: 1, x: -300, display: "flex" },
-				{ opacity: 0, duration: 3, display: "none", x: 0 },
-				"-=0.3"
-			)
 			.fromTo(
 				randomTitlesData.map((item) => `.blog-${item.id}`),
 				{
-					scale: (i) => randomTitlesData[i].id / 10 - 0.7,
-					opacity: (i) => randomTitlesData[i].id / 10 - 0.7,
+					scale: (i) => randomTitlesData[i].id / 10 - 0.6,
+					opacity: (i) => randomTitlesData[i].id / 10 - 0.6,
 					rotate: (i) => randomTitlesData[i].id * 360 + "deg",
 				},
 				{
@@ -39,7 +24,7 @@ const Gallery = () => {
 					opacity: 1,
 					scale: 1,
 					stagger: 0.1,
-					duration: 3,
+					duration: 4,
 					onComplete: () => {
 						gsap.fromTo(
 							".container",
@@ -54,8 +39,7 @@ const Gallery = () => {
 							}
 						);
 					},
-				},
-				"-=0.3"
+				}
 			)
 			.fromTo(
 				".latest-blog-heading",
@@ -66,9 +50,11 @@ const Gallery = () => {
 				{
 					opacity: 1,
 					x: 0,
-				}
+					duration: 2,
+				},
+				"-=0.1"
 			);
-	}, []);
+	}, [randomTitlesData]);
 
 	return (
 		<div className="flex h-screen w-full flex-col justify-center items-center">
@@ -79,7 +65,7 @@ const Gallery = () => {
 						return (
 							<button
 								key={item.id}
-								className={`w-full hover:px-24 hover:py-4 text-left py-3 px-20 hover:bg-gray-50 blog-${item.id} transition-all duration-200 ease-linear`}
+								className={`w-full hover:px-24 hover:py-4 text-left py-3 px-20 hover:bg-gray-100 blog-${item.id} transition-all duration-200 ease-linear`}
 								onMouseOver={() => {
 									setActiveItem(item);
 								}}
