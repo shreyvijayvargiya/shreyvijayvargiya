@@ -1,15 +1,32 @@
 import gsap from "gsap";
 import React, { useEffect, useState } from "react";
+import colors from "tailwindcss/colors";
 
 const Gallery = () => {
 	const [activeItem, setActiveItem] = useState(null);
 	useEffect(() => {
 		const tl = gsap.timeline();
 		tl.fromTo(
-			".heading-text",
-			{ opacity: 1, x: -300, display: "flex" },
-			{ opacity: 0, duration: 3, display: "none", x: 0 }
+			randomTitlesData.map((item) => `.blog-${item.id}`),
+			{
+				scale: (i) => randomTitlesData[i].id / 10 - 0.6,
+				opacity: (i) => randomTitlesData[i].id / 10 - 0.5,
+				x: (i) => -randomTitlesData[i].id * 200 + "px",
+			},
+			{
+				x: 0,
+				opacity: 0,
+				scale: 0,
+				stagger: 0.1,
+				duration: 1,
+			}
 		)
+			.fromTo(
+				".heading-text",
+				{ opacity: 1, x: -300, display: "flex" },
+				{ opacity: 0, duration: 3, display: "none", x: 0 },
+				"-=0.3"
+			)
 			.fromTo(
 				randomTitlesData.map((item) => `.blog-${item.id}`),
 				{
@@ -23,10 +40,23 @@ const Gallery = () => {
 					scale: 1,
 					stagger: 0.1,
 					duration: 3,
+					onComplete: () => {
+						gsap.fromTo(
+							".container",
+							{
+								backgroundColor: colors.gray[200],
+								scale: 1,
+							},
+							{
+								backgroundColor: colors.white,
+								scale: 0.9,
+								duration: 2,
+							}
+						);
+					},
 				},
 				"-=0.3"
 			)
-
 			.fromTo(
 				".latest-blog-heading",
 				{
@@ -42,14 +72,14 @@ const Gallery = () => {
 
 	return (
 		<div className="flex h-screen w-full flex-col justify-center items-center">
-			<div className="w-full relative h-5/6">
+			<div className="w-full relative h-5/6 container">
 				<p className="text-2xl px-20 mb-2 latest-blog-heading">Latest blogs</p>
-				<div>
+				<div className="blog-container">
 					{randomTitlesData.map((item) => {
 						return (
 							<button
 								key={item.id}
-								className={`w-full text-left py-3 px-20 hover:bg-gray-50 blog-${item.id}`}
+								className={`w-full hover:px-24 hover:py-4 text-left py-3 px-20 hover:bg-gray-50 blog-${item.id} transition-all duration-200 ease-linear`}
 								onMouseOver={() => {
 									setActiveItem(item);
 								}}
@@ -65,12 +95,12 @@ const Gallery = () => {
 						);
 					})}
 					<div
-						className={`px-10 overflow-y-scroll bg-white border border-gray-400 rounded-2xl shadow-2xl ${
+						className={`px-5 overflow-y-scroll bg-white border border-gray-400 rounded-2xl shadow-2xl ${
 							activeItem !== null ? "h-5/6 w-1/6 visible " : " h-0 w-0 hidden"
 						}`}
 						style={{
 							position: "fixed",
-							width: activeItem !== null ? "45%" : "0%",
+							width: activeItem !== null ? "50%" : "0%",
 							height: activeItem !== null ? "80%" : "0%",
 							top: "50%",
 							transform: "translate(100%, -50%)",
