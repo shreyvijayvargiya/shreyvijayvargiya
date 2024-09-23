@@ -60,7 +60,7 @@ const MorphineButton = () => {
 						setActive(1);
 					}}
 					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 z-10 ${
-						active === 1 ? "bg-indigo-600 mr-24 rounded-xl shadow-2xl" : "ml-0"
+						active === 1 ? "bg-indigo-600 mr-24 rounded-2xl shadow-2xl" : "ml-0"
 					} transition-all duration-200 ease-in`}
 				>
 					Home
@@ -70,7 +70,7 @@ const MorphineButton = () => {
 						setActive(2);
 					}}
 					className={` cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
-						active === 2 ? "bg-indigo-600 mx-24 rounded-xl shadow-2xl" : "ml-0"
+						active === 2 ? "bg-indigo-600 mx-24 rounded-2xl shadow-2xl" : "ml-0"
 					} transition-all duration-300 ease-in delay-100`}
 				>
 					About
@@ -80,7 +80,7 @@ const MorphineButton = () => {
 						setActive(3);
 					}}
 					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
-						active === 3 ? "bg-indigo-600 ml-24 rounded-xl shadow-2xl" : "ml-0"
+						active === 3 ? "bg-indigo-600 ml-24 rounded-2xl shadow-2xl" : "ml-0"
 					} transition-all duration-300 ease-in delay-100`}
 				>
 					Subscribe
