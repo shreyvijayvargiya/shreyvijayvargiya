@@ -59,9 +59,9 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(1);
 					}}
-					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 z-10 ${
-						active === 1 ? "bg-indigo-600 mr-24 rounded-2xl shadow-2xl" : "ml-0"
-					} transition-all duration-200 ease-in`}
+					className={`cursor-pointer rounded-none w-auto px-10 py-3 text-center text-white bg-black z-10 ${
+						active === 1 ? "bg-indigo-600 mr-5 rounded-2xl shadow-2xl" : "ml-0"
+					} transition-all duration-500 ease-in`}
 				>
 					Home
 				</div>
@@ -69,9 +69,9 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(2);
 					}}
-					className={` cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
-						active === 2 ? "bg-indigo-600 mx-24 rounded-2xl shadow-2xl" : "ml-0"
-					} transition-all duration-300 ease-in delay-100`}
+					className={` cursor-pointer rounded-none w-auto p-3 text-center text-white bg-black ${
+						active === 2 ? "bg-indigo-600 mx-5 rounded-2xl shadow-2xl" : "ml-0"
+					} transition-all duration-500 ease-in`}
 				>
 					About
 				</div>
@@ -79,9 +79,9 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(3);
 					}}
-					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
-						active === 3 ? "bg-indigo-600 ml-24 rounded-2xl shadow-2xl" : "ml-0"
-					} transition-all duration-300 ease-in delay-100`}
+					className={`cursor-pointer rounded-none w-auto p-3 text-center text-white bg-black ${
+						active === 3 ? "bg-indigo-600 ml-5 rounded-2xl shadow-2xl" : "ml-0"
+					} transition-all duration-500 ease-in`}
 				>
 					Subscribe
 				</div>
