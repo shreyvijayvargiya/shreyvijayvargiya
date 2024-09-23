@@ -50,27 +50,40 @@ const MorphineButton = () => {
 		}
 	}, [showHomeButton]);
 
-	const [show, setShow] = useState(false);
+	const [active, setActive] = useState(0);
 
 	return (
 		<div className="flex justify-center items-center h-screen space-x-4">
-			<div className="relative h-40 max-w-md">
-				<div className="relative flex flex-col justify-center items-center">
-					<p className={`px-4 py-2 text-white bg-black absolute z-10`}>Small</p>
-					<p
-						className={`px-4 py-2 text-white bg-black absolute z-1 ${
-							show ? "absolute translate-y-5" : "absolute -translate-y-5"
-						} transition-all duration-100 easi-in`}
-					>
-						Medium
-					</p>
-					<p
-						className={`px-4 py-2 text-white bg-black absolute z-1 ${
-							show ? "absolute translate-y-10" : "absolute -translate-y-10"
-						} transition-all duration-100 easi-in`}
-					>
-						Large
-					</p>
+			<div className="relative flex justify-center items-center">
+				<div
+					onClick={() => {
+						setActive(1);
+					}}
+					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 z-10 ${
+						active === 1 ? "bg-indigo-600 mr-24 rounded-xl shadow-2xl" : "ml-0"
+					} transition-all duration-200 ease-in`}
+				>
+					Home
+				</div>
+				<div
+					onClick={() => {
+						setActive(2);
+					}}
+					className={` cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
+						active === 2 ? "bg-indigo-600 mx-24 rounded-xl shadow-2xl" : "ml-0"
+					} transition-all duration-300 ease-in delay-100`}
+				>
+					About
+				</div>
+				<div
+					onClick={() => {
+						setActive(3);
+					}}
+					className={`cursor-pointer rounded-none w-44 p-3 text-center text-white bg-black hover:py-4 ${
+						active === 3 ? "bg-indigo-600 ml-24 rounded-xl shadow-2xl" : "ml-0"
+					} transition-all duration-300 ease-in delay-100`}
+				>
+					Subscribe
 				</div>
 			</div>
 		</div>
