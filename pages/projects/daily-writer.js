@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BadgePlus, Glasses, Loader, Pencil } from "lucide-react";
+import { Glasses, Loader, Pencil } from "lucide-react";
 import { gsap } from "gsap";
 
 const moods = [
@@ -116,7 +116,7 @@ const DailyWriter = () => {
 				className={`calender-ref border border-gray-300 p-8 rounded-xl min-w-1/2 bg-white shadow-sm`}
 			>
 				<div className="flex items-center justify-between mb-4">
-					<h2 className="text-4xl font-semibold font-serif">September 2024</h2>
+					<h2 className="text-4xl font-serif">September 2024</h2>
 					{progress > 0 && (
 						<button
 							className="hover:underline rounded-full p-4 hover:bg-gray-50"
