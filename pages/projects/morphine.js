@@ -59,7 +59,7 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(1);
 					}}
-					className={`cursor-pointer rounded-none p-3 text-center text-white bg-black ${
+					className={`cursor-pointer p-3 text-center text-white bg-black ${
 						active === 1 && active !== 0
 							? "bg-indigo-600 mr-5 rounded-2xl shadow-2xl"
 							: active === 2
@@ -73,7 +73,7 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(2);
 					}}
-					className={` cursor-pointer rounded-none p-3 text-center text-white bg-black ${
+					className={` cursor-pointer p-3 text-center text-white bg-black ${
 						active === 2 && active !== 0
 							? "bg-indigo-600 mx-5 rounded-2xl shadow-2xl"
 							: active === 1
@@ -87,12 +87,12 @@ const MorphineButton = () => {
 					onClick={() => {
 						setActive(3);
 					}}
-					className={`cursor-pointer rounded-none p-3 text-center text-white bg-black ${
+					className={`cursor-pointer p-3 text-center text-white bg-black ${
 						active === 3 && active !== 0
-							? "bg-indigo-600 mr-5 rounded-2xl shadow-2xl"
-							: active === 2
-							? "ml-0 rounded-xl"
-							: "rounded-r-xl"
+							? "bg-indigo-600 ml-5 rounded-2xl shadow-2xl"
+							: active === 1
+							? "ml-0 rounded-r-xl"
+							: "rounded-xl"
 					} transition-all duration-500 ease-in`}
 				>
 					Subscribe
