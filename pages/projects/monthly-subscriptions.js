@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Glasses, Loader, Pencil } from "lucide-react";
+import { Loader } from "lucide-react";
 import { gsap } from "gsap";
 import {
 	FaSpotify,
@@ -119,7 +119,7 @@ const DailyWriter = () => {
 
 						<div className="grid grid-cols-7 gap-4 mt-4">
 							{vals.map((date) => {
-								const hasSubscriber = date.subscriptions;
+								const hasSubscriber = date.subscriptions && date.subscriptions.length > 0;
 								return (
 									<div
 										key={date.id}
@@ -129,7 +129,7 @@ const DailyWriter = () => {
 											setShow(true);
 											setSubscriptions(date?.subscriptions);
 										}}
-										className={`relative flex items-center justify-center flex-col h-20 w-20 rounded-md hover:border-gray-200 transition-all duration-100 ease-in text-gray-800 font-semibold cursor-pointer ${
+										className={`relative flex items-center justify-center flex-col h-20 w-20 rounded-md transition-all duration-100 ease-in text-gray-800 font-semibold cursor-pointer ${
 											hasSubscriber
 												? "bg-green-100 bg-opacity-80 hover:bg-green-100 hover:bg-opacity-60"
 												: "bg-gray-100 bg-opacity-80 hover:bg-gray-100 hover:bg-opacity-60"
