@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import React, { useState } from "react";
 
 const moods = [
@@ -35,20 +36,31 @@ const MousePointer = () => {
 		setMousePosition((prev) => ({ ...prev, show: false }));
 	};
 
+	const [show, setShow] = useState(true);
+
 	return (
 		<div
 			className="flex w-full h-screen justify-center relative"
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
+			onClick={() => {
+				gsap.to(".mouse-pointer", { y: show ? "90vh" : "0vh" });
+				setShow(!show);
+			}}
 		>
-			<div className="fixed top-4 flex p-2 mx-auto w-auto shadow-lg border border-gray-200 rounded-xl">
+			<div className="fixed top-1 p-2 bg-gray-50 rounded-xl">
+				{show ? "click to drop" : "Click to show"}
+			</div>
+			<div className="fixed bottom-4 flex p-2 mx-auto w-auto shadow-lg border border-gray-200 rounded-xl">
 				{moods.map((el, index) => {
 					return (
 						<div
 							key={index}
 							onClick={() => setMood(el)}
-							className={`cursor-pointer text-2xl px-3 py-2 hover:px-4 transition-all duration-150 ease-in hover:bg-gray-100 hover:text-white rounded-2xl ${
-								mood.emoji === el.emoji ? "bg-gray-100" : "bg-none"
+							className={`${
+								el.label
+							} cursor-pointer text-2xl px-3 py-2 hover:px-4 transition-all duration-150 ease-in hover:bg-gray-100 hover:text-white rounded-2xl ${
+								mood.emoji === el.emoji && show ? "bg-gray-100" : "bg-none"
 							}`}
 						>
 							{el.emoji}
@@ -57,7 +69,7 @@ const MousePointer = () => {
 				})}
 			</div>
 			<div
-				className="text-4xl animate-pulse"
+				className="text-4xl animate-pulse mouse-pointer"
 				style={{
 					position: "fixed",
 					top: mousePosition.y + 20 + "px",
