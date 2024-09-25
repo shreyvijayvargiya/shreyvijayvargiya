@@ -1,41 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Glasses, Loader, Pencil } from "lucide-react";
 import { gsap } from "gsap";
-import {
-	FaSpotify,
-	FaNetflix,
-	FaAmazon,
-	FaApple,
-	FaAdobe,
-	FaTrello,
-	FaSlack,
-	FaDropbox,
-	FaPatreon,
-	FaYoutube,
-	FaGoogleDrive,
-	FaMicrosoft,
-	FaHulu,
-	FaDisney,
-	FaTwitch,
-} from "react-icons/fa";
-
-const subscriptionPlatforms = [
-	{ name: "Spotify", logo: <FaSpotify /> },
-	{ name: "Netflix", logo: <FaNetflix /> },
-	{ name: "Amazon Prime", logo: <FaAmazon /> },
-	{ name: "Apple Music", logo: <FaApple /> },
-	{ name: "Adobe Creative Cloud", logo: <FaAdobe /> },
-	{ name: "Trello", logo: <FaTrello /> },
-	{ name: "Slack", logo: <FaSlack /> },
-	{ name: "Dropbox", logo: <FaDropbox /> },
-	{ name: "Patreon", logo: <FaPatreon /> },
-	{ name: "YouTube Music", logo: <FaYoutube /> },
-	{ name: "Google Drive", logo: <FaGoogleDrive /> },
-	{ name: "Microsoft 365", logo: <FaMicrosoft /> },
-	{ name: "Hulu", logo: <FaHulu /> },
-	{ name: "Disney+", logo: <FaDisney /> },
-	{ name: "Twitch", logo: <FaTwitch /> },
-];
 
 const moods = [
 	{ emoji: "😀", label: "Happy" },
@@ -151,7 +116,9 @@ const DailyWriter = () => {
 				className={`calender-ref border border-gray-300 p-8 rounded-xl min-w-1/2 bg-white shadow-sm`}
 			>
 				<div className="flex items-center justify-between mb-4">
-					<h2 className="text-3xl font-serif">September 2024, {reading ? "List": "Calender"}</h2>
+					<h2 className="text-3xl font-serif">
+						September 2024, {reading ? "List" : "Calender"}
+					</h2>
 					{progress > 0 && (
 						<button
 							className="hover:underline rounded-full p-4 hover:bg-gray-50"
