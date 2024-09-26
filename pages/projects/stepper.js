@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-	ChevronRight,
-	LaptopIcon,
-	LinkedinIcon,
-	X,
-} from "lucide-react";
+import { ChevronRight, LaptopIcon, LinkedinIcon, X } from "lucide-react";
 import { FaMedium } from "react-icons/fa";
 
 const texts = ["Twitter", "LinkedIn", "Website", "Medium"];
@@ -24,12 +19,6 @@ const Stepper = () => {
 			setStep(step + 1);
 		} else if (step === 4) {
 			setStep(0);
-		}
-	};
-
-	const prevStep = () => {
-		if (step > 0) {
-			setStep(step - 1);
 		}
 	};
 
