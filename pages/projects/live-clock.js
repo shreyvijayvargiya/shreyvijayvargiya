@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Minus, Plus } from "lucide-react";
+
 const images = [
 	{ src: "/demo-images/img-1.avif" },
 	{ src: "/demo-images/img-2.avif" },
