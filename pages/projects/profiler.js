@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Portfolio1 from "./socialintro";
 import Portfolio2 from "./socialintro2";
 import Portfolio3 from "./socialintro3";
 import SamanthaPortfolio from "./samantha-portfolio";
@@ -131,7 +130,10 @@ const profilers = [
 const Profiler = () => {
 	const [active, setActive] = useState(profilers[0]);
 	return (
-		<div className="container relative flex h-screen flex-col justify-center items-center">
+		<div className="container relative flex h-screen flex-col justify-start items-start">
+			<p className="text-5xl my-2 font-mono font-semibold mx-auto">
+				Last 30 days
+			</p>
 			<div className="w-3/4 mx-auto p-2 active-component rounded-2xl shadow-xl border border-gray-400">
 				<div
 					key={active.id}
@@ -144,7 +146,7 @@ const Profiler = () => {
 					{active.component}
 				</div>
 			</div>
-			<div className="flex space-x-4 justify-center mx-auto my-4">
+			<div className="fixed top-1/2 bottom-1/2 right-10">
 				<button
 					onClick={() => {
 						let currentId = active.id;
@@ -161,7 +163,7 @@ const Profiler = () => {
 							);
 						}
 					}}
-					className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 z-40"
+					className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 z-40 transform scale-95 hover:scale-150 transition-all duration-200 ease-in"
 				>
 					<ChevronRight className="w-6 h-6" />
 				</button>
