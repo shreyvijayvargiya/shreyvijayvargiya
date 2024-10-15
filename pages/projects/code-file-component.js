@@ -116,7 +116,7 @@ const CodeFileComponent = () => {
 	return (
 		<div className="w-full h-full relative">
 			<div
-				className="border border-gray-200 rounded-xl flex justify-center items-start"
+				className="border border-gray-300 rounded-xl flex justify-center items-start"
 				style={{
 					width: "75%",
 					position: "fixed",
@@ -127,7 +127,7 @@ const CodeFileComponent = () => {
 				}}
 			>
 				<div className="relative w-1/4 bg-gray-50 bg-opacity-20 h-full border-r border-gray-200">
-					<div className="h-8/10 overflow-scroll w-full">
+					<div className="h-4/5 overflow-scroll w-full">
 						{Object.keys(fileContents).map((file) => (
 							<div
 								key={file}
@@ -146,7 +146,7 @@ const CodeFileComponent = () => {
 						))}
 					</div>
 					<div className="group absolute bottom-0 left-0 p-4 flex flex-col cursor-pointer w-full">
-						<div className="theme-container mb-2 w-0 invisible opacity-0 z-50 group-hover:visible group-hover:opacity-100 h-0 group-hover:w-40 group-hover:h-4/10 flex justify-start flex-col items-start transition-all duration-200 ease-in overflow-y-scroll bg-white py-4 border border-gray-300 rounded-xl shadow-xl">
+						<div className="theme-container mb-2 w-0 invisible opacity-0 z-50 group-hover:visible group-hover:opacity-100 h-0 group-hover:w-60 group-hover:h-60 flex justify-start flex-col items-start transition-all duration-200 ease-in overflow-y-scroll bg-white py-4 border border-gray-300 rounded-xl shadow-xl">
 							{availableThemes.map((themeOption) => (
 								<button
 									className={`${
