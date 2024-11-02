@@ -3,24 +3,24 @@ import { CrossIcon, RefreshCwIcon } from "lucide-react";
 import { gsap } from "gsap";
 
 const images = [
-	{ id: 1, src: "img-1.jpg" },
-	{ id: 2, src: "img-2.jpg" },
-	{ id: 3, src: "img-3.jpg" },
-	{ id: 4, src: "img-4.jpg" },
-	{ id: 5, src: "img-5.jpg" },
-	{ id: 6, src: "img-6.jpg" },
-	{ id: 7, src: "img-7.jpg" },
-	{ id: 8, src: "img-8.jpg" },
-	{ id: 9, src: "img-9.jpg" },
-	{ id: 10, src: "img-10.jpg" },
-	{ id: 11, src: "img-11.jpg" },
-	{ id: 12, src: "img-12.jpg" },
-	{ id: 13, src: "img-13.jpg" },
-	{ id: 14, src: "img-14.jpg" },
-	{ id: 15, src: "img-15.jpg" },
-	{ id: 16, src: "img-16.jpg" },
-	{ id: 17, src: "img-17.jpg" },
-	{ id: 18, src: "img-18.jpg" },
+	{ id: 1, src: "/clothes/img-1.jpg" },
+	{ id: 2, src: "/clothes/img-2.jpg" },
+	{ id: 3, src: "/clothes/img-3.jpg" },
+	{ id: 4, src: "/clothes/img-4.jpg" },
+	{ id: 5, src: "/clothes/img-5.jpg" },
+	{ id: 6, src: "/clothes/img-6.jpg" },
+	{ id: 7, src: "/clothes/img-7.jpg" },
+	{ id: 8, src: "/clothes/img-8.jpg" },
+	{ id: 9, src: "/clothes/img-9.jpg" },
+	{ id: 10, src: "/clothes/img-10.jpg" },
+	{ id: 11, src: "/clothes/img-11.jpg" },
+	{ id: 12, src: "/clothes/img-12.jpg" },
+	{ id: 13, src: "/clothes/img-13.jpg" },
+	{ id: 14, src: "/clothes/img-14.jpg" },
+	{ id: 15, src: "/clothes/img-15.jpg" },
+	{ id: 16, src: "/clothes/img-16.jpg" },
+	{ id: 17, src: "/clothes/img-17.jpg" },
+	{ id: 18, src: "/clothes/img-18.jpg" },
 ];
 const gridSize = 44;
 const imagePositions = [1, 3, 7, 10, 14, 17, 20, 24, 27, 30, 33, 37, 39, 43];
@@ -143,15 +143,11 @@ const Gridliner = () => {
 							<div
 								className="cursor-pointer"
 								onClick={() =>
-									openModal(
-										`/clothes/${images[imagePositions.indexOf(idx + 1)].src}`
-									)
+									openModal(`${images[imagePositions.indexOf(idx + 1)].src}`)
 								}
 							>
 								<img
-									src={`/clothes/${
-										images[imagePositions.indexOf(idx + 1)].src
-									}`}
+									src={images[imagePositions.indexOf(idx + 1)]?.src}
 									alt={`Clothes ${idx + 1}`}
 									className="w-28 h-28 hover:bg-gray-50 transform hover:scale-90 transition-all duration-100 ease-in"
 								/>
