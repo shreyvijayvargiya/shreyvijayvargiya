@@ -1,35 +1,26 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-	enabled: process.env.ANALYZE === "true",
-});
+/** @type {import('next').NextConfig} */
+const path = require("path");
 
-module.exports = () => {
-	return {
-		experimental: {
-			esmExternals: false,
-		},
-		images: {
-			domains: [
-				"firebasestorage.googleapis.com",
-				"static.toiimg.com",
-				"oaidalleapiprodscus.blob.core.windows.net",
-				"picsum.photos",
-			],
-		},
-		env: {
-			SUPABASE_KEY:
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidmlld21zcWd0ZXB3a2JwYWtsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2ODc3MDYyMCwiZXhwIjoxOTg0MzQ2NjIwfQ.quS6qtS81uaJ2QRgoZ4PyDXIQQvmbk0nHyaZs-xOOEM",
-		},
-		transpilePackages: ["gsap"],
-		webpack: (config) => {
-			config.node = {
-				fs: "empty",
-				child_process: "empty",
-				net: "empty",
-				dns: "empty",
-				tls: "empty",
-			};
-			return config;
-		},
-		...withBundleAnalyzer({}),
-	};
+const nextConfig = {
+	webpack: (config, { isServer }) => {
+		config.module.rules.push({
+			test: /\.(js|jsx)$/,
+			include: /node_modules[\\/]react-svg-map[\\/]src/,
+			use: {
+				loader: "babel-loader",
+				options: {
+					presets: ["next/babel"],
+				},
+			},
+		});
+		if (!isServer) {
+			config.resolve.alias["yjs"] = path.resolve(
+				__dirname,
+				"../node_modules/yjs"
+			);
+		}
+		return config;
+	},
 };
+
+module.exports = nextConfig;
