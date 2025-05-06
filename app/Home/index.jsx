@@ -535,7 +535,7 @@ const Home = () => {
 
 			{/* Background dots pattern */}
 			<div
-				className="absolute h-full inset-0 opacity-30 z-0"
+				className="absolute h-full inset-0 opacity-20 z-0"
 				style={{
 					backgroundImage:
 						"radial-gradient(circle, #d1d5db 1.5px, transparent 1.5px)",
