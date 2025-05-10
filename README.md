@@ -2,4 +2,4 @@
 
 Software Developer 
 
-Currently running [iHateReading](="ihatereading.in)
+Currently running https://ihatereading.in
