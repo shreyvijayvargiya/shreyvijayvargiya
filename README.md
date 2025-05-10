@@ -1,7 +1,5 @@
-# Nextjs iHateReading components starter repository
+## Shrey
 
-## Introduction
+Software Developer 
 
-This is nextjs basic tailwind starter repository with framer-motion, gsap, lucide-react and react-icons as packages installed
-
-<a href="ihatereading.in"></a>
+Currently running <a href="ihatereading.in"></a>
