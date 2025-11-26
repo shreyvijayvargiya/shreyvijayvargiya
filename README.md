@@ -2,4 +2,6 @@
 
 Software Developer 
 
-Currently running https://ihatereading.in
+Currently running https://ihatereading.in, https://www.gettemplate.website
+
+Portfolio - https://shreyvijayvargiya.vercel.app/
